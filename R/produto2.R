@@ -325,3 +325,7 @@ df.SINAN.rbind.id.unico.2018 <- filter(df.SINAN_hepc_rbind_id_unico, df.SINAN_he
 #############
 #### RAAS ###
 #############
+
+#############
+#### SIM ####
+#############
