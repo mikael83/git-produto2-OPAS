@@ -1,7 +1,7 @@
 ############ Produto 2 ###########################
 ##################################################
 ###### script desenvolvido por Mikael Lemos ######
-###### versão 1.0 - 22.07.2019 ###################
+###### vers�o 1.0 - 22.07.2019 ###################
 ##################################################
 
 ######
@@ -87,7 +87,7 @@ df.GAL_anti_HCV$RESULTADO <- as.character(df.GAL_anti_HCV$RESULTADO)
 
 df.GAL_anti_HCV_REAGENTE <- filter(df.GAL_anti_HCV, df.GAL_anti_HCV$RESULTADO == "Resultado: Reagente ")
 
-#### FILTRAR RESULTADO - GAL - ID Ãºnico ####
+#### FILTRAR RESULTADO - GAL - ID único ####
 
 df.GAL_anti_HCV_REAGENTE_id_unico <- distinct(df.GAL_anti_HCV_REAGENTE, ID_PACIENTE, .keep_all = TRUE)
 
@@ -141,7 +141,7 @@ is.na(df.SINAN_hepc) <- df.SINAN_hepc=='//'
 
 #df.SINAN_hepc_filtrado <- df.SINAN_hepc %>% filter(RE_ANTIHCV==1 | ANTIHCV==1 | TP_SOROHCV==1| CLAS_ETIOL==3 ) #| CLAS_ETIOL==6 | CLAS_ETIOL==8 
 
-## Filtro para Hepatite C - Incluindo co-infecÃ§Ãµes ##
+## Filtro para Hepatite C - Incluindo co-infecções ##
 
 #df.SINAN_hepc_filtrado_CI <- df.SINAN_hepc %>% filter(RE_ANTIHCV==1 | ANTIHCV==1 | TP_SOROHCV==1| CLAS_ETIOL==3 | CLAS_ETIOL==6 | CLAS_ETIOL==8 )
 
@@ -166,11 +166,11 @@ df.SINAN_hepc_sorohcv <- df.SINAN_hepc %>% filter(TP_SOROHCV==1)
 df.SINAN_hepc_class_etiol <- df.SINAN_hepc %>% filter(CLAS_ETIOL==3) 
 
 
-## UniÃ£o de todas as tabelas de Hepatite C
+## União de todas as tabelas de Hepatite C
 
 df.SINAN_hepc_rbind <- rbind_list(df.SINAN_hepc_re_antihcv, df.SINAN_hepc_antihcv, df.SINAN_hepc_sorohcv, df.SINAN_hepc_class_etiol)
 
-#### FILTRAR RESULTADO - SINAN - ID Ãºnico ####
+#### FILTRAR RESULTADO - SINAN - ID único ####
 
 df.SINAN_hepc_rbind_id_unico <- distinct(df.SINAN_hepc_rbind, ID_PACIENTE, .keep_all = TRUE)
 
@@ -205,7 +205,7 @@ ggplot_missing <- function(x){
     scale_fill_grey (name = '', labels = c('Presente', 'Faltante')) +
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
-    labs(x = 'VariÃ¡veis na tabela', y = 'ObservaÃ§Ãµes')
+    labs(x = 'Variáveis na tabela', y = 'Observações')
 }
 ggplot_missing(df.SINAN.DT_ENCERRA)
 
@@ -216,7 +216,7 @@ ggplot_missing <- function(x){
     scale_fill_grey (name = '', labels = c('Presente', 'Faltante')) +
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
-    labs(x = 'VariÃ¡veis na tabela', y = 'ObservaÃ§Ãµes')
+    labs(x = 'Variáveis na tabela', y = 'Observações')
 }
 ggplot_missing(df.SINAN.DT_NOTIFIC)
 
@@ -227,11 +227,11 @@ ggplot_missing <- function(x){
     scale_fill_grey (name = '', labels = c('Presente', 'Faltante')) +
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
-    labs(x = 'VariÃ¡veis na tabela', y = 'ObservaÃ§Ãµes')
+    labs(x = 'Variáveis na tabela', y = 'Observações')
 }
 ggplot_missing(df.SINAN.datas)
 
-## SINAN - Extratificação por ano - DT_NOTIFIC ##
+## SINAN - Extratifica��o por ano - DT_NOTIFIC ##
 
 df.SINAN_hepc_rbind_id_unico$DT_NOTIFIC <- as.Date.character(df.SINAN_hepc_rbind_id_unico$DT_NOTIFIC)
 
@@ -306,26 +306,60 @@ df.SINAN.rbind.id.unico.2018 <- filter(df.SINAN_hepc_rbind_id_unico, df.SINAN_he
 ### APAC ####
 #############
 
+df.APAC.filtrado.procedimento <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto1/produto1_APAC_UF_procedimento.csv")
+
+df.APAC.filtrado.CID <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto1/produto1_APAC_UF_CID.csv")
+
+df.APAC.filtrado.hepc <- rbind_list(df.APAC.filtrado.procedimento, df.APAC.filtrado.CID)
 
 #############
 #### AIH ####
 #############
+
+df.AIH.filtrado <- read.csv("/Users/mikael.lemos/Desktop/Produtos/FILTRADOS_ANTIGOS/DBAIH_AIH_FILTRADO.csv")
+
+### Dealing with NA's ###### AIH #######
+## Changing Blank and "*" to "NA"  
+
+is.na(df.AIH.filtrado) <- df.AIH.filtrado==''  
+is.na(df.AIH.filtrado) <- df.AIH.filtrado=='*' 
+is.na(df.AIH.filtrado) <- df.AIH.filtrado=='//'
 
 
 #############
 #### BPAI ###
 #############
 
+df.BPAI.filtrado <- read.csv("/Users/mikael.lemos/Desktop/Produtos/FILTRADOS_ANTIGOS/DBSIA_BPAI_FILTRADO.csv")
+
+### Dealing with NA's ###### BPAI #######
+## Changing Blank and "*" to "NA"  
+
+is.na(df.BPAI.filtrado) <- df.BPAI.filtrado==''
+is.na(df.BPAI.filtrado) <- df.BPAI.filtrado=='\t'
+is.na(df.BPAI.filtrado) <- df.BPAI.filtrado=='\n'
+is.na(df.BPAI.filtrado) <- df.BPAI.filtrado=='\r'
+is.na(df.BPAI.filtrado) <- df.BPAI.filtrado=='\\p{WHITE_SPACE}'
+is.na(df.BPAI.filtrado) <- df.BPAI.filtrado=='*' 
+is.na(df.BPAI.filtrado) <- df.BPAI.filtrado=='//'
+
+#############
+#### SIM ####
+#############
+
+df.SIM.filtrado <- read.csv("/Users/mikael.lemos/Desktop/Produtos/FILTRADOS_ANTIGOS/DBSIM_FILTRADO.csv")
+
+### Dealing with NA's ###### SIM #######
+## Changing Blank and "*" to "NA"  
+
+is.na(df.SIM.filtrado) <- df.SIM.filtrado==''  
+is.na(df.SIM.filtrado) <- df.SIM.filtrado=='*' 
+is.na(df.SIM.filtrado) <- df.SIM.filtrado=='//'
 
 #############
 ### HORUS ###
 #############
 
-
 #############
 #### RAAS ###
-#############
-
-#############
-#### SIM ####
 #############
