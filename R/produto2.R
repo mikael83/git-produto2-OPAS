@@ -355,29 +355,41 @@ df.SINAN.filtrado.hepC.2018 <- filter(df.SINAN_hepc_filtrado, df.SINAN_hepc_filt
 ### APAC ####
 #############
 
+df.APAC.hepC.filtrado <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/TB_ESPELHO_APAC_201908151746.csv")
+
+
+### Dealing with NA's ###### SINAN #######
+## Changing Blank and "*" to "NA"  
+
+is.na(df.APAC.hepC.filtrado) <- df.APAC.hepC.filtrado==''  
+is.na(df.APAC.hepC.filtrado) <- df.APAC.hepC.filtrado=='*' 
+is.na(df.APAC.hepC.filtrado) <- df.APAC.hepC.filtrado=='//'
+
 ### Extratificação por mês/ano de competência ###
 
-df.APAC.filtrado.hepc.2008 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2008)
+df.APAC.hepC.filtrado$COMPETENCIA <- as.character(df.APAC.hepC.filtrado$COMPETENCIA)
 
-df.APAC.filtrado.hepc.2009 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2009)
+df.APAC.filtrado.hepc.2008 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "200801" | df.APAC.hepC.filtrado$COMPETENCIA == "200802" | df.APAC.hepC.filtrado$COMPETENCIA == "200803" | df.APAC.hepC.filtrado$COMPETENCIA == "200804" | df.APAC.hepC.filtrado$COMPETENCIA == "200805" | df.APAC.hepC.filtrado$COMPETENCIA == "200806" | df.APAC.hepC.filtrado$COMPETENCIA == "200807" | df.APAC.hepC.filtrado$COMPETENCIA == "200808" | df.APAC.hepC.filtrado$COMPETENCIA == "200809" | df.APAC.hepC.filtrado$COMPETENCIA == "200810" | df.APAC.hepC.filtrado$COMPETENCIA == "200811" | df.APAC.hepC.filtrado$COMPETENCIA == "200812")
 
-df.APAC.filtrado.hepc.2010 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2010)
+df.APAC.filtrado.hepc.2009 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "200901" | df.APAC.hepC.filtrado$COMPETENCIA == "200902" | df.APAC.hepC.filtrado$COMPETENCIA == "200903" | df.APAC.hepC.filtrado$COMPETENCIA == "200904" | df.APAC.hepC.filtrado$COMPETENCIA == "200905" | df.APAC.hepC.filtrado$COMPETENCIA == "200906" | df.APAC.hepC.filtrado$COMPETENCIA == "200907" | df.APAC.hepC.filtrado$COMPETENCIA == "200908" | df.APAC.hepC.filtrado$COMPETENCIA == "200909" | df.APAC.hepC.filtrado$COMPETENCIA == "200910" | df.APAC.hepC.filtrado$COMPETENCIA == "200911" | df.APAC.hepC.filtrado$COMPETENCIA == "200912")
 
-df.APAC.filtrado.hepc.2011 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2011)
+df.APAC.filtrado.hepc.2010 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "201001" | df.APAC.hepC.filtrado$COMPETENCIA == "201002" | df.APAC.hepC.filtrado$COMPETENCIA == "201003" | df.APAC.hepC.filtrado$COMPETENCIA == "201004" | df.APAC.hepC.filtrado$COMPETENCIA == "201005" | df.APAC.hepC.filtrado$COMPETENCIA == "201006" | df.APAC.hepC.filtrado$COMPETENCIA == "201007" | df.APAC.hepC.filtrado$COMPETENCIA == "201008" | df.APAC.hepC.filtrado$COMPETENCIA == "201009" | df.APAC.hepC.filtrado$COMPETENCIA == "201010" | df.APAC.hepC.filtrado$COMPETENCIA == "201011" | df.APAC.hepC.filtrado$COMPETENCIA == "201012")
 
-df.APAC.filtrado.hepc.2012 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2012)
+df.APAC.filtrado.hepc.2011 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "201101" | df.APAC.hepC.filtrado$COMPETENCIA == "201102" | df.APAC.hepC.filtrado$COMPETENCIA == "201103" | df.APAC.hepC.filtrado$COMPETENCIA == "201104" | df.APAC.hepC.filtrado$COMPETENCIA == "201105" | df.APAC.hepC.filtrado$COMPETENCIA == "201106" | df.APAC.hepC.filtrado$COMPETENCIA == "201107" | df.APAC.hepC.filtrado$COMPETENCIA == "201108" | df.APAC.hepC.filtrado$COMPETENCIA == "201109" | df.APAC.hepC.filtrado$COMPETENCIA == "201110" | df.APAC.hepC.filtrado$COMPETENCIA == "201111" | df.APAC.hepC.filtrado$COMPETENCIA == "201112")
 
-df.APAC.filtrado.hepc.2013 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2013)
+df.APAC.filtrado.hepc.2012 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "201201" | df.APAC.hepC.filtrado$COMPETENCIA == "201202" | df.APAC.hepC.filtrado$COMPETENCIA == "201203" | df.APAC.hepC.filtrado$COMPETENCIA == "201204" | df.APAC.hepC.filtrado$COMPETENCIA == "201205" | df.APAC.hepC.filtrado$COMPETENCIA == "201206" | df.APAC.hepC.filtrado$COMPETENCIA == "201207" | df.APAC.hepC.filtrado$COMPETENCIA == "201208" | df.APAC.hepC.filtrado$COMPETENCIA == "201209" | df.APAC.hepC.filtrado$COMPETENCIA == "201210" | df.APAC.hepC.filtrado$COMPETENCIA == "201211" | df.APAC.hepC.filtrado$COMPETENCIA == "201212")
 
-df.APAC.filtrado.hepc.2014 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2014)
+df.APAC.filtrado.hepc.2013 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "201301" | df.APAC.hepC.filtrado$COMPETENCIA == "201302" | df.APAC.hepC.filtrado$COMPETENCIA == "201303" | df.APAC.hepC.filtrado$COMPETENCIA == "201304" | df.APAC.hepC.filtrado$COMPETENCIA == "201305" | df.APAC.hepC.filtrado$COMPETENCIA == "201306" | df.APAC.hepC.filtrado$COMPETENCIA == "201307" | df.APAC.hepC.filtrado$COMPETENCIA == "201308" | df.APAC.hepC.filtrado$COMPETENCIA == "201309" | df.APAC.hepC.filtrado$COMPETENCIA == "201310" | df.APAC.hepC.filtrado$COMPETENCIA == "201311" | df.APAC.hepC.filtrado$COMPETENCIA == "201312")
 
-df.APAC.filtrado.hepc.2015 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2015)
+df.APAC.filtrado.hepc.2014 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "201401" | df.APAC.hepC.filtrado$COMPETENCIA == "201402" | df.APAC.hepC.filtrado$COMPETENCIA == "201403" | df.APAC.hepC.filtrado$COMPETENCIA == "201404" | df.APAC.hepC.filtrado$COMPETENCIA == "201405" | df.APAC.hepC.filtrado$COMPETENCIA == "201406" | df.APAC.hepC.filtrado$COMPETENCIA == "201407" | df.APAC.hepC.filtrado$COMPETENCIA == "201408" | df.APAC.hepC.filtrado$COMPETENCIA == "201409" | df.APAC.hepC.filtrado$COMPETENCIA == "201410" | df.APAC.hepC.filtrado$COMPETENCIA == "201411" | df.APAC.hepC.filtrado$COMPETENCIA == "201412")
 
-df.APAC.filtrado.hepc.2016 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2016)
+df.APAC.filtrado.hepc.2015 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "201501" | df.APAC.hepC.filtrado$COMPETENCIA == "201502" | df.APAC.hepC.filtrado$COMPETENCIA == "201503" | df.APAC.hepC.filtrado$COMPETENCIA == "201504" | df.APAC.hepC.filtrado$COMPETENCIA == "201505" | df.APAC.hepC.filtrado$COMPETENCIA == "201506" | df.APAC.hepC.filtrado$COMPETENCIA == "201507" | df.APAC.hepC.filtrado$COMPETENCIA == "201508" | df.APAC.hepC.filtrado$COMPETENCIA == "201509" | df.APAC.hepC.filtrado$COMPETENCIA == "201510" | df.APAC.hepC.filtrado$COMPETENCIA == "201511" | df.APAC.hepC.filtrado$COMPETENCIA == "201512")
 
-df.APAC.filtrado.hepc.2017 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2017)
+df.APAC.filtrado.hepc.2016 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "201601" | df.APAC.hepC.filtrado$COMPETENCIA == "201602" | df.APAC.hepC.filtrado$COMPETENCIA == "201603" | df.APAC.hepC.filtrado$COMPETENCIA == "201604" | df.APAC.hepC.filtrado$COMPETENCIA == "201605" | df.APAC.hepC.filtrado$COMPETENCIA == "201606" | df.APAC.hepC.filtrado$COMPETENCIA == "201607" | df.APAC.hepC.filtrado$COMPETENCIA == "201608" | df.APAC.hepC.filtrado$COMPETENCIA == "201609" | df.APAC.hepC.filtrado$COMPETENCIA == "201610" | df.APAC.hepC.filtrado$COMPETENCIA == "201611" | df.APAC.hepC.filtrado$COMPETENCIA == "201612")
 
-df.APAC.filtrado.hepc.2018 <- filter(df.APAC.filtrado.hepc, df.APAC.filtrado.hepc$ano_inicio == 2018)
+df.APAC.filtrado.hepc.2017 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "201701" | df.APAC.hepC.filtrado$COMPETENCIA == "201702" | df.APAC.hepC.filtrado$COMPETENCIA == "201703" | df.APAC.hepC.filtrado$COMPETENCIA == "201704" | df.APAC.hepC.filtrado$COMPETENCIA == "201705" | df.APAC.hepC.filtrado$COMPETENCIA == "201706" | df.APAC.hepC.filtrado$COMPETENCIA == "201707" | df.APAC.hepC.filtrado$COMPETENCIA == "201708" | df.APAC.hepC.filtrado$COMPETENCIA == "201709" | df.APAC.hepC.filtrado$COMPETENCIA == "201710" | df.APAC.hepC.filtrado$COMPETENCIA == "201711" | df.APAC.hepC.filtrado$COMPETENCIA == "201712")
+
+df.APAC.filtrado.hepc.2018 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrado$COMPETENCIA == "201801" | df.APAC.hepC.filtrado$COMPETENCIA == "201802" | df.APAC.hepC.filtrado$COMPETENCIA == "201803" | df.APAC.hepC.filtrado$COMPETENCIA == "201804" | df.APAC.hepC.filtrado$COMPETENCIA == "201805" | df.APAC.hepC.filtrado$COMPETENCIA == "201806" | df.APAC.hepC.filtrado$COMPETENCIA == "201807" | df.APAC.hepC.filtrado$COMPETENCIA == "201808" | df.APAC.hepC.filtrado$COMPETENCIA == "201809" | df.APAC.hepC.filtrado$COMPETENCIA == "201810" | df.APAC.hepC.filtrado$COMPETENCIA == "201811" | df.APAC.hepC.filtrado$COMPETENCIA == "201812")
 
 #############
 #### AIH ####
@@ -505,8 +517,4 @@ df.SIM.hepC.filtrado.2016 <- filter(df.SIM.hepC.filtrado, df.SIM.hepC.filtrado$a
 
 #############
 ### HORUS ###
-#############
-
-#############
-#### RAAS ###
 #############
