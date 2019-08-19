@@ -1,11 +1,11 @@
 ############ Produto 2 ###########################
 ##################################################
 ###### script desenvolvido por Mikael Lemos ######
-###### vers�o 1.0 - 22.07.2019 ###################
+###### vers?o 1.0 - 22.07.2019 ###################
 ##################################################
 
 ######
-### Loading / installing packages
+### Carregando / instalando pacotes
 ######
 
 #install.packages('dplyr')
@@ -68,7 +68,6 @@ library("feather")
 #install.packages('WDI')
 library("WDI")
 
-
 ######
 ### Loading DATA FRAME
 ######
@@ -77,9 +76,11 @@ library("WDI")
 ### GAL ###
 ###########
 
-##### GAL ####
-#### MS mikael
+#### MS 
 df.GAL_anti_HCV <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/DBGAL_hepC_anti_HCV.csv")
+
+### Mac
+df.GAL_anti_HCV <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/tabelas/DBGAL_hepC_anti_HCV.csv")
 
 #### FILTRAR RESULTADO - GAL ####
 
@@ -142,7 +143,7 @@ missmap(gal_hepc_missingdata_dt_coleta)
 
 missmap(gal_hepc_missingdata_dt_liberacao)
 
-### Extratifica��o data GAL - DT_COLETA
+### Extratifica??o data GAL - DT_COLETA
 
 df.GAL_anti_HCV_REAGENTE$DT_COLETA <- as.Date.character(df.GAL_anti_HCV_REAGENTE$DT_COLETA)
 
@@ -197,9 +198,11 @@ df.GAL.filtrado.hepC.2018 <- filter(df.GAL_anti_HCV_REAGENTE, df.GAL_anti_HCV_RE
 ### SINAN ###
 #############
 
-##### SINAN ####
-#### MS mikael
+#### MS 
 df.SINAN_hepc <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/DBSINAN.csv")
+
+#### Mac
+df.SINAN_hepc <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/tabelas/DBSINAN.csv")
 
 ### Dealing with NA's ###### SINAN #######
 ## Changing Blank and "*" to "NA"  
@@ -254,7 +257,7 @@ ggplot_missing <- function(x){
     scale_fill_grey (name = '', labels = c('Presente', 'Faltante')) +
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
-    labs(x = 'vari�veis na tabela', y = 'Observa��es')
+    labs(x = 'vari?veis na tabela', y = 'Observa??es')
 }
 ggplot_missing(df.SINAN.DT_ENCERRA)
 
@@ -265,7 +268,7 @@ ggplot_missing <- function(x){
     scale_fill_grey (name = '', labels = c('Presente', 'Faltante')) +
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
-    labs(x = 'vari�veis na tabela', y = 'Observa��es')
+    labs(x = 'vari?veis na tabela', y = 'Observa??es')
 }
 ggplot_missing(df.SINAN.DT_NOTIFIC)
 
@@ -276,11 +279,11 @@ ggplot_missing <- function(x){
     scale_fill_grey (name = '', labels = c('Presente', 'Faltante')) +
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) +
-    labs(x = 'vari�veis na tabela', y = 'Observa��es')
+    labs(x = 'vari?veis na tabela', y = 'Observa??es')
 }
 ggplot_missing(df.SINAN.datas)
 
-## SINAN - Extratifica��o por ano - DT_NOTIFIC ##
+## SINAN - Extratificação por ano - DT_NOTIFIC ##
 
 df.SINAN_hepc_filtrado$DT_NOTIFIC <- as.Date.character(df.SINAN_hepc_filtrado$DT_NOTIFIC)
 
@@ -355,8 +358,11 @@ df.SINAN.filtrado.hepC.2018 <- filter(df.SINAN_hepc_filtrado, df.SINAN_hepc_filt
 ### APAC ####
 #############
 
+#### MS 
 df.APAC.hepC.filtrado <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/TB_ESPELHO_APAC_201908151746.csv")
 
+#### Mac
+df.APAC.hepC.filtrado <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/tabelas/TB_ESPELHO_APAC_201908151746.csv")
 
 ### Dealing with NA's ###### SINAN #######
 ## Changing Blank and "*" to "NA"  
@@ -365,7 +371,7 @@ is.na(df.APAC.hepC.filtrado) <- df.APAC.hepC.filtrado==''
 is.na(df.APAC.hepC.filtrado) <- df.APAC.hepC.filtrado=='*' 
 is.na(df.APAC.hepC.filtrado) <- df.APAC.hepC.filtrado=='//'
 
-### Extratifica��o por m�s/ano de compet�ncia ###
+### Extratificação por mês/ano de competência ###
 
 df.APAC.hepC.filtrado$COMPETENCIA <- as.character(df.APAC.hepC.filtrado$COMPETENCIA)
 
@@ -395,65 +401,157 @@ df.APAC.filtrado.hepc.2018 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrad
 #### AIH ####
 #############
 
-### Extratifica��o por ano hep C AIH
+### Extratificação por ano hep C AIH
 
+### MS
 df.AIH.filtrado.hepC.2008 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2008/AIH_2008_201908131641.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2008 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2008/AIH_2008_201908131641.csv")
+
+### MS
 df.AIH.filtrado.hepC.2009 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2009/AIH_2009_201908131714.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2009 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2009/AIH_2009_201908131714.csv")
+
+### MS
 df.AIH.filtrado.hepC.2010 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2010/AIH_2010_201908131749.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2010 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2010/AIH_2010_201908131749.csv")
+
+### MS
 df.AIH.filtrado.hepC.2011 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2011/AIH_2011_201908141006.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2011 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2011/AIH_2011_201908141006.csv")
+
+### MS
 df.AIH.filtrado.hepC.2012 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2012/AIH_2012_201908141044.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2012 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2012/AIH_2012_201908141044.csv")
+
+### MS
 df.AIH.filtrado.hepC.2013 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2013/AIH_2013_201908141125.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2013 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2013/AIH_2013_201908141125.csv")
+
+### MS
 df.AIH.filtrado.hepC.2014 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2014/AIH_2014_201908141212.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2014 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2014/AIH_2014_201908141212.csv")
+
+### MS
 df.AIH.filtrado.hepC.2015 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2015/AIH_2015_201908141259.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2015 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2015/AIH_2015_201908141259.csv")
+
+### MS
 df.AIH.filtrado.hepC.2016 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2016/AIH_2016_201908141346.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2016 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2016/AIH_2016_201908141346.csv")
+
+### MS
 df.AIH.filtrado.hepC.2017 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2017/AIH_2017_201908141434.csv")
 
+### Mac
+df.AIH.filtrado.hepC.2017 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2017/AIH_2017_201908141434.csv")
+
+### MS
 df.AIH.filtrado.hepC.2018 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2018/AIH_2018_201908141524.csv")
+
+### Mac
+df.AIH.filtrado.hepC.2018 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/AIH_HEPC/2018/AIH_2018_201908141524.csv")
 
 #############
 #### BPAI ###
 #############
 
-### Extratifica��o por ano hep C BPAI
+### Extratificação por ano hep C BPAI
 
+### MS
 df.BPAI.filtrado.hepC.2008 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2008/BPAI_2008_201908151202.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2008 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2008/BPAI_2008_201908151202.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2009 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2009/BPAI_2009_201908151204.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2009 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2009/BPAI_2009_201908151204.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2010 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2010/BPAI_2010_201908151208.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2010 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2010/BPAI_2010_201908151208.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2011 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2011/BPAI_2011_201908151212.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2011 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2011/BPAI_2011_201908151212.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2012 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2012/BPAI_2012_201908151216.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2012 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2012/BPAI_2012_201908151216.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2013 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2013/BPAI_2013_201908151002.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2013 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2013/BPAI_2013_201908151002.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2014 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2014/BPAI_2014_201908151002.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2014 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2014/BPAI_2014_201908151002.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2015 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2015/BPAI_2015_201908151002.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2015 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2015/BPAI_2015_201908151002.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2016 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2016/BPAI_2016_201908151002.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2016 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2016/BPAI_2016_201908151002.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2017 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2017/BPAI_2017_201908151002.csv")
 
+### Mac 
+df.BPAI.filtrado.hepC.2017 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2017/BPAI_2017_201908151002.csv")
+
+### MS
 df.BPAI.filtrado.hepC.2018 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2018/BPAI_2018_201908151002.csv")
+
+### Mac 
+df.BPAI.filtrado.hepC.2018 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/BPAI_HEPC/BPAI_2018/BPAI_2018_201908151002.csv")
 
 #############
 #### SIM ####
 #############
 
-### Extratifica��o por ano hep C SIM
+### Extratificação por ano hep C SIM
 
+### MS
 df.SIM.hepC.filtrado <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/TB_CARGA_DO_201908141614.csv")
+
+### Mac
+df.SIM.hepC.filtrado <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPAS/tabelas/TB_CARGA_DO_201908141614.csv")
 
 ### Dealing with NA's ###### SIM #######
 ## Changing Blank and "*" to "NA"  
@@ -462,7 +560,7 @@ is.na(df.SIM.hepC.filtrado) <- df.SIM.hepC.filtrado==''
 is.na(df.SIM.hepC.filtrado) <- df.SIM.hepC.filtrado=='*' 
 is.na(df.SIM.hepC.filtrado) <- df.SIM.hepC.filtrado=='//'
 
-### Extratifica��o por ano - DTOBITO ##
+### Extratificação por ano - DTOBITO ##
 
 df.SIM.hepC.filtrado$DTOBITO <- dmy(df.SIM.hepC.filtrado$DTOBITO)
 
@@ -515,6 +613,597 @@ df.SIM.hepC.filtrado.2015 <- filter(df.SIM.hepC.filtrado, df.SIM.hepC.filtrado$a
 
 df.SIM.hepC.filtrado.2016 <- filter(df.SIM.hepC.filtrado, df.SIM.hepC.filtrado$ano_obito == 2016)
 
+##########################################################
+### Preparando lista de códigos IBGE com 6 e 7 digitos ###
+##########################################################
+
+# Extrair código IBGE completo
+cod_mun_IBGE <- readxl::read_xls("/Users/mikaellemos/Downloads/DTB_2018/RELATORIO_DTB_BRASIL_MUNICIPIO.xls")
+
+############# tabela completa - COD IBGE 7 digitos ################
+
+# retirar úktimo digito do código completo 7 dígitos 
+cod_mun_completo <- substr(cod_mun_IBGE$`Código Município Completo`, 1, 6)
+
+# transformar lista de cidades 2015 com 6 digitos em df
+cod_mun_completo <- as.data.frame(cod_mun_completo)
+
+# tabela completa IBGE contendo todos os municipios em 2018 com 6 e 7 digitos (5570)
+cod_mun_IBGE_6d_7d <- cbind(cod_mun_completo, cod_mun_IBGE)
+
+#########
+## GAL ##
+#########
+
+#2008 - MUN
+df.GAL.2008_mun_br <- select(df.GAL.filtrado.hepC.2008, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2008_mun <- table(df.GAL.2008_mun_br)
+df.GAL.2008_mun <- as.data.frame(df.GAL.2008_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2008_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2008_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2008_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2008_mun.csv', row.names=FALSE)
+
+#2008 - UF
+df.GAL.2008_UF_br <- select(df.GAL.filtrado.hepC.2008, CO_UF_REQUISICAO)
+df.GAL.2008_UF <- table(df.GAL.2008_UF_br)
+df.GAL.2008_UF <- as.data.frame(df.GAL.2008_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2008_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2008_UF, by.x = "UF", by.y = "df.GAL.2008_UF_br" , all.y = TRUE)
+df.GAL.2008_UF <- distinct(df.GAL.2008_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2008_UF.csv', row.names=FALSE)
+
+#2009 - MUN
+df.GAL.2009_mun_br <- select(df.GAL.filtrado.hepC.2009, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2009_mun <- table(df.GAL.2009_mun_br)
+df.GAL.2009_mun <- as.data.frame(df.GAL.2009_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2009_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2009_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2009_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2009_mun.csv', row.names=FALSE)
+
+#2009 - UF
+df.GAL.2009_UF_br <- select(df.GAL.filtrado.hepC.2009, CO_UF_REQUISICAO)
+df.GAL.2009_UF <- table(df.GAL.2009_UF_br)
+df.GAL.2009_UF <- as.data.frame(df.GAL.2009_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2009_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2009_UF, by.x = "UF", by.y = "df.GAL.2009_UF_br" , all.y = TRUE)
+df.GAL.2009_UF <- distinct(df.GAL.2009_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2009_UF.csv', row.names=FALSE)
+
+#2010 - MUN
+df.GAL.2010_mun_br <- select(df.GAL.filtrado.hepC.2010, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2010_mun <- table(df.GAL.2010_mun_br)
+df.GAL.2010_mun <- as.data.frame(df.GAL.2010_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2010_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2010_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2010_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2010_mun.csv', row.names=FALSE)
+
+#2010 - UF
+df.GAL.2010_UF_br <- select(df.GAL.filtrado.hepC.2010, CO_UF_REQUISICAO)
+df.GAL.2010_UF <- table(df.GAL.2010_UF_br)
+df.GAL.2010_UF <- as.data.frame(df.GAL.2010_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2010_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2010_UF, by.x = "UF", by.y = "df.GAL.2010_UF_br" , all.y = TRUE)
+df.GAL.2010_UF <- distinct(df.GAL.2010_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2010_UF.csv', row.names=FALSE)
+
+#2011 - MUN
+df.GAL.2011_mun_br <- select(df.GAL.filtrado.hepC.2011, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2011_mun <- table(df.GAL.2011_mun_br)
+df.GAL.2011_mun <- as.data.frame(df.GAL.2011_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2011_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2011_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2011_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2011_mun.csv', row.names=FALSE)
+
+#2011 - UF
+df.GAL.2011_UF_br <- select(df.GAL.filtrado.hepC.2011, CO_UF_REQUISICAO)
+df.GAL.2011_UF <- table(df.GAL.2011_UF_br)
+df.GAL.2011_UF <- as.data.frame(df.GAL.2011_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2011_UF, by.x = "UF", by.y = "df.GAL.2011_UF_br" , all.y = TRUE)
+df.GAL.2011_UF <- distinct(df.GAL.2011_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2011_UF.csv', row.names=FALSE)
+
+#2012 - MUN
+df.GAL.2012_mun_br <- select(df.GAL.filtrado.hepC.2012, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2012_mun <- table(df.GAL.2012_mun_br)
+df.GAL.2012_mun <- as.data.frame(df.GAL.2012_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2012_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2012_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2012_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2012_mun.csv', row.names=FALSE)
+
+#2012 - UF
+df.GAL.2012_UF_br <- select(df.GAL.filtrado.hepC.2012, CO_UF_REQUISICAO)
+df.GAL.2012_UF <- table(df.GAL.2012_UF_br)
+df.GAL.2012_UF <- as.data.frame(df.GAL.2012_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2012_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2012_UF, by.x = "UF", by.y = "df.GAL.2012_UF_br" , all.y = TRUE)
+df.GAL.2012_UF <- distinct(df.GAL.2012_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2012_UF.csv', row.names=FALSE)
+
+#2013 - MUN
+df.GAL.2013_mun_br <- select(df.GAL.filtrado.hepC.2013, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2013_mun <- table(df.GAL.2013_mun_br)
+df.GAL.2013_mun <- as.data.frame(df.GAL.2013_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2013_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2013_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2013_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2013_mun.csv', row.names=FALSE)
+
+#2013 - UF
+df.GAL.2013_UF_br <- select(df.GAL.filtrado.hepC.2013, CO_UF_REQUISICAO)
+df.GAL.2013_UF <- table(df.GAL.2013_UF_br)
+df.GAL.2013_UF <- as.data.frame(df.GAL.2013_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2013_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2013_UF, by.x = "UF", by.y = "df.GAL.2013_UF_br" , all.y = TRUE)
+df.GAL.2013_UF <- distinct(df.GAL.2013_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2013_UF.csv', row.names=FALSE)
+
+#2014 - MUN
+df.GAL.2014_mun_br <- select(df.GAL.filtrado.hepC.2014, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2014_mun <- table(df.GAL.2014_mun_br)
+df.GAL.2014_mun <- as.data.frame(df.GAL.2014_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2014_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2014_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2014_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2014_mun.csv', row.names=FALSE)
+
+#2014 - UF
+df.GAL.2014_UF_br <- select(df.GAL.filtrado.hepC.2014, CO_UF_REQUISICAO)
+df.GAL.2014_UF <- table(df.GAL.2014_UF_br)
+df.GAL.2014_UF <- as.data.frame(df.GAL.2014_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2014_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2014_UF, by.x = "UF", by.y = "df.GAL.2014_UF_br" , all.y = TRUE)
+df.GAL.2014_UF <- distinct(df.GAL.2014_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2014_UF.csv', row.names=FALSE)
+
+#2015 - MUN
+df.GAL.2015_mun_br <- select(df.GAL.filtrado.hepC.2015, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2015_mun <- table(df.GAL.2015_mun_br)
+df.GAL.2015_mun <- as.data.frame(df.GAL.2015_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2015_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2015_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2015_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2015_mun.csv', row.names=FALSE)
+
+#2015 - UF
+df.GAL.2015_UF_br <- select(df.GAL.filtrado.hepC.2015, CO_UF_REQUISICAO)
+df.GAL.2015_UF <- table(df.GAL.2015_UF_br)
+df.GAL.2015_UF <- as.data.frame(df.GAL.2015_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2015_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2015_UF, by.x = "UF", by.y = "df.GAL.2015_UF_br" , all.y = TRUE)
+df.GAL.2015_UF <- distinct(df.GAL.2015_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2015_UF.csv', row.names=FALSE)
+
+#2016 - MUN
+df.GAL.2016_mun_br <- select(df.GAL.filtrado.hepC.2016, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2016_mun <- table(df.GAL.2016_mun_br)
+df.GAL.2016_mun <- as.data.frame(df.GAL.2016_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2016_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2016_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2016_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2016_mun.csv', row.names=FALSE)
+
+#2016 - UF
+df.GAL.2016_UF_br <- select(df.GAL.filtrado.hepC.2016, CO_UF_REQUISICAO)
+df.GAL.2016_UF <- table(df.GAL.2016_UF_br)
+df.GAL.2016_UF <- as.data.frame(df.GAL.2016_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2016_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2016_UF, by.x = "UF", by.y = "df.GAL.2016_UF_br" , all.y = TRUE)
+df.GAL.2016_UF <- distinct(df.GAL.2016_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2016_UF.csv', row.names=FALSE)
+
+#2017 - MUN
+df.GAL.2017_mun_br <- select(df.GAL.filtrado.hepC.2017, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2017_mun <- table(df.GAL.2017_mun_br)
+df.GAL.2017_mun <- as.data.frame(df.GAL.2017_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2017_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2017_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2017_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2017_mun.csv', row.names=FALSE)
+
+#2017 - UF
+df.GAL.2017_UF_br <- select(df.GAL.filtrado.hepC.2017, CO_UF_REQUISICAO)
+df.GAL.2017_UF <- table(df.GAL.2017_UF_br)
+df.GAL.2017_UF <- as.data.frame(df.GAL.2017_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2017_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2017_UF, by.x = "UF", by.y = "df.GAL.2017_UF_br" , all.y = TRUE)
+df.GAL.2017_UF <- distinct(df.GAL.2017_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2017_UF.csv', row.names=FALSE)
+
+#2018 - MUN
+df.GAL.2018_mun_br <- select(df.GAL.filtrado.hepC.2018, CO_MUNICIPIO_RESIDENCIA)
+df.GAL.2018_mun <- table(df.GAL.2018_mun_br)
+df.GAL.2018_mun <- as.data.frame(df.GAL.2018_mun)
+# Acrescentar informações IBGE 7d
+df.GAL.2018_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2018_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2018_mun_br" , all.y = TRUE)
+write.csv(df.GAL.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2018_mun.csv', row.names=FALSE)
+
+#2018 - UF
+df.GAL.2018_UF_br <- select(df.GAL.filtrado.hepC.2018, CO_UF_REQUISICAO)
+df.GAL.2018_UF <- table(df.GAL.2018_UF_br)
+df.GAL.2018_UF <- as.data.frame(df.GAL.2018_UF)
+# Acrescentar informações IBGE 7d
+df.GAL.2018_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2018_UF, by.x = "UF", by.y = "df.GAL.2018_UF_br" , all.y = TRUE)
+df.GAL.2018_UF <- distinct(df.GAL.2018_UF, UF, .keep_all = TRUE)
+write.csv(df.GAL.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2018_UF.csv', row.names=FALSE)
+
 #############
-### HORUS ###
+### SINAN ###
+#############
+
+#2008 - MUN
+df.SINAN.2008_mun_br <- select(df.SINAN.filtrado.hepC.2008, ID_MUNICIP)
+df.SINAN.2008_mun <- table(df.SINAN.2008_mun_br)
+df.SINAN.2008_mun <- as.data.frame(df.SINAN.2008_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2008_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2008_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2008_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2008_mun.csv', row.names=FALSE)
+
+#2008 - UF
+df.SINAN.2008_UF_br <- select(df.SINAN.filtrado.hepC.2008, SG_UF_NOT)
+df.SINAN.2008_UF <- table(df.SINAN.2008_UF_br)
+df.SINAN.2008_UF <- as.data.frame(df.SINAN.2008_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2008_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2008_UF, by.x = "UF", by.y = "df.SINAN.2008_UF_br" , all.y = TRUE)
+df.SINAN.2008_UF <- distinct(df.SINAN.2008_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2008_UF.csv', row.names=FALSE)
+
+#2009 - MUN
+df.SINAN.2009_mun_br <- select(df.SINAN.filtrado.hepC.2009, ID_MUNICIP)
+df.SINAN.2009_mun <- table(df.SINAN.2009_mun_br)
+df.SINAN.2009_mun <- as.data.frame(df.SINAN.2009_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2009_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2009_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2009_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2009_mun.csv', row.names=FALSE)
+
+#2009 - UF
+df.SINAN.2009_UF_br <- select(df.SINAN.filtrado.hepC.2009, SG_UF_NOT)
+df.SINAN.2009_UF <- table(df.SINAN.2009_UF_br)
+df.SINAN.2009_UF <- as.data.frame(df.SINAN.2009_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2009_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2009_UF, by.x = "UF", by.y = "df.SINAN.2009_UF_br" , all.y = TRUE)
+df.SINAN.2009_UF <- distinct(df.SINAN.2009_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2009_UF.csv', row.names=FALSE)
+
+#2010 - MUN
+df.SINAN.2010_mun_br <- select(df.SINAN.filtrado.hepC.2010, ID_MUNICIP)
+df.SINAN.2010_mun <- table(df.SINAN.2010_mun_br)
+df.SINAN.2010_mun <- as.data.frame(df.SINAN.2010_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2010_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2010_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2010_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2010_mun.csv', row.names=FALSE)
+
+#2010 - UF
+df.SINAN.2010_UF_br <- select(df.SINAN.filtrado.hepC.2010, SG_UF_NOT)
+df.SINAN.2010_UF <- table(df.SINAN.2010_UF_br)
+df.SINAN.2010_UF <- as.data.frame(df.SINAN.2010_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2010_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2010_UF, by.x = "UF", by.y = "df.SINAN.2010_UF_br" , all.y = TRUE)
+df.SINAN.2010_UF <- distinct(df.SINAN.2010_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2010_UF.csv', row.names=FALSE)
+
+#2011 - MUN
+df.SINAN.2011_mun_br <- select(df.SINAN.filtrado.hepC.2011, ID_MUNICIP)
+df.SINAN.2011_mun <- table(df.SINAN.2011_mun_br)
+df.SINAN.2011_mun <- as.data.frame(df.SINAN.2011_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2011_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2011_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2011_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2011_mun.csv', row.names=FALSE)
+
+#2011 - UF
+df.SINAN.2011_UF_br <- select(df.SINAN.filtrado.hepC.2011, SG_UF_NOT)
+df.SINAN.2011_UF <- table(df.SINAN.2011_UF_br)
+df.SINAN.2011_UF <- as.data.frame(df.SINAN.2011_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2011_UF, by.x = "UF", by.y = "df.SINAN.2011_UF_br" , all.y = TRUE)
+df.SINAN.2011_UF <- distinct(df.SINAN.2011_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2011_UF.csv', row.names=FALSE)
+
+#2012 - MUN
+df.SINAN.2012_mun_br <- select(df.SINAN.filtrado.hepC.2012, ID_MUNICIP)
+df.SINAN.2012_mun <- table(df.SINAN.2012_mun_br)
+df.SINAN.2012_mun <- as.data.frame(df.SINAN.2012_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2012_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2012_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2012_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2012_mun.csv', row.names=FALSE)
+
+#2012 - UF
+df.SINAN.2012_UF_br <- select(df.SINAN.filtrado.hepC.2012, SG_UF_NOT)
+df.SINAN.2012_UF <- table(df.SINAN.2012_UF_br)
+df.SINAN.2012_UF <- as.data.frame(df.SINAN.2012_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2012_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2012_UF, by.x = "UF", by.y = "df.SINAN.2012_UF_br" , all.y = TRUE)
+df.SINAN.2012_UF <- distinct(df.SINAN.2012_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2012_UF.csv', row.names=FALSE)
+
+#2013 - MUN
+df.SINAN.2013_mun_br <- select(df.SINAN.filtrado.hepC.2013, ID_MUNICIP)
+df.SINAN.2013_mun <- table(df.SINAN.2013_mun_br)
+df.SINAN.2013_mun <- as.data.frame(df.SINAN.2013_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2013_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2013_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2013_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2013_mun.csv', row.names=FALSE)
+
+#2013 - UF
+df.SINAN.2013_UF_br <- select(df.SINAN.filtrado.hepC.2013, SG_UF_NOT)
+df.SINAN.2013_UF <- table(df.SINAN.2013_UF_br)
+df.SINAN.2013_UF <- as.data.frame(df.SINAN.2013_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2013_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2013_UF, by.x = "UF", by.y = "df.SINAN.2013_UF_br" , all.y = TRUE)
+df.SINAN.2013_UF <- distinct(df.SINAN.2013_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2013_UF.csv', row.names=FALSE)
+
+#2014 - MUN
+df.SINAN.2014_mun_br <- select(df.SINAN.filtrado.hepC.2014, ID_MUNICIP)
+df.SINAN.2014_mun <- table(df.SINAN.2014_mun_br)
+df.SINAN.2014_mun <- as.data.frame(df.SINAN.2014_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2014_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2014_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2014_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2014_mun.csv', row.names=FALSE)
+
+#2014 - UF
+df.SINAN.2014_UF_br <- select(df.SINAN.filtrado.hepC.2014, SG_UF_NOT)
+df.SINAN.2014_UF <- table(df.SINAN.2014_UF_br)
+df.SINAN.2014_UF <- as.data.frame(df.SINAN.2014_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2014_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2014_UF, by.x = "UF", by.y = "df.SINAN.2014_UF_br" , all.y = TRUE)
+df.SINAN.2014_UF <- distinct(df.SINAN.2014_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2014_UF.csv', row.names=FALSE)
+
+#2015 - MUN
+df.SINAN.2015_mun_br <- select(df.SINAN.filtrado.hepC.2015, ID_MUNICIP)
+df.SINAN.2015_mun <- table(df.SINAN.2015_mun_br)
+df.SINAN.2015_mun <- as.data.frame(df.SINAN.2015_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2015_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2015_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2015_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2015_mun.csv', row.names=FALSE)
+
+#2015 - UF
+df.SINAN.2015_UF_br <- select(df.SINAN.filtrado.hepC.2015, SG_UF_NOT)
+df.SINAN.2015_UF <- table(df.SINAN.2015_UF_br)
+df.SINAN.2015_UF <- as.data.frame(df.SINAN.2015_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2015_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2015_UF, by.x = "UF", by.y = "df.SINAN.2015_UF_br" , all.y = TRUE)
+df.SINAN.2015_UF <- distinct(df.SINAN.2015_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2015_UF.csv', row.names=FALSE)
+
+#2016 - MUN
+df.SINAN.2016_mun_br <- select(df.SINAN.filtrado.hepC.2016, ID_MUNICIP)
+df.SINAN.2016_mun <- table(df.SINAN.2016_mun_br)
+df.SINAN.2016_mun <- as.data.frame(df.SINAN.2016_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2016_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2016_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2016_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2016_mun.csv', row.names=FALSE)
+
+#2016 - UF
+df.SINAN.2016_UF_br <- select(df.SINAN.filtrado.hepC.2016, SG_UF_NOT)
+df.SINAN.2016_UF <- table(df.SINAN.2016_UF_br)
+df.SINAN.2016_UF <- as.data.frame(df.SINAN.2016_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2016_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2016_UF, by.x = "UF", by.y = "df.SINAN.2016_UF_br" , all.y = TRUE)
+df.SINAN.2016_UF <- distinct(df.SINAN.2016_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2016_UF.csv', row.names=FALSE)
+
+#2017 - MUN
+df.SINAN.2017_mun_br <- select(df.SINAN.filtrado.hepC.2017, ID_MUNICIP)
+df.SINAN.2017_mun <- table(df.SINAN.2017_mun_br)
+df.SINAN.2017_mun <- as.data.frame(df.SINAN.2017_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2017_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2017_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2017_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2017_mun.csv', row.names=FALSE)
+
+#2017 - UF
+df.SINAN.2017_UF_br <- select(df.SINAN.filtrado.hepC.2017, SG_UF_NOT)
+df.SINAN.2017_UF <- table(df.SINAN.2017_UF_br)
+df.SINAN.2017_UF <- as.data.frame(df.SINAN.2017_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2017_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2017_UF, by.x = "UF", by.y = "df.SINAN.2017_UF_br" , all.y = TRUE)
+df.SINAN.2017_UF <- distinct(df.SINAN.2017_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2017_UF.csv', row.names=FALSE)
+
+#2018 - MUN
+df.SINAN.2018_mun_br <- select(df.SINAN.filtrado.hepC.2018, ID_MUNICIP)
+df.SINAN.2018_mun <- table(df.SINAN.2018_mun_br)
+df.SINAN.2018_mun <- as.data.frame(df.SINAN.2018_mun)
+# Acrescentar informações IBGE 7d
+df.SINAN.2018_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2018_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2018_mun_br" , all.y = TRUE)
+write.csv(df.SINAN.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2018_mun.csv', row.names=FALSE)
+
+#2018 - UF
+df.SINAN.2018_UF_br <- select(df.SINAN.filtrado.hepC.2018, SG_UF_NOT)
+df.SINAN.2018_UF <- table(df.SINAN.2018_UF_br)
+df.SINAN.2018_UF <- as.data.frame(df.SINAN.2018_UF)
+# Acrescentar informações IBGE 7d
+df.SINAN.2018_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2018_UF, by.x = "UF", by.y = "df.SINAN.2018_UF_br" , all.y = TRUE)
+df.SINAN.2018_UF <- distinct(df.SINAN.2018_UF, UF, .keep_all = TRUE)
+write.csv(df.SINAN.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2018_UF.csv', row.names=FALSE)
+
+#############
+### APAC ####
+#############
+
+#2008 - MUN
+df.APAC.2008_mun_br <- select(df.APAC.filtrado.hepc.2008, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2008_mun <- table(df.APAC.2008_mun_br)
+df.APAC.2008_mun <- as.data.frame(df.APAC.2008_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2008_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2008_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2008_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2008_mun.csv', row.names=FALSE)
+
+#2008 - UF
+df.APAC.2008_UF_br <- select(df.APAC.filtrado.hepc.2008, UF_HOSPITAL)
+df.APAC.2008_UF <- table(df.APAC.2008_UF_br)
+df.APAC.2008_UF <- as.data.frame(df.APAC.2008_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2008_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2008_UF, by.x = "UF", by.y = "df.APAC.2008_UF_br" , all.y = TRUE)
+df.APAC.2008_UF <- distinct(df.APAC.2008_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2008_UF.csv', row.names=FALSE)
+
+#2009 - MUN
+df.APAC.2009_mun_br <- select(df.APAC.filtrado.hepc.2009, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2009_mun <- table(df.APAC.2009_mun_br)
+df.APAC.2009_mun <- as.data.frame(df.APAC.2009_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2009_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2009_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2009_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2009_mun.csv', row.names=FALSE)
+
+#2009 - UF
+df.APAC.2009_UF_br <- select(df.APAC.filtrado.hepc.2009, UF_HOSPITAL)
+df.APAC.2009_UF <- table(df.APAC.2009_UF_br)
+df.APAC.2009_UF <- as.data.frame(df.APAC.2009_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2009_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2009_UF, by.x = "UF", by.y = "df.APAC.2009_UF_br" , all.y = TRUE)
+df.APAC.2009_UF <- distinct(df.APAC.2009_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2009_UF.csv', row.names=FALSE)
+
+#2010 - MUN
+df.APAC.2010_mun_br <- select(df.APAC.filtrado.hepc.2010, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2010_mun <- table(df.APAC.2010_mun_br)
+df.APAC.2010_mun <- as.data.frame(df.APAC.2010_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2010_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2010_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2010_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2010_mun.csv', row.names=FALSE)
+
+#2010 - UF
+df.APAC.2010_UF_br <- select(df.APAC.filtrado.hepc.2010, UF_HOSPITAL)
+df.APAC.2010_UF <- table(df.APAC.2010_UF_br)
+df.APAC.2010_UF <- as.data.frame(df.APAC.2010_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2010_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2010_UF, by.x = "UF", by.y = "df.APAC.2010_UF_br" , all.y = TRUE)
+df.APAC.2010_UF <- distinct(df.APAC.2010_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2010_UF.csv', row.names=FALSE)
+
+#2011 - MUN
+df.APAC.2011_mun_br <- select(df.APAC.filtrado.hepc.2011, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2011_mun <- table(df.APAC.2011_mun_br)
+df.APAC.2011_mun <- as.data.frame(df.APAC.2011_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2011_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2011_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2011_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2011_mun.csv', row.names=FALSE)
+
+#2011 - UF
+df.APAC.2011_UF_br <- select(df.APAC.filtrado.hepc.2011, UF_HOSPITAL)
+df.APAC.2011_UF <- table(df.APAC.2011_UF_br)
+df.APAC.2011_UF <- as.data.frame(df.APAC.2011_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2011_UF, by.x = "UF", by.y = "df.APAC.2011_UF_br" , all.y = TRUE)
+df.APAC.2011_UF <- distinct(df.APAC.2011_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2011_UF.csv', row.names=FALSE)
+
+#2012 - MUN
+df.APAC.2012_mun_br <- select(df.APAC.filtrado.hepc.2012, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2012_mun <- table(df.APAC.2012_mun_br)
+df.APAC.2012_mun <- as.data.frame(df.APAC.2012_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2012_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2012_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2012_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2012_mun.csv', row.names=FALSE)
+
+#2012 - UF
+df.APAC.2012_UF_br <- select(df.APAC.filtrado.hepc.2012, UF_HOSPITAL)
+df.APAC.2012_UF <- table(df.APAC.2012_UF_br)
+df.APAC.2012_UF <- as.data.frame(df.APAC.2012_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2012_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2012_UF, by.x = "UF", by.y = "df.APAC.2012_UF_br" , all.y = TRUE)
+df.APAC.2012_UF <- distinct(df.APAC.2012_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2012_UF.csv', row.names=FALSE)
+
+#2013 - MUN
+df.APAC.2013_mun_br <- select(df.APAC.filtrado.hepc.2013, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2013_mun <- table(df.APAC.2013_mun_br)
+df.APAC.2013_mun <- as.data.frame(df.APAC.2013_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2013_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2013_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2013_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2013_mun.csv', row.names=FALSE)
+
+#2013 - UF
+df.APAC.2013_UF_br <- select(df.APAC.filtrado.hepc.2013, UF_HOSPITAL)
+df.APAC.2013_UF <- table(df.APAC.2013_UF_br)
+df.APAC.2013_UF <- as.data.frame(df.APAC.2013_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2013_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2013_UF, by.x = "UF", by.y = "df.APAC.2013_UF_br" , all.y = TRUE)
+df.APAC.2013_UF <- distinct(df.APAC.2013_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2013_UF.csv', row.names=FALSE)
+
+#2014 - MUN
+df.APAC.2014_mun_br <- select(df.APAC.filtrado.hepc.2014, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2014_mun <- table(df.APAC.2014_mun_br)
+df.APAC.2014_mun <- as.data.frame(df.APAC.2014_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2014_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2014_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2014_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2014_mun.csv', row.names=FALSE)
+
+#2014 - UF
+df.APAC.2014_UF_br <- select(df.APAC.filtrado.hepc.2014, UF_HOSPITAL)
+df.APAC.2014_UF <- table(df.APAC.2014_UF_br)
+df.APAC.2014_UF <- as.data.frame(df.APAC.2014_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2014_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2014_UF, by.x = "UF", by.y = "df.APAC.2014_UF_br" , all.y = TRUE)
+df.APAC.2014_UF <- distinct(df.APAC.2014_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2014_UF.csv', row.names=FALSE)
+
+#2015 - MUN
+df.APAC.2015_mun_br <- select(df.APAC.filtrado.hepc.2015, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2015_mun <- table(df.APAC.2015_mun_br)
+df.APAC.2015_mun <- as.data.frame(df.APAC.2015_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2015_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2015_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2015_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2015_mun.csv', row.names=FALSE)
+
+#2015 - UF
+df.APAC.2015_UF_br <- select(df.APAC.filtrado.hepc.2015, UF_HOSPITAL)
+df.APAC.2015_UF <- table(df.APAC.2015_UF_br)
+df.APAC.2015_UF <- as.data.frame(df.APAC.2015_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2015_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2015_UF, by.x = "UF", by.y = "df.APAC.2015_UF_br" , all.y = TRUE)
+df.APAC.2015_UF <- distinct(df.APAC.2015_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2015_UF.csv', row.names=FALSE)
+
+#2016 - MUN
+df.APAC.2016_mun_br <- select(df.APAC.filtrado.hepc.2016, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2016_mun <- table(df.APAC.2016_mun_br)
+df.APAC.2016_mun <- as.data.frame(df.APAC.2016_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2016_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2016_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2016_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2016_mun.csv', row.names=FALSE)
+
+#2016 - UF
+df.APAC.2016_UF_br <- select(df.APAC.filtrado.hepc.2016, UF_HOSPITAL)
+df.APAC.2016_UF <- table(df.APAC.2016_UF_br)
+df.APAC.2016_UF <- as.data.frame(df.APAC.2016_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2016_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2016_UF, by.x = "UF", by.y = "df.APAC.2016_UF_br" , all.y = TRUE)
+df.APAC.2016_UF <- distinct(df.APAC.2016_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2016_UF.csv', row.names=FALSE)
+
+#2017 - MUN
+df.APAC.2017_mun_br <- select(df.APAC.filtrado.hepc.2017, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2017_mun <- table(df.APAC.2017_mun_br)
+df.APAC.2017_mun <- as.data.frame(df.APAC.2017_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2017_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2017_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2017_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2017_mun.csv', row.names=FALSE)
+
+#2017 - UF
+df.APAC.2017_UF_br <- select(df.APAC.filtrado.hepc.2017, UF_HOSPITAL)
+df.APAC.2017_UF <- table(df.APAC.2017_UF_br)
+df.APAC.2017_UF <- as.data.frame(df.APAC.2017_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2017_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2017_UF, by.x = "UF", by.y = "df.APAC.2017_UF_br" , all.y = TRUE)
+df.APAC.2017_UF <- distinct(df.APAC.2017_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2017_UF.csv', row.names=FALSE)
+
+#2018 - MUN
+df.APAC.2018_mun_br <- select(df.APAC.filtrado.hepc.2018, CO_MUNICIPIO_HOSPITAL)
+df.APAC.2018_mun <- table(df.APAC.2018_mun_br)
+df.APAC.2018_mun <- as.data.frame(df.APAC.2018_mun)
+# Acrescentar informações IBGE 7d
+df.APAC.2018_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2018_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2018_mun_br" , all.y = TRUE)
+write.csv(df.APAC.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2018_mun.csv', row.names=FALSE)
+
+#2018 - UF
+df.APAC.2018_UF_br <- select(df.APAC.filtrado.hepc.2018, UF_HOSPITAL)
+df.APAC.2018_UF <- table(df.APAC.2018_UF_br)
+df.APAC.2018_UF <- as.data.frame(df.APAC.2018_UF)
+# Acrescentar informações IBGE 7d
+df.APAC.2018_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2018_UF, by.x = "UF", by.y = "df.APAC.2018_UF_br" , all.y = TRUE)
+df.APAC.2018_UF <- distinct(df.APAC.2018_UF, UF, .keep_all = TRUE)
+write.csv(df.APAC.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2018_UF.csv', row.names=FALSE)
+
+#############
+#### BPAI ###
 #############
