@@ -223,7 +223,7 @@ df.SINAN_hepc$CLAS_ETIOL <- as.character(df.SINAN_hepc$CLAS_ETIOL)
 
 df.SINAN_hepc_filtrado <- df.SINAN_hepc %>% filter(RE_ANTIHCV=="1" | ANTIHCV=="1" | TP_SOROHCV=="1"| CLAS_ETIOL=="3") #| CLAS_ETIOL==6 | CLAS_ETIOL==8 )
 
-## Filtro para Hepatite C - Incluindo co-infecções ##
+## Filtro para Hepatite C - Incluindo co-infecÃ§Ãµes ##
 
 df.SINAN_hepc_filtrado_CI <- df.SINAN_hepc %>% filter(RE_ANTIHCV=="1" | ANTIHCV=="1" | TP_SOROHCV=="1"| CLAS_ETIOL=="3" | CLAS_ETIOL=="6" | CLAS_ETIOL=="8")
 
@@ -283,7 +283,7 @@ ggplot_missing <- function(x){
 }
 ggplot_missing(df.SINAN.datas)
 
-## SINAN - Extratificação por ano - DT_NOTIFIC ##
+## SINAN - ExtratificaÃ§Ã£o por ano - DT_NOTIFIC ##
 
 df.SINAN_hepc_filtrado$DT_NOTIFIC <- as.Date.character(df.SINAN_hepc_filtrado$DT_NOTIFIC)
 
@@ -371,7 +371,7 @@ is.na(df.APAC.hepC.filtrado) <- df.APAC.hepC.filtrado==''
 is.na(df.APAC.hepC.filtrado) <- df.APAC.hepC.filtrado=='*' 
 is.na(df.APAC.hepC.filtrado) <- df.APAC.hepC.filtrado=='//'
 
-### Extratificação por mês/ano de competência ###
+### ExtratificaÃ§Ã£o por mÃªs/ano de competÃªncia ###
 
 df.APAC.hepC.filtrado$COMPETENCIA <- as.character(df.APAC.hepC.filtrado$COMPETENCIA)
 
@@ -401,7 +401,7 @@ df.APAC.filtrado.hepc.2018 <- filter(df.APAC.hepC.filtrado, df.APAC.hepC.filtrad
 #### AIH ####
 #############
 
-### Extratificação por ano hep C AIH
+### ExtratificaÃ§Ã£o por ano hep C AIH
 
 ### MS
 df.AIH.filtrado.hepC.2008 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/AIH_HEPC/2008/AIH_2008_201908131641.csv")
@@ -473,7 +473,7 @@ df.AIH.filtrado.hepC.2018 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OPA
 #### BPAI ###
 #############
 
-### Extratificação por ano hep C BPAI
+### ExtratificaÃ§Ã£o por ano hep C BPAI
 
 ### MS
 df.BPAI.filtrado.hepC.2008 <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/BPAI_HEPC/BPAI_2008/BPAI_2008_201908151202.csv")
@@ -545,7 +545,7 @@ df.BPAI.filtrado.hepC.2018 <- read.csv("/Volumes/MIKAEL/Produtos/git-produto2-OP
 #### SIM ####
 #############
 
-### Extratificação por ano hep C SIM
+### ExtratificaÃ§Ã£o por ano hep C SIM
 
 ### MS
 df.SIM.hepC.filtrado <- read.csv("/Users/mikael.lemos/Desktop/Produtos/produto2/TB_CARGA_DO_201908141614.csv")
@@ -560,7 +560,7 @@ is.na(df.SIM.hepC.filtrado) <- df.SIM.hepC.filtrado==''
 is.na(df.SIM.hepC.filtrado) <- df.SIM.hepC.filtrado=='*' 
 is.na(df.SIM.hepC.filtrado) <- df.SIM.hepC.filtrado=='//'
 
-### Extratificação por ano - DTOBITO ##
+### ExtratificaÃ§Ã£o por ano - DTOBITO ##
 
 df.SIM.hepC.filtrado$DTOBITO <- dmy(df.SIM.hepC.filtrado$DTOBITO)
 
@@ -614,10 +614,10 @@ df.SIM.hepC.filtrado.2015 <- filter(df.SIM.hepC.filtrado, df.SIM.hepC.filtrado$a
 df.SIM.hepC.filtrado.2016 <- filter(df.SIM.hepC.filtrado, df.SIM.hepC.filtrado$ano_obito == 2016)
 
 ##########################################################
-### Preparando lista de códigos IBGE com 6 e 7 digitos ###
+### Preparando lista de cÃ³digos IBGE com 6 e 7 digitos ###
 ##########################################################
 
-# Extrair código IBGE completo
+# Extrair cÃ³digo IBGE completo
 ## Mac
 cod_mun_IBGE <- readxl::read_xls("/Users/mikaellemos/Downloads/DTB_2018/RELATORIO_DTB_BRASIL_MUNICIPIO.xls")
 
@@ -626,14 +626,16 @@ cod_mun_IBGE <- readxl::read_xls("/Users/mikael.lemos/Downloads/RELATORIO_DTB_BR
 
 ############# tabela completa - COD IBGE 7 digitos ################
 
-# retirar úktimo digito do código completo 7 dígitos 
-cod_mun_completo <- substr(cod_mun_IBGE$`Código Município Completo`, 1, 6)
+# retirar Ãºktimo digito do cÃ³digo completo 7 dÃ­gitos 
+cod_mun_completo <- substr(cod_mun_IBGE$`CÃ³digo MunicÃ­pio Completo`, 1, 6)
 
 # transformar lista de cidades 2015 com 6 digitos em df
 cod_mun_completo <- as.data.frame(cod_mun_completo)
 
 # tabela completa IBGE contendo todos os municipios em 2018 com 6 e 7 digitos (5570)
 cod_mun_IBGE_6d_7d <- cbind(cod_mun_completo, cod_mun_IBGE)
+
+write.csv(cod_mun_IBGE_6d_7d, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/cod_mun_IBGE_6d_7d.csv', row.names=FALSE)
 
 #########
 ## GAL ##
@@ -643,7 +645,7 @@ cod_mun_IBGE_6d_7d <- cbind(cod_mun_completo, cod_mun_IBGE)
 df.GAL.2008_mun_br <- select(df.GAL.filtrado.hepC.2008, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2008_mun <- table(df.GAL.2008_mun_br)
 df.GAL.2008_mun <- as.data.frame(df.GAL.2008_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2008_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2008_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2008_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2008_mun.csv', row.names=FALSE)
 
@@ -651,7 +653,7 @@ write.csv(df.GAL.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2008_UF_br <- select(df.GAL.filtrado.hepC.2008, CO_UF_REQUISICAO)
 df.GAL.2008_UF <- table(df.GAL.2008_UF_br)
 df.GAL.2008_UF <- as.data.frame(df.GAL.2008_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2008_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2008_UF, by.x = "UF", by.y = "df.GAL.2008_UF_br" , all.y = TRUE)
 df.GAL.2008_UF <- distinct(df.GAL.2008_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2008_UF.csv', row.names=FALSE)
@@ -660,7 +662,7 @@ write.csv(df.GAL.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2009_mun_br <- select(df.GAL.filtrado.hepC.2009, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2009_mun <- table(df.GAL.2009_mun_br)
 df.GAL.2009_mun <- as.data.frame(df.GAL.2009_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2009_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2009_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2009_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2009_mun.csv', row.names=FALSE)
 
@@ -668,7 +670,7 @@ write.csv(df.GAL.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2009_UF_br <- select(df.GAL.filtrado.hepC.2009, CO_UF_REQUISICAO)
 df.GAL.2009_UF <- table(df.GAL.2009_UF_br)
 df.GAL.2009_UF <- as.data.frame(df.GAL.2009_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2009_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2009_UF, by.x = "UF", by.y = "df.GAL.2009_UF_br" , all.y = TRUE)
 df.GAL.2009_UF <- distinct(df.GAL.2009_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2009_UF.csv', row.names=FALSE)
@@ -677,7 +679,7 @@ write.csv(df.GAL.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2010_mun_br <- select(df.GAL.filtrado.hepC.2010, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2010_mun <- table(df.GAL.2010_mun_br)
 df.GAL.2010_mun <- as.data.frame(df.GAL.2010_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2010_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2010_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2010_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2010_mun.csv', row.names=FALSE)
 
@@ -685,7 +687,7 @@ write.csv(df.GAL.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2010_UF_br <- select(df.GAL.filtrado.hepC.2010, CO_UF_REQUISICAO)
 df.GAL.2010_UF <- table(df.GAL.2010_UF_br)
 df.GAL.2010_UF <- as.data.frame(df.GAL.2010_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2010_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2010_UF, by.x = "UF", by.y = "df.GAL.2010_UF_br" , all.y = TRUE)
 df.GAL.2010_UF <- distinct(df.GAL.2010_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2010_UF.csv', row.names=FALSE)
@@ -694,7 +696,7 @@ write.csv(df.GAL.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2011_mun_br <- select(df.GAL.filtrado.hepC.2011, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2011_mun <- table(df.GAL.2011_mun_br)
 df.GAL.2011_mun <- as.data.frame(df.GAL.2011_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2011_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2011_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2011_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2011_mun.csv', row.names=FALSE)
 
@@ -702,7 +704,7 @@ write.csv(df.GAL.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2011_UF_br <- select(df.GAL.filtrado.hepC.2011, CO_UF_REQUISICAO)
 df.GAL.2011_UF <- table(df.GAL.2011_UF_br)
 df.GAL.2011_UF <- as.data.frame(df.GAL.2011_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2011_UF, by.x = "UF", by.y = "df.GAL.2011_UF_br" , all.y = TRUE)
 df.GAL.2011_UF <- distinct(df.GAL.2011_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2011_UF.csv', row.names=FALSE)
@@ -711,7 +713,7 @@ write.csv(df.GAL.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2012_mun_br <- select(df.GAL.filtrado.hepC.2012, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2012_mun <- table(df.GAL.2012_mun_br)
 df.GAL.2012_mun <- as.data.frame(df.GAL.2012_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2012_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2012_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2012_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2012_mun.csv', row.names=FALSE)
 
@@ -719,7 +721,7 @@ write.csv(df.GAL.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2012_UF_br <- select(df.GAL.filtrado.hepC.2012, CO_UF_REQUISICAO)
 df.GAL.2012_UF <- table(df.GAL.2012_UF_br)
 df.GAL.2012_UF <- as.data.frame(df.GAL.2012_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2012_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2012_UF, by.x = "UF", by.y = "df.GAL.2012_UF_br" , all.y = TRUE)
 df.GAL.2012_UF <- distinct(df.GAL.2012_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2012_UF.csv', row.names=FALSE)
@@ -728,7 +730,7 @@ write.csv(df.GAL.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2013_mun_br <- select(df.GAL.filtrado.hepC.2013, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2013_mun <- table(df.GAL.2013_mun_br)
 df.GAL.2013_mun <- as.data.frame(df.GAL.2013_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2013_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2013_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2013_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2013_mun.csv', row.names=FALSE)
 
@@ -736,7 +738,7 @@ write.csv(df.GAL.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2013_UF_br <- select(df.GAL.filtrado.hepC.2013, CO_UF_REQUISICAO)
 df.GAL.2013_UF <- table(df.GAL.2013_UF_br)
 df.GAL.2013_UF <- as.data.frame(df.GAL.2013_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2013_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2013_UF, by.x = "UF", by.y = "df.GAL.2013_UF_br" , all.y = TRUE)
 df.GAL.2013_UF <- distinct(df.GAL.2013_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2013_UF.csv', row.names=FALSE)
@@ -745,7 +747,7 @@ write.csv(df.GAL.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2014_mun_br <- select(df.GAL.filtrado.hepC.2014, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2014_mun <- table(df.GAL.2014_mun_br)
 df.GAL.2014_mun <- as.data.frame(df.GAL.2014_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2014_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2014_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2014_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2014_mun.csv', row.names=FALSE)
 
@@ -753,7 +755,7 @@ write.csv(df.GAL.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2014_UF_br <- select(df.GAL.filtrado.hepC.2014, CO_UF_REQUISICAO)
 df.GAL.2014_UF <- table(df.GAL.2014_UF_br)
 df.GAL.2014_UF <- as.data.frame(df.GAL.2014_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2014_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2014_UF, by.x = "UF", by.y = "df.GAL.2014_UF_br" , all.y = TRUE)
 df.GAL.2014_UF <- distinct(df.GAL.2014_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2014_UF.csv', row.names=FALSE)
@@ -762,7 +764,7 @@ write.csv(df.GAL.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2015_mun_br <- select(df.GAL.filtrado.hepC.2015, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2015_mun <- table(df.GAL.2015_mun_br)
 df.GAL.2015_mun <- as.data.frame(df.GAL.2015_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2015_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2015_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2015_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2015_mun.csv', row.names=FALSE)
 
@@ -770,7 +772,7 @@ write.csv(df.GAL.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2015_UF_br <- select(df.GAL.filtrado.hepC.2015, CO_UF_REQUISICAO)
 df.GAL.2015_UF <- table(df.GAL.2015_UF_br)
 df.GAL.2015_UF <- as.data.frame(df.GAL.2015_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2015_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2015_UF, by.x = "UF", by.y = "df.GAL.2015_UF_br" , all.y = TRUE)
 df.GAL.2015_UF <- distinct(df.GAL.2015_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2015_UF.csv', row.names=FALSE)
@@ -779,7 +781,7 @@ write.csv(df.GAL.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2016_mun_br <- select(df.GAL.filtrado.hepC.2016, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2016_mun <- table(df.GAL.2016_mun_br)
 df.GAL.2016_mun <- as.data.frame(df.GAL.2016_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2016_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2016_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2016_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2016_mun.csv', row.names=FALSE)
 
@@ -787,7 +789,7 @@ write.csv(df.GAL.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2016_UF_br <- select(df.GAL.filtrado.hepC.2016, CO_UF_REQUISICAO)
 df.GAL.2016_UF <- table(df.GAL.2016_UF_br)
 df.GAL.2016_UF <- as.data.frame(df.GAL.2016_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2016_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2016_UF, by.x = "UF", by.y = "df.GAL.2016_UF_br" , all.y = TRUE)
 df.GAL.2016_UF <- distinct(df.GAL.2016_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2016_UF.csv', row.names=FALSE)
@@ -796,7 +798,7 @@ write.csv(df.GAL.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2017_mun_br <- select(df.GAL.filtrado.hepC.2017, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2017_mun <- table(df.GAL.2017_mun_br)
 df.GAL.2017_mun <- as.data.frame(df.GAL.2017_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2017_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2017_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2017_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2017_mun.csv', row.names=FALSE)
 
@@ -804,7 +806,7 @@ write.csv(df.GAL.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2017_UF_br <- select(df.GAL.filtrado.hepC.2017, CO_UF_REQUISICAO)
 df.GAL.2017_UF <- table(df.GAL.2017_UF_br)
 df.GAL.2017_UF <- as.data.frame(df.GAL.2017_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2017_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2017_UF, by.x = "UF", by.y = "df.GAL.2017_UF_br" , all.y = TRUE)
 df.GAL.2017_UF <- distinct(df.GAL.2017_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2017_UF.csv', row.names=FALSE)
@@ -813,7 +815,7 @@ write.csv(df.GAL.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.GAL.2018_mun_br <- select(df.GAL.filtrado.hepC.2018, CO_MUNICIPIO_RESIDENCIA)
 df.GAL.2018_mun <- table(df.GAL.2018_mun_br)
 df.GAL.2018_mun <- as.data.frame(df.GAL.2018_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2018_mun  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2018_mun, by.x = "cod_mun_completo", by.y = "df.GAL.2018_mun_br" , all.y = TRUE)
 write.csv(df.GAL.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2018_mun.csv', row.names=FALSE)
 
@@ -821,7 +823,7 @@ write.csv(df.GAL.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.GAL.2018_UF_br <- select(df.GAL.filtrado.hepC.2018, CO_UF_REQUISICAO)
 df.GAL.2018_UF <- table(df.GAL.2018_UF_br)
 df.GAL.2018_UF <- as.data.frame(df.GAL.2018_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.GAL.2018_UF  <- merge(cod_mun_IBGE_6d_7d,df.GAL.2018_UF, by.x = "UF", by.y = "df.GAL.2018_UF_br" , all.y = TRUE)
 df.GAL.2018_UF <- distinct(df.GAL.2018_UF, UF, .keep_all = TRUE)
 write.csv(df.GAL.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.GAL.2018_UF.csv', row.names=FALSE)
@@ -834,7 +836,7 @@ write.csv(df.GAL.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.SINAN.2008_mun_br <- select(df.SINAN.filtrado.hepC.2008, ID_MUNICIP)
 df.SINAN.2008_mun <- table(df.SINAN.2008_mun_br)
 df.SINAN.2008_mun <- as.data.frame(df.SINAN.2008_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2008_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2008_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2008_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2008_mun.csv', row.names=FALSE)
 
@@ -842,7 +844,7 @@ write.csv(df.SINAN.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2008_UF_br <- select(df.SINAN.filtrado.hepC.2008, SG_UF_NOT)
 df.SINAN.2008_UF <- table(df.SINAN.2008_UF_br)
 df.SINAN.2008_UF <- as.data.frame(df.SINAN.2008_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2008_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2008_UF, by.x = "UF", by.y = "df.SINAN.2008_UF_br" , all.y = TRUE)
 df.SINAN.2008_UF <- distinct(df.SINAN.2008_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2008_UF.csv', row.names=FALSE)
@@ -851,7 +853,7 @@ write.csv(df.SINAN.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2009_mun_br <- select(df.SINAN.filtrado.hepC.2009, ID_MUNICIP)
 df.SINAN.2009_mun <- table(df.SINAN.2009_mun_br)
 df.SINAN.2009_mun <- as.data.frame(df.SINAN.2009_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2009_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2009_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2009_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2009_mun.csv', row.names=FALSE)
 
@@ -859,7 +861,7 @@ write.csv(df.SINAN.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2009_UF_br <- select(df.SINAN.filtrado.hepC.2009, SG_UF_NOT)
 df.SINAN.2009_UF <- table(df.SINAN.2009_UF_br)
 df.SINAN.2009_UF <- as.data.frame(df.SINAN.2009_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2009_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2009_UF, by.x = "UF", by.y = "df.SINAN.2009_UF_br" , all.y = TRUE)
 df.SINAN.2009_UF <- distinct(df.SINAN.2009_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2009_UF.csv', row.names=FALSE)
@@ -868,7 +870,7 @@ write.csv(df.SINAN.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2010_mun_br <- select(df.SINAN.filtrado.hepC.2010, ID_MUNICIP)
 df.SINAN.2010_mun <- table(df.SINAN.2010_mun_br)
 df.SINAN.2010_mun <- as.data.frame(df.SINAN.2010_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2010_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2010_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2010_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2010_mun.csv', row.names=FALSE)
 
@@ -876,7 +878,7 @@ write.csv(df.SINAN.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2010_UF_br <- select(df.SINAN.filtrado.hepC.2010, SG_UF_NOT)
 df.SINAN.2010_UF <- table(df.SINAN.2010_UF_br)
 df.SINAN.2010_UF <- as.data.frame(df.SINAN.2010_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2010_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2010_UF, by.x = "UF", by.y = "df.SINAN.2010_UF_br" , all.y = TRUE)
 df.SINAN.2010_UF <- distinct(df.SINAN.2010_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2010_UF.csv', row.names=FALSE)
@@ -885,7 +887,7 @@ write.csv(df.SINAN.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2011_mun_br <- select(df.SINAN.filtrado.hepC.2011, ID_MUNICIP)
 df.SINAN.2011_mun <- table(df.SINAN.2011_mun_br)
 df.SINAN.2011_mun <- as.data.frame(df.SINAN.2011_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2011_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2011_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2011_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2011_mun.csv', row.names=FALSE)
 
@@ -893,7 +895,7 @@ write.csv(df.SINAN.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2011_UF_br <- select(df.SINAN.filtrado.hepC.2011, SG_UF_NOT)
 df.SINAN.2011_UF <- table(df.SINAN.2011_UF_br)
 df.SINAN.2011_UF <- as.data.frame(df.SINAN.2011_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2011_UF, by.x = "UF", by.y = "df.SINAN.2011_UF_br" , all.y = TRUE)
 df.SINAN.2011_UF <- distinct(df.SINAN.2011_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2011_UF.csv', row.names=FALSE)
@@ -902,7 +904,7 @@ write.csv(df.SINAN.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2012_mun_br <- select(df.SINAN.filtrado.hepC.2012, ID_MUNICIP)
 df.SINAN.2012_mun <- table(df.SINAN.2012_mun_br)
 df.SINAN.2012_mun <- as.data.frame(df.SINAN.2012_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2012_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2012_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2012_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2012_mun.csv', row.names=FALSE)
 
@@ -910,7 +912,7 @@ write.csv(df.SINAN.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2012_UF_br <- select(df.SINAN.filtrado.hepC.2012, SG_UF_NOT)
 df.SINAN.2012_UF <- table(df.SINAN.2012_UF_br)
 df.SINAN.2012_UF <- as.data.frame(df.SINAN.2012_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2012_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2012_UF, by.x = "UF", by.y = "df.SINAN.2012_UF_br" , all.y = TRUE)
 df.SINAN.2012_UF <- distinct(df.SINAN.2012_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2012_UF.csv', row.names=FALSE)
@@ -919,7 +921,7 @@ write.csv(df.SINAN.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2013_mun_br <- select(df.SINAN.filtrado.hepC.2013, ID_MUNICIP)
 df.SINAN.2013_mun <- table(df.SINAN.2013_mun_br)
 df.SINAN.2013_mun <- as.data.frame(df.SINAN.2013_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2013_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2013_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2013_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2013_mun.csv', row.names=FALSE)
 
@@ -927,7 +929,7 @@ write.csv(df.SINAN.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2013_UF_br <- select(df.SINAN.filtrado.hepC.2013, SG_UF_NOT)
 df.SINAN.2013_UF <- table(df.SINAN.2013_UF_br)
 df.SINAN.2013_UF <- as.data.frame(df.SINAN.2013_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2013_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2013_UF, by.x = "UF", by.y = "df.SINAN.2013_UF_br" , all.y = TRUE)
 df.SINAN.2013_UF <- distinct(df.SINAN.2013_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2013_UF.csv', row.names=FALSE)
@@ -936,7 +938,7 @@ write.csv(df.SINAN.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2014_mun_br <- select(df.SINAN.filtrado.hepC.2014, ID_MUNICIP)
 df.SINAN.2014_mun <- table(df.SINAN.2014_mun_br)
 df.SINAN.2014_mun <- as.data.frame(df.SINAN.2014_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2014_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2014_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2014_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2014_mun.csv', row.names=FALSE)
 
@@ -944,7 +946,7 @@ write.csv(df.SINAN.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2014_UF_br <- select(df.SINAN.filtrado.hepC.2014, SG_UF_NOT)
 df.SINAN.2014_UF <- table(df.SINAN.2014_UF_br)
 df.SINAN.2014_UF <- as.data.frame(df.SINAN.2014_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2014_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2014_UF, by.x = "UF", by.y = "df.SINAN.2014_UF_br" , all.y = TRUE)
 df.SINAN.2014_UF <- distinct(df.SINAN.2014_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2014_UF.csv', row.names=FALSE)
@@ -953,7 +955,7 @@ write.csv(df.SINAN.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2015_mun_br <- select(df.SINAN.filtrado.hepC.2015, ID_MUNICIP)
 df.SINAN.2015_mun <- table(df.SINAN.2015_mun_br)
 df.SINAN.2015_mun <- as.data.frame(df.SINAN.2015_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2015_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2015_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2015_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2015_mun.csv', row.names=FALSE)
 
@@ -961,7 +963,7 @@ write.csv(df.SINAN.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2015_UF_br <- select(df.SINAN.filtrado.hepC.2015, SG_UF_NOT)
 df.SINAN.2015_UF <- table(df.SINAN.2015_UF_br)
 df.SINAN.2015_UF <- as.data.frame(df.SINAN.2015_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2015_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2015_UF, by.x = "UF", by.y = "df.SINAN.2015_UF_br" , all.y = TRUE)
 df.SINAN.2015_UF <- distinct(df.SINAN.2015_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2015_UF.csv', row.names=FALSE)
@@ -970,7 +972,7 @@ write.csv(df.SINAN.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2016_mun_br <- select(df.SINAN.filtrado.hepC.2016, ID_MUNICIP)
 df.SINAN.2016_mun <- table(df.SINAN.2016_mun_br)
 df.SINAN.2016_mun <- as.data.frame(df.SINAN.2016_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2016_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2016_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2016_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2016_mun.csv', row.names=FALSE)
 
@@ -978,7 +980,7 @@ write.csv(df.SINAN.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2016_UF_br <- select(df.SINAN.filtrado.hepC.2016, SG_UF_NOT)
 df.SINAN.2016_UF <- table(df.SINAN.2016_UF_br)
 df.SINAN.2016_UF <- as.data.frame(df.SINAN.2016_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2016_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2016_UF, by.x = "UF", by.y = "df.SINAN.2016_UF_br" , all.y = TRUE)
 df.SINAN.2016_UF <- distinct(df.SINAN.2016_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2016_UF.csv', row.names=FALSE)
@@ -987,7 +989,7 @@ write.csv(df.SINAN.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2017_mun_br <- select(df.SINAN.filtrado.hepC.2017, ID_MUNICIP)
 df.SINAN.2017_mun <- table(df.SINAN.2017_mun_br)
 df.SINAN.2017_mun <- as.data.frame(df.SINAN.2017_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2017_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2017_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2017_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2017_mun.csv', row.names=FALSE)
 
@@ -995,7 +997,7 @@ write.csv(df.SINAN.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2017_UF_br <- select(df.SINAN.filtrado.hepC.2017, SG_UF_NOT)
 df.SINAN.2017_UF <- table(df.SINAN.2017_UF_br)
 df.SINAN.2017_UF <- as.data.frame(df.SINAN.2017_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2017_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2017_UF, by.x = "UF", by.y = "df.SINAN.2017_UF_br" , all.y = TRUE)
 df.SINAN.2017_UF <- distinct(df.SINAN.2017_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2017_UF.csv', row.names=FALSE)
@@ -1004,7 +1006,7 @@ write.csv(df.SINAN.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.SINAN.2018_mun_br <- select(df.SINAN.filtrado.hepC.2018, ID_MUNICIP)
 df.SINAN.2018_mun <- table(df.SINAN.2018_mun_br)
 df.SINAN.2018_mun <- as.data.frame(df.SINAN.2018_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2018_mun  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2018_mun, by.x = "cod_mun_completo", by.y = "df.SINAN.2018_mun_br" , all.y = TRUE)
 write.csv(df.SINAN.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2018_mun.csv', row.names=FALSE)
 
@@ -1012,7 +1014,7 @@ write.csv(df.SINAN.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_interme
 df.SINAN.2018_UF_br <- select(df.SINAN.filtrado.hepC.2018, SG_UF_NOT)
 df.SINAN.2018_UF <- table(df.SINAN.2018_UF_br)
 df.SINAN.2018_UF <- as.data.frame(df.SINAN.2018_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SINAN.2018_UF  <- merge(cod_mun_IBGE_6d_7d,df.SINAN.2018_UF, by.x = "UF", by.y = "df.SINAN.2018_UF_br" , all.y = TRUE)
 df.SINAN.2018_UF <- distinct(df.SINAN.2018_UF, UF, .keep_all = TRUE)
 write.csv(df.SINAN.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SINAN.2018_UF.csv', row.names=FALSE)
@@ -1025,15 +1027,46 @@ write.csv(df.SINAN.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermed
 df.APAC.2008_mun_br <- select(df.APAC.filtrado.hepc.2008, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2008_mun <- table(df.APAC.2008_mun_br)
 df.APAC.2008_mun <- as.data.frame(df.APAC.2008_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2008_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2008_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2008_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2008_mun.csv', row.names=FALSE)
 
 #2008 - UF
 df.APAC.2008_UF_br <- select(df.APAC.filtrado.hepc.2008, UF_HOSPITAL)
+
+df.APAC.2008_UF_br$UF_HOSPITAL <- as.character(df.APAC.2008_UF_br$UF_HOSPITAL)
+
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2008_UF_br$UF_HOSPITAL[df.APAC.2008_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2008_UF <- table(df.APAC.2008_UF_br)
 df.APAC.2008_UF <- as.data.frame(df.APAC.2008_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2008_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2008_UF, by.x = "UF", by.y = "df.APAC.2008_UF_br" , all.y = TRUE)
 df.APAC.2008_UF <- distinct(df.APAC.2008_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2008_UF.csv', row.names=FALSE)
@@ -1042,15 +1075,46 @@ write.csv(df.APAC.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2009_mun_br <- select(df.APAC.filtrado.hepc.2009, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2009_mun <- table(df.APAC.2009_mun_br)
 df.APAC.2009_mun <- as.data.frame(df.APAC.2009_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2009_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2009_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2009_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2009_mun.csv', row.names=FALSE)
 
 #2009 - UF
 df.APAC.2009_UF_br <- select(df.APAC.filtrado.hepc.2009, UF_HOSPITAL)
+
+df.APAC.2009_UF_br$UF_HOSPITAL <- as.character(df.APAC.2009_UF_br$UF_HOSPITAL)
+
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2009_UF_br$UF_HOSPITAL[df.APAC.2009_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2009_UF <- table(df.APAC.2009_UF_br)
 df.APAC.2009_UF <- as.data.frame(df.APAC.2009_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2009_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2009_UF, by.x = "UF", by.y = "df.APAC.2009_UF_br" , all.y = TRUE)
 df.APAC.2009_UF <- distinct(df.APAC.2009_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2009_UF.csv', row.names=FALSE)
@@ -1059,15 +1123,46 @@ write.csv(df.APAC.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2010_mun_br <- select(df.APAC.filtrado.hepc.2010, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2010_mun <- table(df.APAC.2010_mun_br)
 df.APAC.2010_mun <- as.data.frame(df.APAC.2010_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2010_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2010_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2010_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2010_mun.csv', row.names=FALSE)
 
 #2010 - UF
 df.APAC.2010_UF_br <- select(df.APAC.filtrado.hepc.2010, UF_HOSPITAL)
+
+df.APAC.2010_UF_br$UF_HOSPITAL <- as.character(df.APAC.2010_UF_br$UF_HOSPITAL)
+
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2010_UF_br$UF_HOSPITAL[df.APAC.2010_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2010_UF <- table(df.APAC.2010_UF_br)
 df.APAC.2010_UF <- as.data.frame(df.APAC.2010_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2010_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2010_UF, by.x = "UF", by.y = "df.APAC.2010_UF_br" , all.y = TRUE)
 df.APAC.2010_UF <- distinct(df.APAC.2010_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2010_UF.csv', row.names=FALSE)
@@ -1076,15 +1171,46 @@ write.csv(df.APAC.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2011_mun_br <- select(df.APAC.filtrado.hepc.2011, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2011_mun <- table(df.APAC.2011_mun_br)
 df.APAC.2011_mun <- as.data.frame(df.APAC.2011_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2011_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2011_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2011_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2011_mun.csv', row.names=FALSE)
 
 #2011 - UF
 df.APAC.2011_UF_br <- select(df.APAC.filtrado.hepc.2011, UF_HOSPITAL)
+
+df.APAC.2011_UF_br$UF_HOSPITAL <- as.character(df.APAC.2011_UF_br$UF_HOSPITAL)
+
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2011_UF_br$UF_HOSPITAL[df.APAC.2011_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2011_UF <- table(df.APAC.2011_UF_br)
 df.APAC.2011_UF <- as.data.frame(df.APAC.2011_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2011_UF, by.x = "UF", by.y = "df.APAC.2011_UF_br" , all.y = TRUE)
 df.APAC.2011_UF <- distinct(df.APAC.2011_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2011_UF.csv', row.names=FALSE)
@@ -1093,15 +1219,46 @@ write.csv(df.APAC.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2012_mun_br <- select(df.APAC.filtrado.hepc.2012, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2012_mun <- table(df.APAC.2012_mun_br)
 df.APAC.2012_mun <- as.data.frame(df.APAC.2012_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2012_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2012_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2012_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2012_mun.csv', row.names=FALSE)
 
 #2012 - UF
 df.APAC.2012_UF_br <- select(df.APAC.filtrado.hepc.2012, UF_HOSPITAL)
+
+df.APAC.2012_UF_br$UF_HOSPITAL <- as.character(df.APAC.2012_UF_br$UF_HOSPITAL)
+
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2012_UF_br$UF_HOSPITAL[df.APAC.2012_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2012_UF <- table(df.APAC.2012_UF_br)
 df.APAC.2012_UF <- as.data.frame(df.APAC.2012_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2012_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2012_UF, by.x = "UF", by.y = "df.APAC.2012_UF_br" , all.y = TRUE)
 df.APAC.2012_UF <- distinct(df.APAC.2012_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2012_UF.csv', row.names=FALSE)
@@ -1110,15 +1267,46 @@ write.csv(df.APAC.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2013_mun_br <- select(df.APAC.filtrado.hepc.2013, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2013_mun <- table(df.APAC.2013_mun_br)
 df.APAC.2013_mun <- as.data.frame(df.APAC.2013_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2013_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2013_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2013_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2013_mun.csv', row.names=FALSE)
 
 #2013 - UF
 df.APAC.2013_UF_br <- select(df.APAC.filtrado.hepc.2013, UF_HOSPITAL)
+
+df.APAC.2013_UF_br$UF_HOSPITAL <- as.character(df.APAC.2013_UF_br$UF_HOSPITAL)
+
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2013_UF_br$UF_HOSPITAL[df.APAC.2013_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2013_UF <- table(df.APAC.2013_UF_br)
 df.APAC.2013_UF <- as.data.frame(df.APAC.2013_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2013_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2013_UF, by.x = "UF", by.y = "df.APAC.2013_UF_br" , all.y = TRUE)
 df.APAC.2013_UF <- distinct(df.APAC.2013_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2013_UF.csv', row.names=FALSE)
@@ -1127,15 +1315,46 @@ write.csv(df.APAC.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2014_mun_br <- select(df.APAC.filtrado.hepc.2014, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2014_mun <- table(df.APAC.2014_mun_br)
 df.APAC.2014_mun <- as.data.frame(df.APAC.2014_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2014_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2014_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2014_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2014_mun.csv', row.names=FALSE)
 
 #2014 - UF
 df.APAC.2014_UF_br <- select(df.APAC.filtrado.hepc.2014, UF_HOSPITAL)
+
+df.APAC.2014_UF_br$UF_HOSPITAL <- as.character(df.APAC.2014_UF_br$UF_HOSPITAL)
+
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2014_UF_br$UF_HOSPITAL[df.APAC.2014_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2014_UF <- table(df.APAC.2014_UF_br)
 df.APAC.2014_UF <- as.data.frame(df.APAC.2014_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2014_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2014_UF, by.x = "UF", by.y = "df.APAC.2014_UF_br" , all.y = TRUE)
 df.APAC.2014_UF <- distinct(df.APAC.2014_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2014_UF.csv', row.names=FALSE)
@@ -1144,15 +1363,46 @@ write.csv(df.APAC.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2015_mun_br <- select(df.APAC.filtrado.hepc.2015, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2015_mun <- table(df.APAC.2015_mun_br)
 df.APAC.2015_mun <- as.data.frame(df.APAC.2015_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2015_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2015_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2015_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2015_mun.csv', row.names=FALSE)
 
 #2015 - UF
 df.APAC.2015_UF_br <- select(df.APAC.filtrado.hepc.2015, UF_HOSPITAL)
+
+df.APAC.2015_UF_br$UF_HOSPITAL <- as.character(df.APAC.2015_UF_br$UF_HOSPITAL)
+
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2015_UF_br$UF_HOSPITAL[df.APAC.2015_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2015_UF <- table(df.APAC.2015_UF_br)
 df.APAC.2015_UF <- as.data.frame(df.APAC.2015_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2015_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2015_UF, by.x = "UF", by.y = "df.APAC.2015_UF_br" , all.y = TRUE)
 df.APAC.2015_UF <- distinct(df.APAC.2015_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2015_UF.csv', row.names=FALSE)
@@ -1161,15 +1411,46 @@ write.csv(df.APAC.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2016_mun_br <- select(df.APAC.filtrado.hepc.2016, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2016_mun <- table(df.APAC.2016_mun_br)
 df.APAC.2016_mun <- as.data.frame(df.APAC.2016_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2016_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2016_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2016_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2016_mun.csv', row.names=FALSE)
 
 #2016 - UF
 df.APAC.2016_UF_br <- select(df.APAC.filtrado.hepc.2016, UF_HOSPITAL)
+
+df.APAC.2016_UF_br$UF_HOSPITAL <- as.character(df.APAC.2016_UF_br$UF_HOSPITAL)
+
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2016_UF_br$UF_HOSPITAL[df.APAC.2016_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2016_UF <- table(df.APAC.2016_UF_br)
 df.APAC.2016_UF <- as.data.frame(df.APAC.2016_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2016_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2016_UF, by.x = "UF", by.y = "df.APAC.2016_UF_br" , all.y = TRUE)
 df.APAC.2016_UF <- distinct(df.APAC.2016_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2016_UF.csv', row.names=FALSE)
@@ -1178,15 +1459,46 @@ write.csv(df.APAC.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2017_mun_br <- select(df.APAC.filtrado.hepc.2017, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2017_mun <- table(df.APAC.2017_mun_br)
 df.APAC.2017_mun <- as.data.frame(df.APAC.2017_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2017_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2017_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2017_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2017_mun.csv', row.names=FALSE)
 
 #2017 - UF
 df.APAC.2017_UF_br <- select(df.APAC.filtrado.hepc.2017, UF_HOSPITAL)
+
+df.APAC.2017_UF_br$UF_HOSPITAL <- as.character(df.APAC.2017_UF_br$UF_HOSPITAL)
+
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2017_UF_br$UF_HOSPITAL[df.APAC.2017_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2017_UF <- table(df.APAC.2017_UF_br)
 df.APAC.2017_UF <- as.data.frame(df.APAC.2017_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2017_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2017_UF, by.x = "UF", by.y = "df.APAC.2017_UF_br" , all.y = TRUE)
 df.APAC.2017_UF <- distinct(df.APAC.2017_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2017_UF.csv', row.names=FALSE)
@@ -1195,15 +1507,46 @@ write.csv(df.APAC.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.APAC.2018_mun_br <- select(df.APAC.filtrado.hepc.2018, CO_MUNICIPIO_HOSPITAL)
 df.APAC.2018_mun <- table(df.APAC.2018_mun_br)
 df.APAC.2018_mun <- as.data.frame(df.APAC.2018_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2018_mun  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2018_mun, by.x = "cod_mun_completo", by.y = "df.APAC.2018_mun_br" , all.y = TRUE)
 write.csv(df.APAC.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2018_mun.csv', row.names=FALSE)
 
 #2018 - UF
 df.APAC.2018_UF_br <- select(df.APAC.filtrado.hepc.2018, UF_HOSPITAL)
+
+df.APAC.2018_UF_br$UF_HOSPITAL <- as.character(df.APAC.2018_UF_br$UF_HOSPITAL)
+
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "RO"] <- "11"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "AC"] <- "12"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "AM"] <- "13"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "RR"] <- "14"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "PA"] <- "15"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "AP"] <- "16"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "TO"] <- "17"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "MA"] <- "21"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "PI"] <- "22"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "CE"] <- "23"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "RN"] <- "24"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "PB"] <- "25"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "PE"] <- "26"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "AL"] <- "27"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "SE"] <- "28"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "BA"] <- "29"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "MG"] <- "31"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "ES"] <- "32"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "RJ"] <- "33"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "SP"] <- "35"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "PR"] <- "41"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "SC"] <- "42"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "RS"] <- "43"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "MS"] <- "50"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "MT"] <- "51"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "GO"] <- "52"
+df.APAC.2018_UF_br$UF_HOSPITAL[df.APAC.2018_UF_br$UF_HOSPITAL == "DF"] <- "53"
+
 df.APAC.2018_UF <- table(df.APAC.2018_UF_br)
 df.APAC.2018_UF <- as.data.frame(df.APAC.2018_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.APAC.2018_UF  <- merge(cod_mun_IBGE_6d_7d,df.APAC.2018_UF, by.x = "UF", by.y = "df.APAC.2018_UF_br" , all.y = TRUE)
 df.APAC.2018_UF <- distinct(df.APAC.2018_UF, UF, .keep_all = TRUE)
 write.csv(df.APAC.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.APAC.2018_UF.csv', row.names=FALSE)
@@ -1216,15 +1559,47 @@ write.csv(df.APAC.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2008_mun_br <- select(df.BPAI.filtrado.hepC.2008, CO_MUNICIPIO)
 df.BPAI.2008_mun <- table(df.BPAI.2008_mun_br)
 df.BPAI.2008_mun <- as.data.frame(df.BPAI.2008_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2008_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2008_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2008_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2008_mun.csv', row.names=FALSE)
 
 #2008 - UF
 df.BPAI.2008_UF_br <- select(df.BPAI.filtrado.hepC.2008, UF)
+
+df.BPAI.2008_UF_br$UF <- as.character(df.BPAI.2008_UF_br$UF)
+
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "RO"] <- "11"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "AC"] <- "12"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "AM"] <- "13"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "RR"] <- "14"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "PA"] <- "15"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "AP"] <- "16"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "TO"] <- "17"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "MA"] <- "21"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "PI"] <- "22"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "CE"] <- "23"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "RN"] <- "24"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "PB"] <- "25"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "PE"] <- "26"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "AL"] <- "27"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "SE"] <- "28"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "BA"] <- "29"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "MG"] <- "31"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "ES"] <- "32"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "SP"] <- "35"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "PR"] <- "41"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "SC"] <- "42"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "RS"] <- "43"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "MS"] <- "50"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "MT"] <- "51"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "GO"] <- "52"
+df.BPAI.2008_UF_br$UF[df.BPAI.2008_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2008_UF <- table(df.BPAI.2008_UF_br)
 df.BPAI.2008_UF <- as.data.frame(df.BPAI.2008_UF)
-# Acrescentar informações IBGE 7d
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2008_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2008_UF, by.x = "UF", by.y = "df.BPAI.2008_UF_br" , all.y = TRUE)
 df.BPAI.2008_UF <- distinct(df.BPAI.2008_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2008_UF.csv', row.names=FALSE)
@@ -1233,15 +1608,46 @@ write.csv(df.BPAI.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2009_mun_br <- select(df.BPAI.filtrado.hepC.2009, CO_MUNICIPIO)
 df.BPAI.2009_mun <- table(df.BPAI.2009_mun_br)
 df.BPAI.2009_mun <- as.data.frame(df.BPAI.2009_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2009_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2009_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2009_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2009_mun.csv', row.names=FALSE)
 
 #2009 - UF
 df.BPAI.2009_UF_br <- select(df.BPAI.filtrado.hepC.2009, UF)
+
+df.BPAI.2009_UF_br$UF <- as.character(df.BPAI.2009_UF_br$UF)
+
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "RO"] <- "11"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "AC"] <- "12"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "AM"] <- "13"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "RR"] <- "14"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "PA"] <- "15"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "AP"] <- "16"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "TO"] <- "17"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "MA"] <- "21"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "PI"] <- "22"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "CE"] <- "23"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "RN"] <- "24"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "PB"] <- "25"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "PE"] <- "26"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "AL"] <- "27"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "SE"] <- "28"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "BA"] <- "29"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "MG"] <- "31"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "ES"] <- "32"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "SP"] <- "35"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "PR"] <- "41"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "SC"] <- "42"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "RS"] <- "43"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "MS"] <- "50"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "MT"] <- "51"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "GO"] <- "52"
+df.BPAI.2009_UF_br$UF[df.BPAI.2009_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2009_UF <- table(df.BPAI.2009_UF_br)
 df.BPAI.2009_UF <- as.data.frame(df.BPAI.2009_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2009_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2009_UF, by.x = "UF", by.y = "df.BPAI.2009_UF_br" , all.y = TRUE)
 df.BPAI.2009_UF <- distinct(df.BPAI.2009_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2009_UF.csv', row.names=FALSE)
@@ -1250,15 +1656,46 @@ write.csv(df.BPAI.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2010_mun_br <- select(df.BPAI.filtrado.hepC.2010, CO_MUNICIPIO)
 df.BPAI.2010_mun <- table(df.BPAI.2010_mun_br)
 df.BPAI.2010_mun <- as.data.frame(df.BPAI.2010_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2010_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2010_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2010_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2010_mun.csv', row.names=FALSE)
 
 #2010 - UF
 df.BPAI.2010_UF_br <- select(df.BPAI.filtrado.hepC.2010, UF)
+
+df.BPAI.2010_UF_br$UF <- as.character(df.BPAI.2010_UF_br$UF)
+
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "RO"] <- "11"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "AC"] <- "12"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "AM"] <- "13"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "RR"] <- "14"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "PA"] <- "15"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "AP"] <- "16"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "TO"] <- "17"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "MA"] <- "21"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "PI"] <- "22"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "CE"] <- "23"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "RN"] <- "24"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "PB"] <- "25"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "PE"] <- "26"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "AL"] <- "27"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "SE"] <- "28"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "BA"] <- "29"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "MG"] <- "31"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "ES"] <- "32"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "SP"] <- "35"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "PR"] <- "41"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "SC"] <- "42"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "RS"] <- "43"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "MS"] <- "50"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "MT"] <- "51"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "GO"] <- "52"
+df.BPAI.2010_UF_br$UF[df.BPAI.2010_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2010_UF <- table(df.BPAI.2010_UF_br)
 df.BPAI.2010_UF <- as.data.frame(df.BPAI.2010_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2010_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2010_UF, by.x = "UF", by.y = "df.BPAI.2010_UF_br" , all.y = TRUE)
 df.BPAI.2010_UF <- distinct(df.BPAI.2010_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2010_UF.csv', row.names=FALSE)
@@ -1267,15 +1704,46 @@ write.csv(df.BPAI.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2011_mun_br <- select(df.BPAI.filtrado.hepC.2011, CO_MUNICIPIO)
 df.BPAI.2011_mun <- table(df.BPAI.2011_mun_br)
 df.BPAI.2011_mun <- as.data.frame(df.BPAI.2011_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2011_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2011_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2011_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2011_mun.csv', row.names=FALSE)
 
 #2011 - UF
 df.BPAI.2011_UF_br <- select(df.BPAI.filtrado.hepC.2011, UF)
+
+df.BPAI.2011_UF_br$UF <- as.character(df.BPAI.2011_UF_br$UF)
+
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "RO"] <- "11"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "AC"] <- "12"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "AM"] <- "13"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "RR"] <- "14"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "PA"] <- "15"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "AP"] <- "16"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "TO"] <- "17"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "MA"] <- "21"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "PI"] <- "22"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "CE"] <- "23"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "RN"] <- "24"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "PB"] <- "25"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "PE"] <- "26"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "AL"] <- "27"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "SE"] <- "28"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "BA"] <- "29"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "MG"] <- "31"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "ES"] <- "32"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "SP"] <- "35"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "PR"] <- "41"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "SC"] <- "42"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "RS"] <- "43"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "MS"] <- "50"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "MT"] <- "51"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "GO"] <- "52"
+df.BPAI.2011_UF_br$UF[df.BPAI.2011_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2011_UF <- table(df.BPAI.2011_UF_br)
 df.BPAI.2011_UF <- as.data.frame(df.BPAI.2011_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2011_UF, by.x = "UF", by.y = "df.BPAI.2011_UF_br" , all.y = TRUE)
 df.BPAI.2011_UF <- distinct(df.BPAI.2011_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2011_UF.csv', row.names=FALSE)
@@ -1284,15 +1752,46 @@ write.csv(df.BPAI.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2012_mun_br <- select(df.BPAI.filtrado.hepC.2012, CO_MUNICIPIO)
 df.BPAI.2012_mun <- table(df.BPAI.2012_mun_br)
 df.BPAI.2012_mun <- as.data.frame(df.BPAI.2012_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2012_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2012_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2012_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2012_mun.csv', row.names=FALSE)
 
 #2012 - UF
 df.BPAI.2012_UF_br <- select(df.BPAI.filtrado.hepC.2012, UF)
+
+df.BPAI.2012_UF_br$UF <- as.character(df.BPAI.2012_UF_br$UF)
+
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "RO"] <- "11"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "AC"] <- "12"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "AM"] <- "13"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "RR"] <- "14"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "PA"] <- "15"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "AP"] <- "16"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "TO"] <- "17"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "MA"] <- "21"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "PI"] <- "22"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "CE"] <- "23"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "RN"] <- "24"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "PB"] <- "25"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "PE"] <- "26"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "AL"] <- "27"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "SE"] <- "28"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "BA"] <- "29"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "MG"] <- "31"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "ES"] <- "32"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "SP"] <- "35"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "PR"] <- "41"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "SC"] <- "42"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "RS"] <- "43"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "MS"] <- "50"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "MT"] <- "51"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "GO"] <- "52"
+df.BPAI.2012_UF_br$UF[df.BPAI.2012_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2012_UF <- table(df.BPAI.2012_UF_br)
 df.BPAI.2012_UF <- as.data.frame(df.BPAI.2012_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2012_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2012_UF, by.x = "UF", by.y = "df.BPAI.2012_UF_br" , all.y = TRUE)
 df.BPAI.2012_UF <- distinct(df.BPAI.2012_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2012_UF.csv', row.names=FALSE)
@@ -1301,15 +1800,46 @@ write.csv(df.BPAI.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2013_mun_br <- select(df.BPAI.filtrado.hepC.2013, CO_MUNICIPIO)
 df.BPAI.2013_mun <- table(df.BPAI.2013_mun_br)
 df.BPAI.2013_mun <- as.data.frame(df.BPAI.2013_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2013_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2013_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2013_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2013_mun.csv', row.names=FALSE)
 
 #2013 - UF
 df.BPAI.2013_UF_br <- select(df.BPAI.filtrado.hepC.2013, UF)
+
+df.BPAI.2013_UF_br$UF <- as.character(df.BPAI.2013_UF_br$UF)
+
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "RO"] <- "11"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "AC"] <- "12"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "AM"] <- "13"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "RR"] <- "14"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "PA"] <- "15"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "AP"] <- "16"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "TO"] <- "17"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "MA"] <- "21"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "PI"] <- "22"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "CE"] <- "23"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "RN"] <- "24"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "PB"] <- "25"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "PE"] <- "26"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "AL"] <- "27"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "SE"] <- "28"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "BA"] <- "29"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "MG"] <- "31"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "ES"] <- "32"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "SP"] <- "35"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "PR"] <- "41"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "SC"] <- "42"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "RS"] <- "43"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "MS"] <- "50"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "MT"] <- "51"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "GO"] <- "52"
+df.BPAI.2013_UF_br$UF[df.BPAI.2013_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2013_UF <- table(df.BPAI.2013_UF_br)
 df.BPAI.2013_UF <- as.data.frame(df.BPAI.2013_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2013_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2013_UF, by.x = "UF", by.y = "df.BPAI.2013_UF_br" , all.y = TRUE)
 df.BPAI.2013_UF <- distinct(df.BPAI.2013_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2013_UF.csv', row.names=FALSE)
@@ -1318,15 +1848,46 @@ write.csv(df.BPAI.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2014_mun_br <- select(df.BPAI.filtrado.hepC.2014, CO_MUNICIPIO)
 df.BPAI.2014_mun <- table(df.BPAI.2014_mun_br)
 df.BPAI.2014_mun <- as.data.frame(df.BPAI.2014_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2014_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2014_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2014_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2014_mun.csv', row.names=FALSE)
 
 #2014 - UF
 df.BPAI.2014_UF_br <- select(df.BPAI.filtrado.hepC.2014, UF)
+
+df.BPAI.2014_UF_br$UF <- as.character(df.BPAI.2014_UF_br$UF)
+
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "RO"] <- "11"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "AC"] <- "12"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "AM"] <- "13"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "RR"] <- "14"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "PA"] <- "15"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "AP"] <- "16"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "TO"] <- "17"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "MA"] <- "21"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "PI"] <- "22"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "CE"] <- "23"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "RN"] <- "24"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "PB"] <- "25"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "PE"] <- "26"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "AL"] <- "27"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "SE"] <- "28"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "BA"] <- "29"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "MG"] <- "31"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "ES"] <- "32"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "SP"] <- "35"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "PR"] <- "41"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "SC"] <- "42"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "RS"] <- "43"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "MS"] <- "50"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "MT"] <- "51"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "GO"] <- "52"
+df.BPAI.2014_UF_br$UF[df.BPAI.2014_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2014_UF <- table(df.BPAI.2014_UF_br)
 df.BPAI.2014_UF <- as.data.frame(df.BPAI.2014_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2014_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2014_UF, by.x = "UF", by.y = "df.BPAI.2014_UF_br" , all.y = TRUE)
 df.BPAI.2014_UF <- distinct(df.BPAI.2014_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2014_UF.csv', row.names=FALSE)
@@ -1335,15 +1896,46 @@ write.csv(df.BPAI.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2015_mun_br <- select(df.BPAI.filtrado.hepC.2015, CO_MUNICIPIO)
 df.BPAI.2015_mun <- table(df.BPAI.2015_mun_br)
 df.BPAI.2015_mun <- as.data.frame(df.BPAI.2015_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2015_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2015_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2015_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2015_mun.csv', row.names=FALSE)
 
 #2015 - UF
 df.BPAI.2015_UF_br <- select(df.BPAI.filtrado.hepC.2015, UF)
+
+df.BPAI.2015_UF_br$UF <- as.character(df.BPAI.2015_UF_br$UF)
+
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "RO"] <- "11"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "AC"] <- "12"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "AM"] <- "13"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "RR"] <- "14"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "PA"] <- "15"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "AP"] <- "16"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "TO"] <- "17"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "MA"] <- "21"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "PI"] <- "22"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "CE"] <- "23"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "RN"] <- "24"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "PB"] <- "25"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "PE"] <- "26"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "AL"] <- "27"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "SE"] <- "28"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "BA"] <- "29"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "MG"] <- "31"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "ES"] <- "32"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "SP"] <- "35"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "PR"] <- "41"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "SC"] <- "42"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "RS"] <- "43"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "MS"] <- "50"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "MT"] <- "51"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "GO"] <- "52"
+df.BPAI.2015_UF_br$UF[df.BPAI.2015_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2015_UF <- table(df.BPAI.2015_UF_br)
 df.BPAI.2015_UF <- as.data.frame(df.BPAI.2015_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2015_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2015_UF, by.x = "UF", by.y = "df.BPAI.2015_UF_br" , all.y = TRUE)
 df.BPAI.2015_UF <- distinct(df.BPAI.2015_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2015_UF.csv', row.names=FALSE)
@@ -1352,15 +1944,46 @@ write.csv(df.BPAI.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2016_mun_br <- select(df.BPAI.filtrado.hepC.2016, CO_MUNICIPIO)
 df.BPAI.2016_mun <- table(df.BPAI.2016_mun_br)
 df.BPAI.2016_mun <- as.data.frame(df.BPAI.2016_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2016_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2016_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2016_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2016_mun.csv', row.names=FALSE)
 
 #2016 - UF
 df.BPAI.2016_UF_br <- select(df.BPAI.filtrado.hepC.2016, UF)
+
+df.BPAI.2016_UF_br$UF <- as.character(df.BPAI.2016_UF_br$UF)
+
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "RO"] <- "11"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "AC"] <- "12"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "AM"] <- "13"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "RR"] <- "14"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "PA"] <- "15"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "AP"] <- "16"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "TO"] <- "17"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "MA"] <- "21"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "PI"] <- "22"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "CE"] <- "23"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "RN"] <- "24"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "PB"] <- "25"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "PE"] <- "26"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "AL"] <- "27"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "SE"] <- "28"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "BA"] <- "29"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "MG"] <- "31"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "ES"] <- "32"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "SP"] <- "35"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "PR"] <- "41"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "SC"] <- "42"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "RS"] <- "43"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "MS"] <- "50"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "MT"] <- "51"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "GO"] <- "52"
+df.BPAI.2016_UF_br$UF[df.BPAI.2016_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2016_UF <- table(df.BPAI.2016_UF_br)
 df.BPAI.2016_UF <- as.data.frame(df.BPAI.2016_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2016_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2016_UF, by.x = "UF", by.y = "df.BPAI.2016_UF_br" , all.y = TRUE)
 df.BPAI.2016_UF <- distinct(df.BPAI.2016_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2016_UF.csv', row.names=FALSE)
@@ -1369,15 +1992,46 @@ write.csv(df.BPAI.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2017_mun_br <- select(df.BPAI.filtrado.hepC.2017, CO_MUNICIPIO)
 df.BPAI.2017_mun <- table(df.BPAI.2017_mun_br)
 df.BPAI.2017_mun <- as.data.frame(df.BPAI.2017_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2017_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2017_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2017_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2017_mun.csv', row.names=FALSE)
 
 #2017 - UF
 df.BPAI.2017_UF_br <- select(df.BPAI.filtrado.hepC.2017, UF)
+
+df.BPAI.2017_UF_br$UF <- as.character(df.BPAI.2017_UF_br$UF)
+
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "RO"] <- "11"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "AC"] <- "12"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "AM"] <- "13"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "RR"] <- "14"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "PA"] <- "15"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "AP"] <- "16"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "TO"] <- "17"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "MA"] <- "21"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "PI"] <- "22"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "CE"] <- "23"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "RN"] <- "24"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "PB"] <- "25"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "PE"] <- "26"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "AL"] <- "27"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "SE"] <- "28"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "BA"] <- "29"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "MG"] <- "31"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "ES"] <- "32"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "SP"] <- "35"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "PR"] <- "41"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "SC"] <- "42"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "RS"] <- "43"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "MS"] <- "50"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "MT"] <- "51"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "GO"] <- "52"
+df.BPAI.2017_UF_br$UF[df.BPAI.2017_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2017_UF <- table(df.BPAI.2017_UF_br)
 df.BPAI.2017_UF <- as.data.frame(df.BPAI.2017_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2017_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2017_UF, by.x = "UF", by.y = "df.BPAI.2017_UF_br" , all.y = TRUE)
 df.BPAI.2017_UF <- distinct(df.BPAI.2017_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2017_UF.csv', row.names=FALSE)
@@ -1386,15 +2040,46 @@ write.csv(df.BPAI.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.BPAI.2018_mun_br <- select(df.BPAI.filtrado.hepC.2018, CO_MUNICIPIO)
 df.BPAI.2018_mun <- table(df.BPAI.2018_mun_br)
 df.BPAI.2018_mun <- as.data.frame(df.BPAI.2018_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2018_mun  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2018_mun, by.x = "cod_mun_completo", by.y = "df.BPAI.2018_mun_br" , all.y = TRUE)
 write.csv(df.BPAI.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2018_mun.csv', row.names=FALSE)
 
 #2018 - UF
 df.BPAI.2018_UF_br <- select(df.BPAI.filtrado.hepC.2018, UF)
+
+df.BPAI.2018_UF_br$UF <- as.character(df.BPAI.2018_UF_br$UF)
+
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "RO"] <- "11"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "AC"] <- "12"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "AM"] <- "13"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "RR"] <- "14"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "PA"] <- "15"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "AP"] <- "16"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "TO"] <- "17"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "MA"] <- "21"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "PI"] <- "22"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "CE"] <- "23"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "RN"] <- "24"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "PB"] <- "25"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "PE"] <- "26"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "AL"] <- "27"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "SE"] <- "28"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "BA"] <- "29"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "MG"] <- "31"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "ES"] <- "32"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "RJ"] <- "33"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "SP"] <- "35"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "PR"] <- "41"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "SC"] <- "42"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "RS"] <- "43"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "MS"] <- "50"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "MT"] <- "51"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "GO"] <- "52"
+df.BPAI.2018_UF_br$UF[df.BPAI.2018_UF_br$UF == "DF"] <- "53"
+
 df.BPAI.2018_UF <- table(df.BPAI.2018_UF_br)
 df.BPAI.2018_UF <- as.data.frame(df.BPAI.2018_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.BPAI.2018_UF  <- merge(cod_mun_IBGE_6d_7d,df.BPAI.2018_UF, by.x = "UF", by.y = "df.BPAI.2018_UF_br" , all.y = TRUE)
 df.BPAI.2018_UF <- distinct(df.BPAI.2018_UF, UF, .keep_all = TRUE)
 write.csv(df.BPAI.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.BPAI.2018_UF.csv', row.names=FALSE)
@@ -1407,7 +2092,7 @@ write.csv(df.BPAI.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedi
 df.SIM.2008_mun_br <- select(df.SIM.hepC.filtrado.2008, CODMUNOCOR)
 df.SIM.2008_mun <- table(df.SIM.2008_mun_br)
 df.SIM.2008_mun <- as.data.frame(df.SIM.2008_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2008_mun  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2008_mun, by.x = "cod_mun_completo", by.y = "df.SIM.2008_mun_br" , all.y = TRUE)
 write.csv(df.SIM.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2008_mun.csv', row.names=FALSE)
 
@@ -1416,7 +2101,7 @@ df.SIM.hepC.filtrado.2008$UF <- substr(df.SIM.hepC.filtrado.2008$CODMUNOCOR , 1,
 df.SIM.2008_UF_br <- select(df.SIM.hepC.filtrado.2008 , UF)
 df.SIM.2008_UF <- table(df.SIM.2008_UF_br)
 df.SIM.2008_UF <- as.data.frame(df.SIM.2008_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2008_UF  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2008_UF, by.x = "UF", by.y = "df.SIM.2008_UF_br" , all.y = TRUE)
 df.SIM.2008_UF <- distinct(df.SIM.2008_UF, UF, .keep_all = TRUE)
 write.csv(df.SIM.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2008_UF.csv', row.names=FALSE)
@@ -1425,7 +2110,7 @@ write.csv(df.SIM.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.SIM.2009_mun_br <- select(df.SIM.hepC.filtrado.2009, CODMUNOCOR)
 df.SIM.2009_mun <- table(df.SIM.2009_mun_br)
 df.SIM.2009_mun <- as.data.frame(df.SIM.2009_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2009_mun  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2009_mun, by.x = "cod_mun_completo", by.y = "df.SIM.2009_mun_br" , all.y = TRUE)
 write.csv(df.SIM.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2009_mun.csv', row.names=FALSE)
 
@@ -1434,7 +2119,7 @@ df.SIM.hepC.filtrado.2009$UF <- substr(df.SIM.hepC.filtrado.2009$CODMUNOCOR , 1,
 df.SIM.2009_UF_br <- select(df.SIM.hepC.filtrado.2009, UF)
 df.SIM.2009_UF <- table(df.SIM.2009_UF_br)
 df.SIM.2009_UF <- as.data.frame(df.SIM.2009_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2009_UF  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2009_UF, by.x = "UF", by.y = "df.SIM.2009_UF_br" , all.y = TRUE)
 df.SIM.2009_UF <- distinct(df.SIM.2009_UF, UF, .keep_all = TRUE)
 write.csv(df.SIM.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2009_UF.csv', row.names=FALSE)
@@ -1443,7 +2128,7 @@ write.csv(df.SIM.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.SIM.2010_mun_br <- select(df.SIM.hepC.filtrado.2010, CODMUNOCOR)
 df.SIM.2010_mun <- table(df.SIM.2010_mun_br)
 df.SIM.2010_mun <- as.data.frame(df.SIM.2010_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2010_mun  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2010_mun, by.x = "cod_mun_completo", by.y = "df.SIM.2010_mun_br" , all.y = TRUE)
 write.csv(df.SIM.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2010_mun.csv', row.names=FALSE)
 
@@ -1452,7 +2137,7 @@ df.SIM.hepC.filtrado.2010$UF <- substr(df.SIM.hepC.filtrado.2010$CODMUNOCOR , 1,
 df.SIM.2010_UF_br <- select(df.SIM.hepC.filtrado.2010 , UF)
 df.SIM.2010_UF <- table(df.SIM.2010_UF_br)
 df.SIM.2010_UF <- as.data.frame(df.SIM.2010_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2010_UF  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2010_UF, by.x = "UF", by.y = "df.SIM.2010_UF_br" , all.y = TRUE)
 df.SIM.2010_UF <- distinct(df.SIM.2010_UF, UF, .keep_all = TRUE)
 write.csv(df.SIM.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2010_UF.csv', row.names=FALSE)
@@ -1461,7 +2146,7 @@ write.csv(df.SIM.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.SIM.2011_mun_br <- select(df.SIM.hepC.filtrado.2011, CODMUNOCOR)
 df.SIM.2011_mun <- table(df.SIM.2011_mun_br)
 df.SIM.2011_mun <- as.data.frame(df.SIM.2011_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2011_mun  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2011_mun, by.x = "cod_mun_completo", by.y = "df.SIM.2011_mun_br" , all.y = TRUE)
 write.csv(df.SIM.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2011_mun.csv', row.names=FALSE)
 
@@ -1470,7 +2155,7 @@ df.SIM.hepC.filtrado.2011$UF <- substr(df.SIM.hepC.filtrado.2011$CODMUNOCOR , 1,
 df.SIM.2011_UF_br <- select(df.SIM.hepC.filtrado.2011, UF)
 df.SIM.2011_UF <- table(df.SIM.2011_UF_br)
 df.SIM.2011_UF <- as.data.frame(df.SIM.2011_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2011_UF, by.x = "UF", by.y = "df.SIM.2011_UF_br" , all.y = TRUE)
 df.SIM.2011_UF <- distinct(df.SIM.2011_UF, UF, .keep_all = TRUE)
 write.csv(df.SIM.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2011_UF.csv', row.names=FALSE)
@@ -1479,7 +2164,7 @@ write.csv(df.SIM.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.SIM.2012_mun_br <- select(df.SIM.hepC.filtrado.2012, CODMUNOCOR)
 df.SIM.2012_mun <- table(df.SIM.2012_mun_br)
 df.SIM.2012_mun <- as.data.frame(df.SIM.2012_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2012_mun  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2012_mun, by.x = "cod_mun_completo", by.y = "df.SIM.2012_mun_br" , all.y = TRUE)
 write.csv(df.SIM.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2012_mun.csv', row.names=FALSE)
 
@@ -1488,7 +2173,7 @@ df.SIM.hepC.filtrado.2012$UF <- substr(df.SIM.hepC.filtrado.2012$CODMUNOCOR , 1,
 df.SIM.2012_UF_br <- select(df.SIM.hepC.filtrado.2012, UF)
 df.SIM.2012_UF <- table(df.SIM.2012_UF_br)
 df.SIM.2012_UF <- as.data.frame(df.SIM.2012_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2012_UF  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2012_UF, by.x = "UF", by.y = "df.SIM.2012_UF_br" , all.y = TRUE)
 df.SIM.2012_UF <- distinct(df.SIM.2012_UF, UF, .keep_all = TRUE)
 write.csv(df.SIM.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2012_UF.csv', row.names=FALSE)
@@ -1497,7 +2182,7 @@ write.csv(df.SIM.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.SIM.2013_mun_br <- select(df.SIM.hepC.filtrado.2013, CODMUNOCOR)
 df.SIM.2013_mun <- table(df.SIM.2013_mun_br)
 df.SIM.2013_mun <- as.data.frame(df.SIM.2013_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2013_mun  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2013_mun, by.x = "cod_mun_completo", by.y = "df.SIM.2013_mun_br" , all.y = TRUE)
 write.csv(df.SIM.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2013_mun.csv', row.names=FALSE)
 
@@ -1506,7 +2191,7 @@ df.SIM.hepC.filtrado.2013$UF <- substr(df.SIM.hepC.filtrado.2013$CODMUNOCOR , 1,
 df.SIM.2013_UF_br <- select(df.SIM.hepC.filtrado.2013, UF)
 df.SIM.2013_UF <- table(df.SIM.2013_UF_br)
 df.SIM.2013_UF <- as.data.frame(df.SIM.2013_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2013_UF  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2013_UF, by.x = "UF", by.y = "df.SIM.2013_UF_br" , all.y = TRUE)
 df.SIM.2013_UF <- distinct(df.SIM.2013_UF, UF, .keep_all = TRUE)
 write.csv(df.SIM.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2013_UF.csv', row.names=FALSE)
@@ -1515,7 +2200,7 @@ write.csv(df.SIM.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.SIM.2014_mun_br <- select(df.SIM.hepC.filtrado.2014, CODMUNOCOR)
 df.SIM.2014_mun <- table(df.SIM.2014_mun_br)
 df.SIM.2014_mun <- as.data.frame(df.SIM.2014_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2014_mun  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2014_mun, by.x = "cod_mun_completo", by.y = "df.SIM.2014_mun_br" , all.y = TRUE)
 write.csv(df.SIM.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2014_mun.csv', row.names=FALSE)
 
@@ -1524,7 +2209,7 @@ df.SIM.hepC.filtrado.2014$UF <- substr(df.SIM.hepC.filtrado.2014$CODMUNOCOR , 1,
 df.SIM.2014_UF_br <- select(df.SIM.hepC.filtrado.2014, UF)
 df.SIM.2014_UF <- table(df.SIM.2014_UF_br)
 df.SIM.2014_UF <- as.data.frame(df.SIM.2014_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2014_UF  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2014_UF, by.x = "UF", by.y = "df.SIM.2014_UF_br" , all.y = TRUE)
 df.SIM.2014_UF <- distinct(df.SIM.2014_UF, UF, .keep_all = TRUE)
 write.csv(df.SIM.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2014_UF.csv', row.names=FALSE)
@@ -1533,7 +2218,7 @@ write.csv(df.SIM.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.SIM.2015_mun_br <- select(df.SIM.hepC.filtrado.2015, CODMUNOCOR)
 df.SIM.2015_mun <- table(df.SIM.2015_mun_br)
 df.SIM.2015_mun <- as.data.frame(df.SIM.2015_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2015_mun  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2015_mun, by.x = "cod_mun_completo", by.y = "df.SIM.2015_mun_br" , all.y = TRUE)
 write.csv(df.SIM.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2015_mun.csv', row.names=FALSE)
 
@@ -1542,7 +2227,7 @@ df.SIM.hepC.filtrado.2015$UF <- substr(df.SIM.hepC.filtrado.2015$CODMUNOCOR , 1,
 df.SIM.2015_UF_br <- select(df.SIM.hepC.filtrado.2015, UF)
 df.SIM.2015_UF <- table(df.SIM.2015_UF_br)
 df.SIM.2015_UF <- as.data.frame(df.SIM.2015_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2015_UF  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2015_UF, by.x = "UF", by.y = "df.SIM.2015_UF_br" , all.y = TRUE)
 df.SIM.2015_UF <- distinct(df.SIM.2015_UF, UF, .keep_all = TRUE)
 write.csv(df.SIM.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2015_UF.csv', row.names=FALSE)
@@ -1551,7 +2236,7 @@ write.csv(df.SIM.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermedia
 df.SIM.2016_mun_br <- select(df.SIM.hepC.filtrado.2016, CODMUNOCOR)
 df.SIM.2016_mun <- table(df.SIM.2016_mun_br)
 df.SIM.2016_mun <- as.data.frame(df.SIM.2016_mun)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2016_mun  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2016_mun, by.x = "cod_mun_completo", by.y = "df.SIM.2016_mun_br" , all.y = TRUE)
 write.csv(df.SIM.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2016_mun.csv', row.names=FALSE)
 
@@ -1560,8 +2245,550 @@ df.SIM.hepC.filtrado.2016$UF <- substr(df.SIM.hepC.filtrado.2016$CODMUNOCOR , 1,
 df.SIM.2016_UF_br <- select(df.SIM.hepC.filtrado.2016, UF)
 df.SIM.2016_UF <- table(df.SIM.2016_UF_br)
 df.SIM.2016_UF <- as.data.frame(df.SIM.2016_UF)
-# Acrescentar informações IBGE 7d
+# Acrescentar informaÃ§Ãµes IBGE 7d
 df.SIM.2016_UF  <- merge(cod_mun_IBGE_6d_7d,df.SIM.2016_UF, by.x = "UF", by.y = "df.SIM.2016_UF_br" , all.y = TRUE)
 df.SIM.2016_UF <- distinct(df.SIM.2016_UF, UF, .keep_all = TRUE)
 write.csv(df.SIM.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.SIM.2016_UF.csv', row.names=FALSE)
 
+##########
+## AIH ##
+#########
+
+#2008 - MUN
+df.AIH.2008_mun_br <- select(df.AIH.filtrado.hepC.2008, NU_MUN_HOSP)
+df.AIH.2008_mun <- table(df.AIH.2008_mun_br)
+df.AIH.2008_mun <- as.data.frame(df.AIH.2008_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2008_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2008_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2008_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2008_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2008_mun.csv', row.names=FALSE)
+
+#2008 - UF
+df.AIH.2008_UF_br <- select(df.AIH.filtrado.hepC.2008, SG_UF)
+
+df.AIH.2008_UF_br$SG_UF <- as.character(df.AIH.2008_UF_br$SG_UF)
+
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2008_UF_br$SG_UF[df.AIH.2008_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2008_UF <- table(df.AIH.2008_UF_br)
+df.AIH.2008_UF <- as.data.frame(df.AIH.2008_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2008_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2008_UF, by.x = "UF", by.y = "df.AIH.2008_UF_br" , all.y = TRUE)
+df.AIH.2008_UF <- distinct(df.AIH.2008_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2008_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2008_UF.csv', row.names=FALSE)
+
+#2009 - MUN
+df.AIH.2009_mun_br <- select(df.AIH.filtrado.hepC.2009, NU_MUN_HOSP)
+df.AIH.2009_mun <- table(df.AIH.2009_mun_br)
+df.AIH.2009_mun <- as.data.frame(df.AIH.2009_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2009_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2009_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2009_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2009_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2009_mun.csv', row.names=FALSE)
+
+#2009 - UF
+df.AIH.2009_UF_br <- select(df.AIH.filtrado.hepC.2009, SG_UF)
+
+df.AIH.2009_UF_br$SG_UF <- as.character(df.AIH.2009_UF_br$SG_UF)
+
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2009_UF_br$SG_UF[df.AIH.2009_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2009_UF <- table(df.AIH.2009_UF_br)
+df.AIH.2009_UF <- as.data.frame(df.AIH.2009_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2009_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2009_UF, by.x = "UF", by.y = "df.AIH.2009_UF_br" , all.y = TRUE)
+df.AIH.2009_UF <- distinct(df.AIH.2009_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2009_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2009_UF.csv', row.names=FALSE)
+
+#2010 - MUN
+df.AIH.2010_mun_br <- select(df.AIH.filtrado.hepC.2010, NU_MUN_HOSP)
+df.AIH.2010_mun <- table(df.AIH.2010_mun_br)
+df.AIH.2010_mun <- as.data.frame(df.AIH.2010_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2010_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2010_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2010_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2010_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2010_mun.csv', row.names=FALSE)
+
+#2010 - UF
+df.AIH.2010_UF_br <- select(df.AIH.filtrado.hepC.2010, SG_UF)
+
+df.AIH.2010_UF_br$SG_UF <- as.character(df.AIH.2010_UF_br$SG_UF)
+
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2010_UF_br$SG_UF[df.AIH.2010_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2010_UF <- table(df.AIH.2010_UF_br)
+df.AIH.2010_UF <- as.data.frame(df.AIH.2010_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2010_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2010_UF, by.x = "UF", by.y = "df.AIH.2010_UF_br" , all.y = TRUE)
+df.AIH.2010_UF <- distinct(df.AIH.2010_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2010_UF.csv', row.names=FALSE)
+
+#2011 - MUN
+df.AIH.2011_mun_br <- select(df.AIH.filtrado.hepC.2011, NU_MUN_HOSP)
+df.AIH.2011_mun <- table(df.AIH.2011_mun_br)
+df.AIH.2011_mun <- as.data.frame(df.AIH.2011_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2011_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2011_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2011_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2011_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2011_mun.csv', row.names=FALSE)
+
+#2011 - UF
+df.AIH.2011_UF_br <- select(df.AIH.filtrado.hepC.2011, SG_UF)
+
+df.AIH.2011_UF_br$SG_UF <- as.character(df.AIH.2011_UF_br$SG_UF)
+
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2011_UF_br$SG_UF[df.AIH.2011_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2011_UF <- table(df.AIH.2011_UF_br)
+df.AIH.2011_UF <- as.data.frame(df.AIH.2011_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2011_UF, by.x = "UF", by.y = "df.AIH.2010_UF_br" , all.y = TRUE)
+df.AIH.2010_UF <- distinct(df.AIH.2010_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2010_UF.csv', row.names=FALSE)
+
+#2012 - MUN
+df.AIH.2012_mun_br <- select(df.AIH.filtrado.hepC.2012, NU_MUN_HOSP)
+df.AIH.2012_mun <- table(df.AIH.2012_mun_br)
+df.AIH.2012_mun <- as.data.frame(df.AIH.2012_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2012_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2012_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2012_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2012_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2012_mun.csv', row.names=FALSE)
+
+#2012 - UF
+df.AIH.2012_UF_br <- select(df.AIH.filtrado.hepC.2012, SG_UF)
+
+df.AIH.2012_UF_br$SG_UF <- as.character(df.AIH.2012_UF_br$SG_UF)
+
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2012_UF_br$SG_UF[df.AIH.2012_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2012_UF <- table(df.AIH.2012_UF_br)
+df.AIH.2012_UF <- as.data.frame(df.AIH.2012_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2012_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2012_UF, by.x = "UF", by.y = "df.AIH.2012_UF_br" , all.y = TRUE)
+df.AIH.2012_UF <- distinct(df.AIH.2012_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2012_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2012_UF.csv', row.names=FALSE)
+
+#2013 - MUN
+df.AIH.2013_mun_br <- select(df.AIH.filtrado.hepC.2013, NU_MUN_HOSP)
+df.AIH.2013_mun <- table(df.AIH.2013_mun_br)
+df.AIH.2013_mun <- as.data.frame(df.AIH.2013_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2013_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2013_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2013_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2013_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2013_mun.csv', row.names=FALSE)
+
+#2013 - UF
+df.AIH.2013_UF_br <- select(df.AIH.filtrado.hepC.2013, SG_UF)
+
+df.AIH.2013_UF_br$SG_UF <- as.character(df.AIH.2013_UF_br$SG_UF)
+
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2013_UF_br$SG_UF[df.AIH.2013_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2013_UF <- table(df.AIH.2013_UF_br)
+df.AIH.2013_UF <- as.data.frame(df.AIH.2013_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2013_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2013_UF, by.x = "UF", by.y = "df.AIH.2013_UF_br" , all.y = TRUE)
+df.AIH.2013_UF <- distinct(df.AIH.2013_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2013_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2013_UF.csv', row.names=FALSE)
+
+#2014 - MUN
+df.AIH.2014_mun_br <- select(df.AIH.filtrado.hepC.2014, NU_MUN_HOSP)
+df.AIH.2014_mun <- table(df.AIH.2014_mun_br)
+df.AIH.2014_mun <- as.data.frame(df.AIH.2014_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2014_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2014_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2014_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2014_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2014_mun.csv', row.names=FALSE)
+
+#2014 - UF
+df.AIH.2014_UF_br <- select(df.AIH.filtrado.hepC.2014, SG_UF)
+
+df.AIH.2014_UF_br$SG_UF <- as.character(df.AIH.2014_UF_br$SG_UF)
+
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2014_UF_br$SG_UF[df.AIH.2014_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2014_UF <- table(df.AIH.2014_UF_br)
+df.AIH.2014_UF <- as.data.frame(df.AIH.2014_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2014_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2014_UF, by.x = "UF", by.y = "df.AIH.2014_UF_br" , all.y = TRUE)
+df.AIH.2014_UF <- distinct(df.AIH.2014_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2014_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2014_UF.csv', row.names=FALSE)
+
+#2015 - MUN
+df.AIH.2015_mun_br <- select(df.AIH.filtrado.hepC.2015, NU_MUN_HOSP)
+df.AIH.2015_mun <- table(df.AIH.2015_mun_br)
+df.AIH.2015_mun <- as.data.frame(df.AIH.2015_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2015_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2015_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2015_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2015_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2015_mun.csv', row.names=FALSE)
+
+#2015 - UF
+df.AIH.2015_UF_br <- select(df.AIH.filtrado.hepC.2015, SG_UF)
+
+df.AIH.2015_UF_br$SG_UF <- as.character(df.AIH.2015_UF_br$SG_UF)
+
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2015_UF_br$SG_UF[df.AIH.2015_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2015_UF <- table(df.AIH.2015_UF_br)
+df.AIH.2015_UF <- as.data.frame(df.AIH.2015_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2015_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2015_UF, by.x = "UF", by.y = "df.AIH.2015_UF_br" , all.y = TRUE)
+df.AIH.2015_UF <- distinct(df.AIH.2015_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2015_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2015_UF.csv', row.names=FALSE)
+
+#2016 - MUN
+df.AIH.2016_mun_br <- select(df.AIH.filtrado.hepC.2016, NU_MUN_HOSP)
+df.AIH.2016_mun <- table(df.AIH.2016_mun_br)
+df.AIH.2016_mun <- as.data.frame(df.AIH.2016_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2016_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2016_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2016_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2016_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2016_mun.csv', row.names=FALSE)
+
+#2016 - UF
+df.AIH.2016_UF_br <- select(df.AIH.filtrado.hepC.2016, SG_UF)
+
+df.AIH.2016_UF_br$SG_UF <- as.character(df.AIH.2016_UF_br$SG_UF)
+
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2016_UF_br$SG_UF[df.AIH.2016_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2016_UF <- table(df.AIH.2016_UF_br)
+df.AIH.2016_UF <- as.data.frame(df.AIH.2016_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2016_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2016_UF, by.x = "UF", by.y = "df.AIH.2016_UF_br" , all.y = TRUE)
+df.AIH.2016_UF <- distinct(df.AIH.2016_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2016_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2016_UF.csv', row.names=FALSE)
+
+#2017 - MUN
+df.AIH.2017_mun_br <- select(df.AIH.filtrado.hepC.2017, NU_MUN_HOSP)
+df.AIH.2017_mun <- table(df.AIH.2017_mun_br)
+df.AIH.2017_mun <- as.data.frame(df.AIH.2017_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2017_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2017_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2017_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2017_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2017_mun.csv', row.names=FALSE)
+
+#2017 - UF
+df.AIH.2017_UF_br <- select(df.AIH.filtrado.hepC.2017, SG_UF)
+
+df.AIH.2017_UF_br$SG_UF <- as.character(df.AIH.2017_UF_br$SG_UF)
+
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2017_UF_br$SG_UF[df.AIH.2017_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2017_UF <- table(df.AIH.2017_UF_br)
+df.AIH.2017_UF <- as.data.frame(df.AIH.2017_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2017_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2017_UF, by.x = "UF", by.y = "df.AIH.2017_UF_br" , all.y = TRUE)
+df.AIH.2017_UF <- distinct(df.AIH.2017_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2017_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2017_UF.csv', row.names=FALSE)
+
+#2018 - MUN
+df.AIH.2018_mun_br <- select(df.AIH.filtrado.hepC.2018, NU_MUN_HOSP)
+df.AIH.2018_mun <- table(df.AIH.2018_mun_br)
+df.AIH.2018_mun <- as.data.frame(df.AIH.2018_mun)
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2018_mun  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2018_mun, by.x = "cod_mun_completo", by.y = "df.AIH.2018_mun_br" , all.y = TRUE)
+write.csv(df.AIH.2018_mun, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2018_mun.csv', row.names=FALSE)
+
+#2018 - UF
+df.AIH.2018_UF_br <- select(df.AIH.filtrado.hepC.2018, SG_UF)
+
+df.AIH.2018_UF_br$SG_UF <- as.character(df.AIH.2018_UF_br$SG_UF)
+
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "RO"] <- "11"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "AC"] <- "12"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "AM"] <- "13"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "RR"] <- "14"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "PA"] <- "15"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "AP"] <- "16"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "TO"] <- "17"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "MA"] <- "21"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "PI"] <- "22"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "CE"] <- "23"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "RN"] <- "24"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "PB"] <- "25"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "PE"] <- "26"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "AL"] <- "27"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "SE"] <- "28"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "BA"] <- "29"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "MG"] <- "31"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "ES"] <- "32"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "RJ"] <- "33"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "SP"] <- "35"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "PR"] <- "41"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "SC"] <- "42"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "RS"] <- "43"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "MS"] <- "50"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "MT"] <- "51"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "GO"] <- "52"
+df.AIH.2018_UF_br$SG_UF[df.AIH.2018_UF_br$SG_UF == "DF"] <- "53"
+
+df.AIH.2018_UF <- table(df.AIH.2018_UF_br)
+df.AIH.2018_UF <- as.data.frame(df.AIH.2018_UF)
+
+# Acrescentar informaÃ§Ãµes IBGE 7d
+df.AIH.2018_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2018_UF, by.x = "UF", by.y = "df.AIH.2018_UF_br" , all.y = TRUE)
+df.AIH.2018_UF <- distinct(df.AIH.2018_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2018_UF.csv', row.names=FALSE)
