@@ -68,6 +68,10 @@ library("feather")
 #install.packages('WDI')
 library("WDI")
 
+#install.packages('eeptools')
+library("eeptools")
+
+
 ######
 ### Loading DATA FRAME
 ######
@@ -2446,9 +2450,9 @@ df.AIH.2011_UF <- table(df.AIH.2011_UF_br)
 df.AIH.2011_UF <- as.data.frame(df.AIH.2011_UF)
 
 # Acrescentar informações IBGE 7d
-df.AIH.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2011_UF, by.x = "UF", by.y = "df.AIH.2010_UF_br" , all.y = TRUE)
-df.AIH.2010_UF <- distinct(df.AIH.2010_UF, UF, .keep_all = TRUE)
-write.csv(df.AIH.2010_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2010_UF.csv', row.names=FALSE)
+df.AIH.2011_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2011_UF, by.x = "UF", by.y = "df.AIH.2011_UF_br" , all.y = TRUE)
+df.AIH.2011_UF <- distinct(df.AIH.2011_UF, UF, .keep_all = TRUE)
+write.csv(df.AIH.2011_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2011_UF.csv', row.names=FALSE)
 
 #2012 - MUN
 df.AIH.2012_mun_br <- select(df.AIH.filtrado.hepC.2012, NU_MUN_HOSP)
@@ -2792,3 +2796,3725 @@ df.AIH.2018_UF <- as.data.frame(df.AIH.2018_UF)
 df.AIH.2018_UF  <- merge(cod_mun_IBGE_6d_7d,df.AIH.2018_UF, by.x = "UF", by.y = "df.AIH.2018_UF_br" , all.y = TRUE)
 df.AIH.2018_UF <- distinct(df.AIH.2018_UF, UF, .keep_all = TRUE)
 write.csv(df.AIH.2018_UF, file = '/Users/mikaellemos/Produto2/tabelas_intermediarias/df.AIH.2018_UF.csv', row.names=FALSE)
+
+
+#######################
+# Geração das tabelas #
+#######################
+
+########
+# APAC #
+########
+
+## UF ##
+
+# 2008
+
+UF_APAC_2008 <- select(df.APAC.2008_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2008$Porcentagem <- paste(round(UF_APAC_2008$Freq / sum(UF_APAC_2008$Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2008 <- arrange(UF_APAC_2008, desc(Freq))
+
+UF_APAC_2008<- na.omit(UF_APAC_2008)
+
+write.csv(UF_APAC_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2008.csv', row.names=FALSE)
+
+# 2009
+
+UF_APAC_2009 <- select(df.APAC.2009_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2009$Porcentagem <- paste(round(UF_APAC_2009$Freq / sum(UF_APAC_2009 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2009 <- arrange(UF_APAC_2009, desc(Freq))
+
+UF_APAC_2009<- na.omit(UF_APAC_2009)
+
+write.csv(UF_APAC_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2009.csv', row.names=FALSE)
+
+# 2010
+
+UF_APAC_2010 <- select(df.APAC.2010_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2010$Porcentagem <- paste(round(UF_APAC_2010$Freq / sum(UF_APAC_2010 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2010 <- arrange(UF_APAC_2010, desc(Freq))
+
+UF_APAC_2010<- na.omit(UF_APAC_2010)
+
+write.csv(UF_APAC_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2010.csv', row.names=FALSE)
+
+# 2011
+
+UF_APAC_2011 <- select(df.APAC.2011_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2011$Porcentagem <- paste(round(UF_APAC_2011$Freq / sum(UF_APAC_2011 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2011 <- arrange(UF_APAC_2011, desc(Freq))
+
+UF_APAC_2011<- na.omit(UF_APAC_2011)
+
+write.csv(UF_APAC_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2011.csv', row.names=FALSE)
+
+# 2012
+
+UF_APAC_2012 <- select(df.APAC.2012_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2012$Porcentagem <- paste(round(UF_APAC_2012$Freq / sum(UF_APAC_2012 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2012 <- arrange(UF_APAC_2012, desc(Freq))
+
+UF_APAC_2012<- na.omit(UF_APAC_2012)
+
+write.csv(UF_APAC_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2012.csv', row.names=FALSE)
+
+# 2013
+
+UF_APAC_2013 <- select(df.APAC.2013_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2013$Porcentagem <- paste(round(UF_APAC_2013$Freq / sum(UF_APAC_2013 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2013 <- arrange(UF_APAC_2013, desc(Freq))
+
+UF_APAC_2013<- na.omit(UF_APAC_2013)
+
+write.csv(UF_APAC_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2013.csv', row.names=FALSE)
+
+# 2014
+
+UF_APAC_2014 <- select(df.APAC.2014_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2014$Porcentagem <- paste(round(UF_APAC_2014$Freq / sum(UF_APAC_2014 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2014 <- arrange(UF_APAC_2014, desc(Freq))
+
+UF_APAC_2014<- na.omit(UF_APAC_2014)
+
+write.csv(UF_APAC_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2014.csv', row.names=FALSE)
+
+# 2015
+
+UF_APAC_2015 <- select(df.APAC.2015_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2015$Porcentagem <- paste(round(UF_APAC_2015$Freq / sum(UF_APAC_2015 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2015 <- arrange(UF_APAC_2015, desc(Freq))
+
+UF_APAC_2015<- na.omit(UF_APAC_2015)
+
+write.csv(UF_APAC_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2015.csv', row.names=FALSE)
+
+# 2016
+
+UF_APAC_2016 <- select(df.APAC.2016_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2016$Porcentagem <- paste(round(UF_APAC_2016$Freq / sum(UF_APAC_2016 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2016 <- arrange(UF_APAC_2016, desc(Freq))
+
+UF_APAC_2016<- na.omit(UF_APAC_2016)
+
+write.csv(UF_APAC_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2016.csv', row.names=FALSE)
+
+# 2017
+
+UF_APAC_2017 <- select(df.APAC.2017_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2017$Porcentagem <- paste(round(UF_APAC_2017$Freq / sum(UF_APAC_2017 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2017 <- arrange(UF_APAC_2017, desc(Freq))
+
+UF_APAC_2017<- na.omit(UF_APAC_2017)
+
+write.csv(UF_APAC_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2017.csv', row.names=FALSE)
+
+# 2018
+
+UF_APAC_2018 <- select(df.APAC.2018_UF, UF = Nome_UF, Freq)
+
+UF_APAC_2018$Porcentagem <- paste(round(UF_APAC_2018$Freq / sum(UF_APAC_2018 $Freq) * 100,digits=2),"%",sep="")
+
+UF_APAC_2018 <- arrange(UF_APAC_2018, desc(Freq))
+
+UF_APAC_2018<- na.omit(UF_APAC_2018)
+
+write.csv(UF_APAC_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_APAC_2018.csv', row.names=FALSE)
+
+## MUN ##
+
+# 2008
+
+mun_APAC_2008 <- select(df.APAC.2008_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2008$Porcentagem <- paste(round(mun_APAC_2008$Freq / sum(mun_APAC_2008 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2008 <- arrange(mun_APAC_2008, desc(Freq))
+ 
+mun_APAC_2008<- na.omit(mun_APAC_2008)
+
+write.csv(mun_APAC_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2008.csv', row.names=FALSE)
+
+# 2009
+
+mun_APAC_2009 <- select(df.APAC.2009_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2009$Porcentagem <- paste(round(mun_APAC_2009$Freq / sum(mun_APAC_2009 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2009 <- arrange(mun_APAC_2009, desc(Freq))
+
+mun_APAC_2009<- na.omit(mun_APAC_2009)
+
+write.csv(mun_APAC_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2009.csv', row.names=FALSE)
+
+# 2010
+
+mun_APAC_2010 <- select(df.APAC.2010_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2010$Porcentagem <- paste(round(mun_APAC_2010$Freq / sum(mun_APAC_2010 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2010 <- arrange(mun_APAC_2010, desc(Freq))
+
+mun_APAC_2010<- na.omit(mun_APAC_2010)
+
+write.csv(mun_APAC_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2010.csv', row.names=FALSE)
+
+# 2011
+
+mun_APAC_2011 <- select(df.APAC.2011_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2011$Porcentagem <- paste(round(mun_APAC_2011$Freq / sum(mun_APAC_2011 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2011 <- arrange(mun_APAC_2011, desc(Freq))
+
+mun_APAC_2011<- na.omit(mun_APAC_2011)
+
+write.csv(mun_APAC_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2011.csv', row.names=FALSE)
+
+# 2012
+
+mun_APAC_2012 <- select(df.APAC.2012_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2012$Porcentagem <- paste(round(mun_APAC_2012$Freq / sum(mun_APAC_2012 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2012 <- arrange(mun_APAC_2012, desc(Freq))
+
+mun_APAC_2012<- na.omit(mun_APAC_2012)
+
+write.csv(mun_APAC_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2012.csv', row.names=FALSE)
+
+# 2013
+
+mun_APAC_2013 <- select(df.APAC.2013_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2013$Porcentagem <- paste(round(mun_APAC_2013$Freq / sum(mun_APAC_2013 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2013 <- arrange(mun_APAC_2013, desc(Freq))
+
+mun_APAC_2013<- na.omit(mun_APAC_2013)
+
+write.csv(mun_APAC_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2013.csv', row.names=FALSE)
+
+# 2014
+
+mun_APAC_2014 <- select(df.APAC.2014_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2014$Porcentagem <- paste(round(mun_APAC_2014$Freq / sum(mun_APAC_2014 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2014 <- arrange(mun_APAC_2014, desc(Freq))
+
+mun_APAC_2014<- na.omit(mun_APAC_2014)
+
+write.csv(mun_APAC_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2014.csv', row.names=FALSE)
+
+# 2015
+
+mun_APAC_2015 <- select(df.APAC.2015_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2015$Porcentagem <- paste(round(mun_APAC_2015$Freq / sum(mun_APAC_2015 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2015 <- arrange(mun_APAC_2015, desc(Freq))
+
+mun_APAC_2015<- na.omit(mun_APAC_2015)
+
+write.csv(mun_APAC_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2015.csv', row.names=FALSE)
+
+# 2016
+
+mun_APAC_2016 <- select(df.APAC.2016_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2016$Porcentagem <- paste(round(mun_APAC_2016$Freq / sum(mun_APAC_2016 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2016 <- arrange(mun_APAC_2016, desc(Freq))
+
+mun_APAC_2016<- na.omit(mun_APAC_2016)
+
+write.csv(mun_APAC_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2016.csv', row.names=FALSE)
+
+# 2017
+
+mun_APAC_2017 <- select(df.APAC.2017_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2017$Porcentagem <- paste(round(mun_APAC_2017$Freq / sum(mun_APAC_2017 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2017 <- arrange(mun_APAC_2017, desc(Freq))
+
+mun_APAC_2017<- na.omit(mun_APAC_2017)
+
+write.csv(mun_APAC_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2017.csv', row.names=FALSE)
+
+# 2018
+
+mun_APAC_2018 <- select(df.APAC.2018_mun, Município = Nome_Município, Freq)
+
+mun_APAC_2018$Porcentagem <- paste(round(mun_APAC_2018$Freq / sum(mun_APAC_2018 $Freq) * 100,digits=2),"%",sep="")
+
+mun_APAC_2018 <- arrange(mun_APAC_2018, desc(Freq))
+
+mun_APAC_2018<- na.omit(mun_APAC_2018)
+
+write.csv(mun_APAC_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_APAC_2018.csv', row.names=FALSE)
+
+########
+# BPAI #
+########
+
+## UF ##
+
+# 2008
+
+UF_BPAI_2008 <- select(df.BPAI.2008_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2008$Porcentagem <- paste(round(UF_BPAI_2008$Freq / sum(UF_BPAI_2008 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2008 <- arrange(UF_BPAI_2008, desc(Freq))
+
+UF_BPAI_2008<- na.omit(UF_BPAI_2008)
+
+write.csv(UF_BPAI_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2008.csv', row.names=FALSE)
+
+# 2009
+
+UF_BPAI_2009 <- select(df.BPAI.2009_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2009$Porcentagem <- paste(round(UF_BPAI_2009$Freq / sum(UF_BPAI_2009 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2009 <- arrange(UF_BPAI_2009, desc(Freq))
+
+UF_BPAI_2009<- na.omit(UF_BPAI_2009)
+
+write.csv(UF_BPAI_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2009.csv', row.names=FALSE)
+
+# 2010
+
+UF_BPAI_2010 <- select(df.BPAI.2010_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2010$Porcentagem <- paste(round(UF_BPAI_2010$Freq / sum(UF_BPAI_2010 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2010 <- arrange(UF_BPAI_2010, desc(Freq))
+
+UF_BPAI_2010<- na.omit(UF_BPAI_2010)
+
+write.csv(UF_BPAI_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2010.csv', row.names=FALSE)
+
+# 2011
+
+UF_BPAI_2011 <- select(df.BPAI.2011_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2011$Porcentagem <- paste(round(UF_BPAI_2011$Freq / sum(UF_BPAI_2011 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2011 <- arrange(UF_BPAI_2011, desc(Freq))
+
+UF_BPAI_2011<- na.omit(UF_BPAI_2011)
+
+write.csv(UF_BPAI_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2011.csv', row.names=FALSE)
+
+# 2012
+
+UF_BPAI_2012 <- select(df.BPAI.2012_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2012$Porcentagem <- paste(round(UF_BPAI_2012$Freq / sum(UF_BPAI_2012 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2012 <- arrange(UF_BPAI_2012, desc(Freq))
+
+UF_BPAI_2012<- na.omit(UF_BPAI_2012)
+
+write.csv(UF_BPAI_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2012.csv', row.names=FALSE)
+
+# 2013
+
+UF_BPAI_2013 <- select(df.BPAI.2013_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2013$Porcentagem <- paste(round(UF_BPAI_2013$Freq / sum(UF_BPAI_2013 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2013 <- arrange(UF_BPAI_2013, desc(Freq))
+
+UF_BPAI_2013<- na.omit(UF_BPAI_2013)
+
+write.csv(UF_BPAI_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2013.csv', row.names=FALSE)
+
+# 2014
+
+UF_BPAI_2014 <- select(df.BPAI.2014_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2014$Porcentagem <- paste(round(UF_BPAI_2014$Freq / sum(UF_BPAI_2014 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2014 <- arrange(UF_BPAI_2014, desc(Freq))
+
+UF_BPAI_2014<- na.omit(UF_BPAI_2014)
+
+write.csv(UF_BPAI_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2014.csv', row.names=FALSE)
+
+# 2015
+
+UF_BPAI_2015 <- select(df.BPAI.2015_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2015$Porcentagem <- paste(round(UF_BPAI_2015$Freq / sum(UF_BPAI_2015 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2015 <- arrange(UF_BPAI_2015, desc(Freq))
+
+UF_BPAI_2015<- na.omit(UF_BPAI_2015)
+
+write.csv(UF_BPAI_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2015.csv', row.names=FALSE)
+
+# 2016
+
+UF_BPAI_2016 <- select(df.BPAI.2016_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2016$Porcentagem <- paste(round(UF_BPAI_2016$Freq / sum(UF_BPAI_2016 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2016 <- arrange(UF_BPAI_2016, desc(Freq))
+
+UF_BPAI_2016<- na.omit(UF_BPAI_2016)
+
+write.csv(UF_BPAI_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2016.csv', row.names=FALSE)
+
+# 2017
+
+UF_BPAI_2017 <- select(df.BPAI.2017_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2017$Porcentagem <- paste(round(UF_BPAI_2017$Freq / sum(UF_BPAI_2017 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2017 <- arrange(UF_BPAI_2017, desc(Freq))
+
+UF_BPAI_2017<- na.omit(UF_BPAI_2017)
+
+write.csv(UF_BPAI_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2017.csv', row.names=FALSE)
+
+# 2018
+
+UF_BPAI_2018 <- select(df.BPAI.2018_UF, UF = Nome_UF, Freq)
+
+UF_BPAI_2018$Porcentagem <- paste(round(UF_BPAI_2018$Freq / sum(UF_BPAI_2018 $Freq) * 100,digits=2),"%",sep="")
+
+UF_BPAI_2018 <- arrange(UF_BPAI_2018, desc(Freq))
+
+UF_BPAI_2018<- na.omit(UF_BPAI_2018)
+
+write.csv(UF_BPAI_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_BPAI_2018.csv', row.names=FALSE)
+
+## MUN ##
+
+# 2008
+
+mun_BPAI_2008 <- select(df.BPAI.2008_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2008$Porcentagem <- paste(round(mun_BPAI_2008$Freq / sum(mun_BPAI_2008 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2008 <- arrange(mun_BPAI_2008, desc(Freq))
+
+mun_BPAI_2008<- na.omit(mun_BPAI_2008)
+
+write.csv(mun_BPAI_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2008.csv', row.names=FALSE)
+
+# 2009
+
+mun_BPAI_2009 <- select(df.BPAI.2009_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2009$Porcentagem <- paste(round(mun_BPAI_2009$Freq / sum(mun_BPAI_2009 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2009 <- arrange(mun_BPAI_2009, desc(Freq))
+
+mun_BPAI_2009<- na.omit(mun_BPAI_2009)
+
+write.csv(mun_BPAI_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2009.csv', row.names=FALSE)
+
+# 2010
+
+mun_BPAI_2010 <- select(df.BPAI.2010_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2010$Porcentagem <- paste(round(mun_BPAI_2010$Freq / sum(mun_BPAI_2010 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2010 <- arrange(mun_BPAI_2010, desc(Freq))
+
+mun_BPAI_2010<- na.omit(mun_BPAI_2010)
+
+write.csv(mun_BPAI_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2010.csv', row.names=FALSE)
+
+# 2011
+
+mun_BPAI_2011 <- select(df.BPAI.2011_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2011$Porcentagem <- paste(round(mun_BPAI_2011$Freq / sum(mun_BPAI_2011 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2011 <- arrange(mun_BPAI_2011, desc(Freq))
+
+mun_BPAI_2011<- na.omit(mun_BPAI_2011)
+
+write.csv(mun_BPAI_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2011.csv', row.names=FALSE)
+
+# 2012
+
+mun_BPAI_2012 <- select(df.BPAI.2012_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2012$Porcentagem <- paste(round(mun_BPAI_2012$Freq / sum(mun_BPAI_2012 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2012 <- arrange(mun_BPAI_2012, desc(Freq))
+
+mun_BPAI_2012<- na.omit(mun_BPAI_2012)
+
+write.csv(mun_BPAI_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2012.csv', row.names=FALSE)
+
+# 2013
+
+mun_BPAI_2013 <- select(df.BPAI.2013_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2013$Porcentagem <- paste(round(mun_BPAI_2013$Freq / sum(mun_BPAI_2013 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2013 <- arrange(mun_BPAI_2013, desc(Freq))
+
+mun_BPAI_2013<- na.omit(mun_BPAI_2013)
+
+write.csv(mun_BPAI_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2013.csv', row.names=FALSE)
+
+# 2014
+
+mun_BPAI_2014 <- select(df.BPAI.2014_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2014$Porcentagem <- paste(round(mun_BPAI_2014$Freq / sum(mun_BPAI_2014 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2014 <- arrange(mun_BPAI_2014, desc(Freq))
+
+mun_BPAI_2014<- na.omit(mun_BPAI_2014)
+
+write.csv(mun_BPAI_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2014.csv', row.names=FALSE)
+
+# 2015
+
+mun_BPAI_2015 <- select(df.BPAI.2015_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2015$Porcentagem <- paste(round(mun_BPAI_2015$Freq / sum(mun_BPAI_2015 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2015 <- arrange(mun_BPAI_2015, desc(Freq))
+
+mun_BPAI_2015<- na.omit(mun_BPAI_2015)
+
+write.csv(mun_BPAI_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2015.csv', row.names=FALSE)
+
+# 2016
+
+mun_BPAI_2016 <- select(df.BPAI.2016_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2016$Porcentagem <- paste(round(mun_BPAI_2016$Freq / sum(mun_BPAI_2016 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2016 <- arrange(mun_BPAI_2016, desc(Freq))
+
+mun_BPAI_2016<- na.omit(mun_BPAI_2016)
+
+write.csv(mun_BPAI_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2016.csv', row.names=FALSE)
+
+# 2017
+
+mun_BPAI_2017 <- select(df.BPAI.2017_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2017$Porcentagem <- paste(round(mun_BPAI_2017$Freq / sum(mun_BPAI_2017 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2017 <- arrange(mun_BPAI_2017, desc(Freq))
+
+mun_BPAI_2017<- na.omit(mun_BPAI_2017)
+
+write.csv(mun_BPAI_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2017.csv', row.names=FALSE)
+
+# 2018
+
+mun_BPAI_2018 <- select(df.BPAI.2018_mun, Município = Nome_Município, Freq)
+
+mun_BPAI_2018$Porcentagem <- paste(round(mun_BPAI_2018$Freq / sum(mun_BPAI_2018 $Freq) * 100,digits=2),"%",sep="")
+
+mun_BPAI_2018 <- arrange(mun_BPAI_2018, desc(Freq))
+
+mun_BPAI_2018<- na.omit(mun_BPAI_2018)
+
+write.csv(mun_BPAI_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_BPAI_2018.csv', row.names=FALSE)
+
+########
+# AIH  #
+########
+
+## UF ##
+
+# 2008
+
+UF_AIH_2008 <- select(df.AIH.2008_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2008$Porcentagem <- paste(round(UF_AIH_2008$Freq / sum(UF_AIH_2008 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2008 <- arrange(UF_AIH_2008, desc(Freq))
+
+UF_AIH_2008<- na.omit(UF_AIH_2008)
+
+write.csv(UF_AIH_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2008.csv', row.names=FALSE)
+
+# 2009
+
+UF_AIH_2009 <- select(df.AIH.2009_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2009$Porcentagem <- paste(round(UF_AIH_2009$Freq / sum(UF_AIH_2009 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2009 <- arrange(UF_AIH_2009, desc(Freq))
+
+UF_AIH_2009<- na.omit(UF_AIH_2009)
+
+write.csv(UF_AIH_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2009.csv', row.names=FALSE)
+
+# 2010
+
+UF_AIH_2010 <- select(df.AIH.2010_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2010$Porcentagem <- paste(round(UF_AIH_2010$Freq / sum(UF_AIH_2010 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2010 <- arrange(UF_AIH_2010, desc(Freq))
+
+UF_AIH_2010<- na.omit(UF_AIH_2010)
+
+write.csv(UF_AIH_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2010.csv', row.names=FALSE)
+
+# 2011
+
+UF_AIH_2011 <- select(df.AIH.2011_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2011$Porcentagem <- paste(round(UF_AIH_2011$Freq / sum(UF_AIH_2011 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2011 <- arrange(UF_AIH_2011, desc(Freq))
+
+UF_AIH_2011<- na.omit(UF_AIH_2011)
+
+write.csv(UF_AIH_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2011.csv', row.names=FALSE)
+
+# 2012
+
+UF_AIH_2012 <- select(df.AIH.2012_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2012$Porcentagem <- paste(round(UF_AIH_2012$Freq / sum(UF_AIH_2012 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2012 <- arrange(UF_AIH_2012, desc(Freq))
+
+UF_AIH_2012<- na.omit(UF_AIH_2012)
+
+write.csv(UF_AIH_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2012.csv', row.names=FALSE)
+
+# 2013
+
+UF_AIH_2013 <- select(df.AIH.2013_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2013$Porcentagem <- paste(round(UF_AIH_2013$Freq / sum(UF_AIH_2013 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2013 <- arrange(UF_AIH_2013, desc(Freq))
+
+UF_AIH_2013<- na.omit(UF_AIH_2013)
+
+write.csv(UF_AIH_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2013.csv', row.names=FALSE)
+
+# 2014
+
+UF_AIH_2014 <- select(df.AIH.2014_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2014$Porcentagem <- paste(round(UF_AIH_2014$Freq / sum(UF_AIH_2014 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2014 <- arrange(UF_AIH_2014, desc(Freq))
+
+UF_AIH_2014<- na.omit(UF_AIH_2014)
+
+write.csv(UF_AIH_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2014.csv', row.names=FALSE)
+
+# 2015
+
+UF_AIH_2015 <- select(df.AIH.2015_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2015$Porcentagem <- paste(round(UF_AIH_2015$Freq / sum(UF_AIH_2015 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2015 <- arrange(UF_AIH_2015, desc(Freq))
+
+UF_AIH_2015<- na.omit(UF_AIH_2015)
+
+write.csv(UF_AIH_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2015.csv', row.names=FALSE)
+
+# 2016
+
+UF_AIH_2016 <- select(df.AIH.2016_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2016$Porcentagem <- paste(round(UF_AIH_2016$Freq / sum(UF_AIH_2016 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2016 <- arrange(UF_AIH_2016, desc(Freq))
+
+UF_AIH_2016<- na.omit(UF_AIH_2016)
+
+write.csv(UF_AIH_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2016.csv', row.names=FALSE)
+
+# 2017
+
+UF_AIH_2017 <- select(df.AIH.2017_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2017$Porcentagem <- paste(round(UF_AIH_2017$Freq / sum(UF_AIH_2017 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2017 <- arrange(UF_AIH_2017, desc(Freq))
+
+UF_AIH_2017<- na.omit(UF_AIH_2017)
+
+write.csv(UF_AIH_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2017.csv', row.names=FALSE)
+
+# 2018
+
+UF_AIH_2018 <- select(df.AIH.2018_UF, UF = Nome_UF, Freq)
+
+UF_AIH_2018$Porcentagem <- paste(round(UF_AIH_2018$Freq / sum(UF_AIH_2018 $Freq) * 100,digits=2),"%",sep="")
+
+UF_AIH_2018 <- arrange(UF_AIH_2018, desc(Freq))
+
+UF_AIH_2018<- na.omit(UF_AIH_2018)
+
+write.csv(UF_AIH_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_AIH_2018.csv', row.names=FALSE)
+
+## MUN ##
+
+# 2008
+
+mun_AIH_2008 <- select(df.AIH.2008_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2008$Porcentagem <- paste(round(mun_AIH_2008$Freq / sum(mun_AIH_2008 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2008 <- arrange(mun_AIH_2008, desc(Freq))
+
+mun_AIH_2008 <- na.omit(mun_AIH_2008)
+
+write.csv(mun_AIH_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2008.csv', row.names=FALSE)
+
+# 2009
+
+mun_AIH_2009 <- select(df.AIH.2009_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2009$Porcentagem <- paste(round(mun_AIH_2009$Freq / sum(mun_AIH_2009 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2009 <- arrange(mun_AIH_2009, desc(Freq))
+
+mun_AIH_2009 <- na.omit(mun_AIH_2009)
+
+write.csv(mun_AIH_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2009.csv', row.names=FALSE)
+
+# 2010
+
+mun_AIH_2010 <- select(df.AIH.2010_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2010$Porcentagem <- paste(round(mun_AIH_2010$Freq / sum(mun_AIH_2010 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2010 <- arrange(mun_AIH_2010, desc(Freq))
+
+mun_AIH_2010 <- na.omit(mun_AIH_2010)
+
+write.csv(mun_AIH_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2010.csv', row.names=FALSE)
+
+# 2011
+
+mun_AIH_2011 <- select(df.AIH.2011_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2011$Porcentagem <- paste(round(mun_AIH_2011$Freq / sum(mun_AIH_2011 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2011 <- arrange(mun_AIH_2011, desc(Freq))
+
+mun_AIH_2011 <- na.omit(mun_AIH_2011)
+
+write.csv(mun_AIH_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2011.csv', row.names=FALSE)
+
+# 2012
+
+mun_AIH_2012 <- select(df.AIH.2012_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2012$Porcentagem <- paste(round(mun_AIH_2012$Freq / sum(mun_AIH_2012 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2012 <- arrange(mun_AIH_2012, desc(Freq))
+
+mun_AIH_2012 <- na.omit(mun_AIH_2012)
+
+write.csv(mun_AIH_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2012.csv', row.names=FALSE)
+
+# 2013
+
+mun_AIH_2013 <- select(df.AIH.2013_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2013$Porcentagem <- paste(round(mun_AIH_2013$Freq / sum(mun_AIH_2013 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2013 <- arrange(mun_AIH_2013, desc(Freq))
+
+mun_AIH_2013 <- na.omit(mun_AIH_2013)
+
+write.csv(mun_AIH_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2013.csv', row.names=FALSE)
+
+# 2014
+
+mun_AIH_2014 <- select(df.AIH.2014_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2014$Porcentagem <- paste(round(mun_AIH_2014$Freq / sum(mun_AIH_2014 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2014 <- arrange(mun_AIH_2014, desc(Freq))
+
+mun_AIH_2014 <- na.omit(mun_AIH_2014)
+
+write.csv(mun_AIH_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2014.csv', row.names=FALSE)
+
+
+# 2015
+
+mun_AIH_2015 <- select(df.AIH.2015_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2015$Porcentagem <- paste(round(mun_AIH_2015$Freq / sum(mun_AIH_2015 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2015 <- arrange(mun_AIH_2015, desc(Freq))
+
+mun_AIH_2015 <- na.omit(mun_AIH_2015)
+
+write.csv(mun_AIH_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2015.csv', row.names=FALSE)
+
+# 2016
+
+mun_AIH_2016 <- select(df.AIH.2016_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2016$Porcentagem <- paste(round(mun_AIH_2016$Freq / sum(mun_AIH_2016 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2016 <- arrange(mun_AIH_2016, desc(Freq))
+
+mun_AIH_2016 <- na.omit(mun_AIH_2016)
+
+write.csv(mun_AIH_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2016.csv', row.names=FALSE)
+
+# 2017
+
+mun_AIH_2017 <- select(df.AIH.2017_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2017$Porcentagem <- paste(round(mun_AIH_2017$Freq / sum(mun_AIH_2017 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2017 <- arrange(mun_AIH_2017, desc(Freq))
+
+mun_AIH_2017 <- na.omit(mun_AIH_2017)
+
+write.csv(mun_AIH_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2017.csv', row.names=FALSE)
+
+# 2018
+
+mun_AIH_2018 <- select(df.AIH.2018_mun, Município = Nome_Município, Freq)
+
+mun_AIH_2018$Porcentagem <- paste(round(mun_AIH_2018$Freq / sum(mun_AIH_2018 $Freq) * 100,digits=2),"%",sep="")
+
+mun_AIH_2018 <- arrange(mun_AIH_2018, desc(Freq))
+
+mun_AIH_2018 <- na.omit(mun_AIH_2018)
+
+write.csv(mun_AIH_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_AIH_2018.csv', row.names=FALSE)
+
+#######
+# GAL #
+#######
+
+## UF ##
+
+# 2008
+
+UF_GAL_2008 <- select(df.GAL.2008_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2008$Porcentagem <- paste(round(UF_GAL_2008$Freq / sum(UF_GAL_2008 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2008 <- arrange(UF_GAL_2008, desc(Freq))
+
+UF_GAL_2008<- na.omit(UF_GAL_2008)
+
+write.csv(UF_GAL_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2008.csv', row.names=FALSE)
+
+# 2009
+
+UF_GAL_2009 <- select(df.GAL.2009_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2009$Porcentagem <- paste(round(UF_GAL_2009$Freq / sum(UF_GAL_2009 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2009 <- arrange(UF_GAL_2009, desc(Freq))
+
+UF_GAL_2009<- na.omit(UF_GAL_2009)
+
+write.csv(UF_GAL_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2009.csv', row.names=FALSE)
+
+# 2010
+
+UF_GAL_2010 <- select(df.GAL.2010_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2010$Porcentagem <- paste(round(UF_GAL_2010$Freq / sum(UF_GAL_2010 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2010 <- arrange(UF_GAL_2010, desc(Freq))
+
+UF_GAL_2010<- na.omit(UF_GAL_2010)
+
+write.csv(UF_GAL_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2010.csv', row.names=FALSE)
+
+# 2011
+
+UF_GAL_2011 <- select(df.GAL.2011_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2011$Porcentagem <- paste(round(UF_GAL_2011$Freq / sum(UF_GAL_2011 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2011 <- arrange(UF_GAL_2011, desc(Freq))
+
+UF_GAL_2011<- na.omit(UF_GAL_2011)
+
+write.csv(UF_GAL_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2011.csv', row.names=FALSE)
+
+# 2012
+
+UF_GAL_2012 <- select(df.GAL.2012_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2012$Porcentagem <- paste(round(UF_GAL_2012$Freq / sum(UF_GAL_2012 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2012 <- arrange(UF_GAL_2012, desc(Freq))
+
+UF_GAL_2012<- na.omit(UF_GAL_2012)
+
+write.csv(UF_GAL_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2012.csv', row.names=FALSE)
+
+# 2013
+
+UF_GAL_2013 <- select(df.GAL.2013_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2013$Porcentagem <- paste(round(UF_GAL_2013$Freq / sum(UF_GAL_2013 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2013 <- arrange(UF_GAL_2013, desc(Freq))
+
+UF_GAL_2013<- na.omit(UF_GAL_2013)
+
+write.csv(UF_GAL_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2013.csv', row.names=FALSE)
+
+# 2014
+
+UF_GAL_2014 <- select(df.GAL.2014_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2014$Porcentagem <- paste(round(UF_GAL_2014$Freq / sum(UF_GAL_2014 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2014 <- arrange(UF_GAL_2014, desc(Freq))
+
+UF_GAL_2014<- na.omit(UF_GAL_2014)
+
+write.csv(UF_GAL_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2014.csv', row.names=FALSE)
+
+# 2015
+
+UF_GAL_2015 <- select(df.GAL.2015_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2015$Porcentagem <- paste(round(UF_GAL_2015$Freq / sum(UF_GAL_2015 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2015 <- arrange(UF_GAL_2015, desc(Freq))
+
+UF_GAL_2015<- na.omit(UF_GAL_2015)
+
+write.csv(UF_GAL_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2015.csv', row.names=FALSE)
+
+# 2016
+
+UF_GAL_2016 <- select(df.GAL.2016_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2016$Porcentagem <- paste(round(UF_GAL_2016$Freq / sum(UF_GAL_2016 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2016 <- arrange(UF_GAL_2016, desc(Freq))
+
+UF_GAL_2016<- na.omit(UF_GAL_2016)
+
+write.csv(UF_GAL_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2016.csv', row.names=FALSE)
+
+# 2017
+
+UF_GAL_2017 <- select(df.GAL.2017_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2017$Porcentagem <- paste(round(UF_GAL_2017$Freq / sum(UF_GAL_2017 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2017 <- arrange(UF_GAL_2017, desc(Freq))
+
+UF_GAL_2017<- na.omit(UF_GAL_2017)
+
+write.csv(UF_GAL_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2017.csv', row.names=FALSE)
+
+# 2018
+
+UF_GAL_2018 <- select(df.GAL.2018_UF, UF = Nome_UF, Freq)
+
+UF_GAL_2018$Porcentagem <- paste(round(UF_GAL_2018$Freq / sum(UF_GAL_2018 $Freq) * 100,digits=2),"%",sep="")
+
+UF_GAL_2018 <- arrange(UF_GAL_2018, desc(Freq))
+
+UF_GAL_2018<- na.omit(UF_GAL_2018)
+
+write.csv(UF_GAL_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_GAL_2018.csv', row.names=FALSE)
+
+## MUN ##
+
+# 2008
+
+mun_GAL_2008 <- select(df.GAL.2008_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2008$Porcentagem <- paste(round(mun_GAL_2008$Freq / sum(mun_GAL_2008 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2008 <- arrange(mun_GAL_2008, desc(Freq))
+
+mun_GAL_2008<- na.omit(mun_GAL_2008)
+
+write.csv(mun_GAL_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2008.csv', row.names=FALSE)
+
+# 2009
+
+mun_GAL_2009 <- select(df.GAL.2009_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2009$Porcentagem <- paste(round(mun_GAL_2009$Freq / sum(mun_GAL_2009 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2009 <- arrange(mun_GAL_2009, desc(Freq))
+
+mun_GAL_2009<- na.omit(mun_GAL_2009)
+
+write.csv(mun_GAL_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2009.csv', row.names=FALSE)
+
+# 2010
+
+mun_GAL_2010 <- select(df.GAL.2010_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2010$Porcentagem <- paste(round(mun_GAL_2010$Freq / sum(mun_GAL_2010 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2010 <- arrange(mun_GAL_2010, desc(Freq))
+
+mun_GAL_2010<- na.omit(mun_GAL_2010)
+
+write.csv(mun_GAL_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2010.csv', row.names=FALSE)
+
+# 2011
+
+mun_GAL_2011 <- select(df.GAL.2011_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2011$Porcentagem <- paste(round(mun_GAL_2011$Freq / sum(mun_GAL_2011 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2011 <- arrange(mun_GAL_2011, desc(Freq))
+
+mun_GAL_2011<- na.omit(mun_GAL_2011)
+
+write.csv(mun_GAL_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2011.csv', row.names=FALSE)
+
+# 2012
+
+mun_GAL_2012 <- select(df.GAL.2012_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2012$Porcentagem <- paste(round(mun_GAL_2012$Freq / sum(mun_GAL_2012 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2012 <- arrange(mun_GAL_2012, desc(Freq))
+
+mun_GAL_2012<- na.omit(mun_GAL_2012)
+
+write.csv(mun_GAL_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2012.csv', row.names=FALSE)
+
+# 2013
+
+mun_GAL_2013 <- select(df.GAL.2013_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2013$Porcentagem <- paste(round(mun_GAL_2013$Freq / sum(mun_GAL_2013 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2013 <- arrange(mun_GAL_2013, desc(Freq))
+
+mun_GAL_2013<- na.omit(mun_GAL_2013)
+
+write.csv(mun_GAL_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2013.csv', row.names=FALSE)
+
+# 2014
+
+mun_GAL_2014 <- select(df.GAL.2014_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2014$Porcentagem <- paste(round(mun_GAL_2014$Freq / sum(mun_GAL_2014 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2014 <- arrange(mun_GAL_2014, desc(Freq))
+
+mun_GAL_2014<- na.omit(mun_GAL_2014)
+
+write.csv(mun_GAL_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2014.csv', row.names=FALSE)
+
+# 2015
+
+mun_GAL_2015 <- select(df.GAL.2015_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2015$Porcentagem <- paste(round(mun_GAL_2015$Freq / sum(mun_GAL_2015 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2015 <- arrange(mun_GAL_2015, desc(Freq))
+
+mun_GAL_2015<- na.omit(mun_GAL_2015)
+
+write.csv(mun_GAL_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2015.csv', row.names=FALSE)
+
+# 2016
+
+mun_GAL_2016 <- select(df.GAL.2016_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2016$Porcentagem <- paste(round(mun_GAL_2016$Freq / sum(mun_GAL_2016 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2016 <- arrange(mun_GAL_2016, desc(Freq))
+
+mun_GAL_2016<- na.omit(mun_GAL_2016)
+
+write.csv(mun_GAL_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2016.csv', row.names=FALSE)
+
+# 2017
+
+mun_GAL_2017 <- select(df.GAL.2017_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2017$Porcentagem <- paste(round(mun_GAL_2017$Freq / sum(mun_GAL_2017 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2017 <- arrange(mun_GAL_2017, desc(Freq))
+
+mun_GAL_2017<- na.omit(mun_GAL_2017)
+
+write.csv(mun_GAL_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2017.csv', row.names=FALSE)
+
+# 2018
+
+mun_GAL_2018 <- select(df.GAL.2018_mun, Município = Nome_Município, Freq)
+
+mun_GAL_2018$Porcentagem <- paste(round(mun_GAL_2018$Freq / sum(mun_GAL_2018 $Freq) * 100,digits=2),"%",sep="")
+
+mun_GAL_2018 <- arrange(mun_GAL_2018, desc(Freq))
+
+mun_GAL_2018<- na.omit(mun_GAL_2018)
+
+write.csv(mun_GAL_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_GAL_2018.csv', row.names=FALSE)
+
+#########
+# SINAN #
+#########
+
+## UF ##
+
+# 2008
+
+UF_SINAN_2008 <- select(df.SINAN.2008_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2008$Porcentagem <- paste(round(UF_SINAN_2008$Freq / sum(UF_SINAN_2008 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2008 <- arrange(UF_SINAN_2008, desc(Freq))
+
+UF_SINAN_2008<- na.omit(UF_SINAN_2008)
+
+write.csv(UF_SINAN_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2008.csv', row.names=FALSE)
+
+# 2009
+
+UF_SINAN_2009 <- select(df.SINAN.2009_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2009$Porcentagem <- paste(round(UF_SINAN_2009$Freq / sum(UF_SINAN_2009 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2009 <- arrange(UF_SINAN_2009, desc(Freq))
+
+UF_SINAN_2009<- na.omit(UF_SINAN_2009)
+
+write.csv(UF_SINAN_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2009.csv', row.names=FALSE)
+
+# 2010
+
+UF_SINAN_2010 <- select(df.SINAN.2010_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2010$Porcentagem <- paste(round(UF_SINAN_2010$Freq / sum(UF_SINAN_2010 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2010 <- arrange(UF_SINAN_2010, desc(Freq))
+
+UF_SINAN_2010<- na.omit(UF_SINAN_2010)
+
+write.csv(UF_SINAN_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2010.csv', row.names=FALSE)
+
+# 2011
+
+UF_SINAN_2011 <- select(df.SINAN.2011_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2011$Porcentagem <- paste(round(UF_SINAN_2011$Freq / sum(UF_SINAN_2011 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2011 <- arrange(UF_SINAN_2011, desc(Freq))
+
+UF_SINAN_2011<- na.omit(UF_SINAN_2011)
+
+write.csv(UF_SINAN_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2011.csv', row.names=FALSE)
+
+# 2012
+
+UF_SINAN_2012 <- select(df.SINAN.2012_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2012$Porcentagem <- paste(round(UF_SINAN_2012$Freq / sum(UF_SINAN_2012 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2012 <- arrange(UF_SINAN_2012, desc(Freq))
+
+UF_SINAN_2012<- na.omit(UF_SINAN_2012)
+
+write.csv(UF_SINAN_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2012.csv', row.names=FALSE)
+
+# 2013
+
+UF_SINAN_2013 <- select(df.SINAN.2013_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2013$Porcentagem <- paste(round(UF_SINAN_2013$Freq / sum(UF_SINAN_2013 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2013 <- arrange(UF_SINAN_2013, desc(Freq))
+
+UF_SINAN_2013<- na.omit(UF_SINAN_2013)
+
+write.csv(UF_SINAN_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2013.csv', row.names=FALSE)
+
+# 2014
+
+UF_SINAN_2014 <- select(df.SINAN.2014_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2014$Porcentagem <- paste(round(UF_SINAN_2014$Freq / sum(UF_SINAN_2014 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2014 <- arrange(UF_SINAN_2014, desc(Freq))
+
+UF_SINAN_2014<- na.omit(UF_SINAN_2014)
+
+write.csv(UF_SINAN_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2014.csv', row.names=FALSE)
+
+# 2015
+
+UF_SINAN_2015 <- select(df.SINAN.2015_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2015$Porcentagem <- paste(round(UF_SINAN_2015$Freq / sum(UF_SINAN_2015 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2015 <- arrange(UF_SINAN_2015, desc(Freq))
+
+UF_SINAN_2015<- na.omit(UF_SINAN_2015)
+
+write.csv(UF_SINAN_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2015.csv', row.names=FALSE)
+
+# 2016
+
+UF_SINAN_2016 <- select(df.SINAN.2016_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2016$Porcentagem <- paste(round(UF_SINAN_2016$Freq / sum(UF_SINAN_2016 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2016 <- arrange(UF_SINAN_2016, desc(Freq))
+
+UF_SINAN_2016<- na.omit(UF_SINAN_2016)
+
+write.csv(UF_SINAN_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2016.csv', row.names=FALSE)
+
+# 2017
+
+UF_SINAN_2017 <- select(df.SINAN.2017_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2017$Porcentagem <- paste(round(UF_SINAN_2017$Freq / sum(UF_SINAN_2017 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2017 <- arrange(UF_SINAN_2017, desc(Freq))
+
+UF_SINAN_2017<- na.omit(UF_SINAN_2017)
+
+write.csv(UF_SINAN_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2017.csv', row.names=FALSE)
+
+# 2018
+
+UF_SINAN_2018 <- select(df.SINAN.2018_UF, UF = Nome_UF, Freq)
+
+UF_SINAN_2018$Porcentagem <- paste(round(UF_SINAN_2018$Freq / sum(UF_SINAN_2018 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SINAN_2018 <- arrange(UF_SINAN_2018, desc(Freq))
+
+UF_SINAN_2018<- na.omit(UF_SINAN_2018)
+
+write.csv(UF_SINAN_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SINAN_2018.csv', row.names=FALSE)
+
+## MUN ##
+
+# 2008
+
+mun_SINAN_2008 <- select(df.SINAN.2008_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2008$Porcentagem <- paste(round(mun_SINAN_2008$Freq / sum(mun_SINAN_2008 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2008 <- arrange(mun_SINAN_2008, desc(Freq))
+
+mun_SINAN_2008<- na.omit(mun_SINAN_2008)
+
+write.csv(mun_SINAN_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2008.csv', row.names=FALSE)
+
+# 2009
+
+mun_SINAN_2009 <- select(df.SINAN.2009_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2009$Porcentagem <- paste(round(mun_SINAN_2009$Freq / sum(mun_SINAN_2009 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2009 <- arrange(mun_SINAN_2009, desc(Freq))
+
+mun_SINAN_2009<- na.omit(mun_SINAN_2009)
+
+write.csv(mun_SINAN_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2009.csv', row.names=FALSE)
+
+# 2010
+
+mun_SINAN_2010 <- select(df.SINAN.2010_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2010$Porcentagem <- paste(round(mun_SINAN_2010$Freq / sum(mun_SINAN_2010 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2010 <- arrange(mun_SINAN_2010, desc(Freq))
+
+mun_SINAN_2010<- na.omit(mun_SINAN_2010)
+
+write.csv(mun_SINAN_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2010.csv', row.names=FALSE)
+
+# 2011
+
+mun_SINAN_2011 <- select(df.SINAN.2011_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2011$Porcentagem <- paste(round(mun_SINAN_2011$Freq / sum(mun_SINAN_2011 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2011 <- arrange(mun_SINAN_2011, desc(Freq))
+
+mun_SINAN_2011<- na.omit(mun_SINAN_2011)
+
+write.csv(mun_SINAN_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2011.csv', row.names=FALSE)
+
+# 2012
+
+mun_SINAN_2012 <- select(df.SINAN.2012_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2012$Porcentagem <- paste(round(mun_SINAN_2012$Freq / sum(mun_SINAN_2012 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2012 <- arrange(mun_SINAN_2012, desc(Freq))
+
+mun_SINAN_2012<- na.omit(mun_SINAN_2012)
+
+write.csv(mun_SINAN_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2012.csv', row.names=FALSE)
+
+# 2013
+
+mun_SINAN_2013 <- select(df.SINAN.2013_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2013$Porcentagem <- paste(round(mun_SINAN_2013$Freq / sum(mun_SINAN_2013 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2013 <- arrange(mun_SINAN_2013, desc(Freq))
+
+mun_SINAN_2013<- na.omit(mun_SINAN_2013)
+
+write.csv(mun_SINAN_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2013.csv', row.names=FALSE)
+
+# 2014
+
+mun_SINAN_2014 <- select(df.SINAN.2014_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2014$Porcentagem <- paste(round(mun_SINAN_2014$Freq / sum(mun_SINAN_2014 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2014 <- arrange(mun_SINAN_2014, desc(Freq))
+
+mun_SINAN_2014<- na.omit(mun_SINAN_2014)
+
+write.csv(mun_SINAN_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2014.csv', row.names=FALSE)
+
+# 2015
+
+mun_SINAN_2015 <- select(df.SINAN.2015_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2015$Porcentagem <- paste(round(mun_SINAN_2015$Freq / sum(mun_SINAN_2015 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2015 <- arrange(mun_SINAN_2015, desc(Freq))
+
+mun_SINAN_2015<- na.omit(mun_SINAN_2015)
+
+write.csv(mun_SINAN_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2015.csv', row.names=FALSE)
+
+# 2016
+
+mun_SINAN_2016 <- select(df.SINAN.2016_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2016$Porcentagem <- paste(round(mun_SINAN_2016$Freq / sum(mun_SINAN_2016 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2016 <- arrange(mun_SINAN_2016, desc(Freq))
+
+mun_SINAN_2016<- na.omit(mun_SINAN_2016)
+
+write.csv(mun_SINAN_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2016.csv', row.names=FALSE)
+
+# 2017
+
+mun_SINAN_2017 <- select(df.SINAN.2017_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2017$Porcentagem <- paste(round(mun_SINAN_2017$Freq / sum(mun_SINAN_2017 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2017 <- arrange(mun_SINAN_2017, desc(Freq))
+
+mun_SINAN_2017<- na.omit(mun_SINAN_2017)
+
+write.csv(mun_SINAN_2017, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2017.csv', row.names=FALSE)
+
+# 2018
+
+mun_SINAN_2018 <- select(df.SINAN.2018_mun, Município = Nome_Município, Freq)
+
+mun_SINAN_2018$Porcentagem <- paste(round(mun_SINAN_2018$Freq / sum(mun_SINAN_2018 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SINAN_2018 <- arrange(mun_SINAN_2018, desc(Freq))
+
+mun_SINAN_2018<- na.omit(mun_SINAN_2018)
+
+write.csv(mun_SINAN_2018, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SINAN_2018.csv', row.names=FALSE)
+
+#######
+# SIM #
+#######
+
+## UF ##
+
+# 2008
+
+UF_SIM_2008 <- select(df.SIM.2008_UF, UF = Nome_UF, Freq)
+
+UF_SIM_2008$Porcentagem <- paste(round(UF_SIM_2008$Freq / sum(UF_SIM_2008 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SIM_2008 <- arrange(UF_SIM_2008, desc(Freq))
+
+UF_SIM_2008<- na.omit(UF_SIM_2008)
+
+write.csv(UF_SIM_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SIM_2008.csv', row.names=FALSE)
+
+# 2009
+
+UF_SIM_2009 <- select(df.SIM.2009_UF, UF = Nome_UF, Freq)
+
+UF_SIM_2009$Porcentagem <- paste(round(UF_SIM_2009$Freq / sum(UF_SIM_2009 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SIM_2009 <- arrange(UF_SIM_2009, desc(Freq))
+
+UF_SIM_2009<- na.omit(UF_SIM_2009)
+
+write.csv(UF_SIM_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SIM_2009.csv', row.names=FALSE)
+
+# 2010
+
+UF_SIM_2010 <- select(df.SIM.2010_UF, UF = Nome_UF, Freq)
+
+UF_SIM_2010$Porcentagem <- paste(round(UF_SIM_2010$Freq / sum(UF_SIM_2010 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SIM_2010 <- arrange(UF_SIM_2010, desc(Freq))
+
+UF_SIM_2010<- na.omit(UF_SIM_2010)
+
+write.csv(UF_SIM_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SIM_2010.csv', row.names=FALSE)
+
+# 2011
+
+UF_SIM_2011 <- select(df.SIM.2011_UF, UF = Nome_UF, Freq)
+
+UF_SIM_2011$Porcentagem <- paste(round(UF_SIM_2011$Freq / sum(UF_SIM_2011 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SIM_2011 <- arrange(UF_SIM_2011, desc(Freq))
+
+UF_SIM_2011<- na.omit(UF_SIM_2011)
+
+write.csv(UF_SIM_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SIM_2011.csv', row.names=FALSE)
+
+# 2012
+
+UF_SIM_2012 <- select(df.SIM.2012_UF, UF = Nome_UF, Freq)
+
+UF_SIM_2012$Porcentagem <- paste(round(UF_SIM_2012$Freq / sum(UF_SIM_2012 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SIM_2012 <- arrange(UF_SIM_2012, desc(Freq))
+
+UF_SIM_2012<- na.omit(UF_SIM_2012)
+
+write.csv(UF_SIM_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SIM_2012.csv', row.names=FALSE)
+
+# 2013
+
+UF_SIM_2013 <- select(df.SIM.2013_UF, UF = Nome_UF, Freq)
+
+UF_SIM_2013$Porcentagem <- paste(round(UF_SIM_2013$Freq / sum(UF_SIM_2013 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SIM_2013 <- arrange(UF_SIM_2013, desc(Freq))
+
+UF_SIM_2013<- na.omit(UF_SIM_2013)
+
+write.csv(UF_SIM_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SIM_2013.csv', row.names=FALSE)
+
+# 2014
+
+UF_SIM_2014 <- select(df.SIM.2014_UF, UF = Nome_UF, Freq)
+
+UF_SIM_2014$Porcentagem <- paste(round(UF_SIM_2014$Freq / sum(UF_SIM_2014 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SIM_2014 <- arrange(UF_SIM_2014, desc(Freq))
+
+UF_SIM_2014<- na.omit(UF_SIM_2014)
+
+write.csv(UF_SIM_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SIM_2014.csv', row.names=FALSE)
+
+# 2015
+
+UF_SIM_2015 <- select(df.SIM.2015_UF, UF = Nome_UF, Freq)
+
+UF_SIM_2015$Porcentagem <- paste(round(UF_SIM_2015$Freq / sum(UF_SIM_2015 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SIM_2015 <- arrange(UF_SIM_2015, desc(Freq))
+
+UF_SIM_2015<- na.omit(UF_SIM_2015)
+
+write.csv(UF_SIM_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SIM_2015.csv', row.names=FALSE)
+
+# 2016
+
+UF_SIM_2016 <- select(df.SIM.2016_UF, UF = Nome_UF, Freq)
+
+UF_SIM_2016$Porcentagem <- paste(round(UF_SIM_2016$Freq / sum(UF_SIM_2016 $Freq) * 100,digits=2),"%",sep="")
+
+UF_SIM_2016 <- arrange(UF_SIM_2016, desc(Freq))
+
+UF_SIM_2016<- na.omit(UF_SIM_2016)
+
+write.csv(UF_SIM_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/UF_SIM_2016.csv', row.names=FALSE)
+
+## MUN ##
+
+# 2008
+
+mun_SIM_2008 <- select(df.SIM.2008_mun, Município = Nome_Município, Freq)
+
+mun_SIM_2008$Porcentagem <- paste(round(mun_SIM_2008$Freq / sum(mun_SIM_2008 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SIM_2008 <- arrange(mun_SIM_2008, desc(Freq))
+
+mun_SIM_2008<- na.omit(mun_SIM_2008)
+
+write.csv(mun_SIM_2008, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SIM_2008.csv', row.names=FALSE)
+
+# 2009
+
+mun_SIM_2009 <- select(df.SIM.2009_mun, Município = Nome_Município, Freq)
+
+mun_SIM_2009$Porcentagem <- paste(round(mun_SIM_2009$Freq / sum(mun_SIM_2009 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SIM_2009 <- arrange(mun_SIM_2009, desc(Freq))
+
+mun_SIM_2009<- na.omit(mun_SIM_2009)
+
+write.csv(mun_SIM_2009, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SIM_2009.csv', row.names=FALSE)
+
+# 2010
+
+mun_SIM_2010 <- select(df.SIM.2010_mun, Município = Nome_Município, Freq)
+
+mun_SIM_2010$Porcentagem <- paste(round(mun_SIM_2010$Freq / sum(mun_SIM_2010 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SIM_2010 <- arrange(mun_SIM_2010, desc(Freq))
+
+mun_SIM_2010<- na.omit(mun_SIM_2010)
+
+write.csv(mun_SIM_2010, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SIM_2010.csv', row.names=FALSE)
+
+# 2011
+
+mun_SIM_2011 <- select(df.SIM.2011_mun, Município = Nome_Município, Freq)
+
+mun_SIM_2011$Porcentagem <- paste(round(mun_SIM_2011$Freq / sum(mun_SIM_2011 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SIM_2011 <- arrange(mun_SIM_2011, desc(Freq))
+
+mun_SIM_2011<- na.omit(mun_SIM_2011)
+
+write.csv(mun_SIM_2011, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SIM_2011.csv', row.names=FALSE)
+
+# 2012
+
+mun_SIM_2012 <- select(df.SIM.2012_mun, Município = Nome_Município, Freq)
+
+mun_SIM_2012$Porcentagem <- paste(round(mun_SIM_2012$Freq / sum(mun_SIM_2012 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SIM_2012 <- arrange(mun_SIM_2012, desc(Freq))
+
+mun_SIM_2012<- na.omit(mun_SIM_2012)
+
+write.csv(mun_SIM_2012, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SIM_2012.csv', row.names=FALSE)
+
+# 2013
+
+mun_SIM_2013 <- select(df.SIM.2013_mun, Município = Nome_Município, Freq)
+
+mun_SIM_2013$Porcentagem <- paste(round(mun_SIM_2013$Freq / sum(mun_SIM_2013 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SIM_2013 <- arrange(mun_SIM_2013, desc(Freq))
+
+mun_SIM_2013<- na.omit(mun_SIM_2013)
+
+write.csv(mun_SIM_2013, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SIM_2013.csv', row.names=FALSE)
+
+# 2014
+
+mun_SIM_2014 <- select(df.SIM.2014_mun, Município = Nome_Município, Freq)
+
+mun_SIM_2014$Porcentagem <- paste(round(mun_SIM_2014$Freq / sum(mun_SIM_2014 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SIM_2014 <- arrange(mun_SIM_2014, desc(Freq))
+
+mun_SIM_2014<- na.omit(mun_SIM_2014)
+
+write.csv(mun_SIM_2014, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SIM_2014.csv', row.names=FALSE)
+
+# 2015
+
+mun_SIM_2015 <- select(df.SIM.2015_mun, Município = Nome_Município, Freq)
+
+mun_SIM_2015$Porcentagem <- paste(round(mun_SIM_2015$Freq / sum(mun_SIM_2015 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SIM_2015 <- arrange(mun_SIM_2015, desc(Freq))
+
+mun_SIM_2015<- na.omit(mun_SIM_2015)
+
+write.csv(mun_SIM_2015, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SIM_2015.csv', row.names=FALSE)
+
+# 2016
+
+mun_SIM_2016 <- select(df.SIM.2016_mun, Município = Nome_Município, Freq)
+
+mun_SIM_2016$Porcentagem <- paste(round(mun_SIM_2016$Freq / sum(mun_SIM_2016 $Freq) * 100,digits=2),"%",sep="")
+
+mun_SIM_2016 <- arrange(mun_SIM_2016, desc(Freq))
+
+mun_SIM_2016<- na.omit(mun_SIM_2016)
+
+write.csv(mun_SIM_2016, file = '/Volumes/Mikael_backup3/produtos_OPAS/produto2/tabelas_produto/mun_SIM_2016.csv', row.names=FALSE)
+
+########################
+## Scatter plots (UF) ##
+########################
+
+##### Preparando tabelas por banco ######
+
+## APAC
+
+UF_APAC_2008$ano <- "2008" 
+UF_APAC_2009$ano <- "2009" 
+UF_APAC_2010$ano <- "2010" 
+UF_APAC_2011$ano <- "2011" 
+UF_APAC_2012$ano <- "2012" 
+UF_APAC_2013$ano <- "2013" 
+UF_APAC_2014$ano <- "2014"
+UF_APAC_2015$ano <- "2015" 
+UF_APAC_2016$ano <- "2016"
+UF_APAC_2017$ano <- "2017"
+UF_APAC_2018$ano <- "2018" 
+
+UF_APAC_2008$UF[UF_APAC_2008$UF == "São Paulo"] <- "SP"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Paraná"] <- "PR"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Pernambuco"] <- "PE"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Amazonas"] <- "AM"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Goiás"] <- "GO"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Ceará"] <- "CE"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Pará"] <- "PA"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Acre"] <- "AC"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Bahia"] <- "BA"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Maranhão"] <- "MA"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Rondônia"] <- "RO"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Paraíba"] <- "PB"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Alagoas"] <- "AL"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Piauí"] <- "PI"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Amapá"] <- "AP"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Roraima"] <- "RR"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Sergipe"] <- "SE"
+UF_APAC_2008$UF[UF_APAC_2008$UF == "Tocantins"] <- "TO"
+
+UF_APAC_2009$UF[UF_APAC_2009$UF == "São Paulo"] <- "SP"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Paraná"] <- "PR"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Pernambuco"] <- "PE"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Amazonas"] <- "AM"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Goiás"] <- "GO"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Ceará"] <- "CE"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Pará"] <- "PA"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Acre"] <- "AC"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Bahia"] <- "BA"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Maranhão"] <- "MA"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Rondônia"] <- "RO"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Paraíba"] <- "PB"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Alagoas"] <- "AL"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Piauí"] <- "PI"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Amapá"] <- "AP"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Roraima"] <- "RR"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Sergipe"] <- "SE"
+UF_APAC_2009$UF[UF_APAC_2009$UF == "Tocantins"] <- "TO"
+
+UF_APAC_2010$UF[UF_APAC_2010$UF == "São Paulo"] <- "SP"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Paraná"] <- "PR"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Pernambuco"] <- "PE"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Amazonas"] <- "AM"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Goiás"] <- "GO"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Ceará"] <- "CE"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Pará"] <- "PA"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Acre"] <- "AC"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Bahia"] <- "BA"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Maranhão"] <- "MA"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Rondônia"] <- "RO"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Paraíba"] <- "PB"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Alagoas"] <- "AL"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Piauí"] <- "PI"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Amapá"] <- "AP"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Roraima"] <- "RR"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Sergipe"] <- "SE"
+UF_APAC_2010$UF[UF_APAC_2010$UF == "Tocantins"] <- "TO"
+
+UF_APAC_2011$UF[UF_APAC_2011$UF == "São Paulo"] <- "SP"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Paraná"] <- "PR"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Pernambuco"] <- "PE"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Amazonas"] <- "AM"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Goiás"] <- "GO"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Ceará"] <- "CE"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Pará"] <- "PA"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Acre"] <- "AC"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Bahia"] <- "BA"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Maranhão"] <- "MA"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Rondônia"] <- "RO"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Paraíba"] <- "PB"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Alagoas"] <- "AL"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Piauí"] <- "PI"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Amapá"] <- "AP"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Roraima"] <- "RR"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Sergipe"] <- "SE"
+UF_APAC_2011$UF[UF_APAC_2011$UF == "Tocantins"] <- "TO"
+
+UF_APAC_2012$UF[UF_APAC_2012$UF == "São Paulo"] <- "SP"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Paraná"] <- "PR"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Pernambuco"] <- "PE"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Amazonas"] <- "AM"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Goiás"] <- "GO"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Ceará"] <- "CE"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Pará"] <- "PA"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Acre"] <- "AC"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Bahia"] <- "BA"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Maranhão"] <- "MA"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Rondônia"] <- "RO"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Paraíba"] <- "PB"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Alagoas"] <- "AL"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Piauí"] <- "PI"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Amapá"] <- "AP"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Roraima"] <- "RR"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Sergipe"] <- "SE"
+UF_APAC_2012$UF[UF_APAC_2012$UF == "Tocantins"] <- "TO"
+
+
+UF_APAC_2013$UF[UF_APAC_2013$UF == "São Paulo"] <- "SP"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Paraná"] <- "PR"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Pernambuco"] <- "PE"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Amazonas"] <- "AM"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Goiás"] <- "GO"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Ceará"] <- "CE"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Pará"] <- "PA"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Acre"] <- "AC"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Bahia"] <- "BA"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Maranhão"] <- "MA"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Rondônia"] <- "RO"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Paraíba"] <- "PB"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Alagoas"] <- "AL"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Piauí"] <- "PI"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Amapá"] <- "AP"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Roraima"] <- "RR"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Sergipe"] <- "SE"
+UF_APAC_2013$UF[UF_APAC_2013$UF == "Tocantins"] <- "TO"
+
+UF_APAC_2014$UF[UF_APAC_2014$UF == "São Paulo"] <- "SP"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Paraná"] <- "PR"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Pernambuco"] <- "PE"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Amazonas"] <- "AM"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Goiás"] <- "GO"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Ceará"] <- "CE"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Pará"] <- "PA"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Acre"] <- "AC"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Bahia"] <- "BA"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Maranhão"] <- "MA"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Rondônia"] <- "RO"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Paraíba"] <- "PB"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Alagoas"] <- "AL"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Piauí"] <- "PI"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Amapá"] <- "AP"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Roraima"] <- "RR"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Sergipe"] <- "SE"
+UF_APAC_2014$UF[UF_APAC_2014$UF == "Tocantins"] <- "TO"
+
+
+UF_APAC_2015$UF[UF_APAC_2015$UF == "São Paulo"] <- "SP"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Paraná"] <- "PR"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Pernambuco"] <- "PE"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Amazonas"] <- "AM"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Goiás"] <- "GO"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Ceará"] <- "CE"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Pará"] <- "PA"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Acre"] <- "AC"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Bahia"] <- "BA"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Maranhão"] <- "MA"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Rondônia"] <- "RO"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Paraíba"] <- "PB"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Alagoas"] <- "AL"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Piauí"] <- "PI"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Amapá"] <- "AP"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Roraima"] <- "RR"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Sergipe"] <- "SE"
+UF_APAC_2015$UF[UF_APAC_2015$UF == "Tocantins"] <- "TO"
+
+UF_APAC_2016$UF[UF_APAC_2016$UF == "São Paulo"] <- "SP"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Paraná"] <- "PR"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Pernambuco"] <- "PE"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Amazonas"] <- "AM"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Goiás"] <- "GO"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Ceará"] <- "CE"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Pará"] <- "PA"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Acre"] <- "AC"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Bahia"] <- "BA"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Maranhão"] <- "MA"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Rondônia"] <- "RO"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Paraíba"] <- "PB"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Alagoas"] <- "AL"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Piauí"] <- "PI"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Amapá"] <- "AP"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Roraima"] <- "RR"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Sergipe"] <- "SE"
+UF_APAC_2016$UF[UF_APAC_2016$UF == "Tocantins"] <- "TO"
+
+UF_APAC_2017$UF[UF_APAC_2017$UF == "São Paulo"] <- "SP"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Paraná"] <- "PR"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Pernambuco"] <- "PE"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Amazonas"] <- "AM"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Goiás"] <- "GO"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Ceará"] <- "CE"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Pará"] <- "PA"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Acre"] <- "AC"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Bahia"] <- "BA"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Maranhão"] <- "MA"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Rondônia"] <- "RO"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Paraíba"] <- "PB"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Alagoas"] <- "AL"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Piauí"] <- "PI"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Amapá"] <- "AP"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Roraima"] <- "RR"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Sergipe"] <- "SE"
+UF_APAC_2017$UF[UF_APAC_2017$UF == "Tocantins"] <- "TO"
+
+UF_APAC_2018$UF[UF_APAC_2018$UF == "São Paulo"] <- "SP"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Rio Grande do Sul"] <- "RS"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Rio de Janeiro"] <- "RJ"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Minas Gerais"] <- "MG"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Santa Catarina"] <- "SC"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Paraná"] <- "PR"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Pernambuco"] <- "PE"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Amazonas"] <- "AM"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Espírito Santo"] <- "ES"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Goiás"] <- "GO"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Ceará"] <- "CE"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Pará"] <- "PA"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Acre"] <- "AC"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Bahia"] <- "BA"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Mato Grosso do Sul"] <- "MS"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Maranhão"] <- "MA"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Rondônia"] <- "RO"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Paraíba"] <- "PB"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Alagoas"] <- "AL"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Rio Grande do Norte"] <- "RN"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Piauí"] <- "PI"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Amapá"] <- "AP"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Distrito Federal"] <- "DF"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Mato Grosso"] <- "MT"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Roraima"] <- "RR"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Sergipe"] <- "SE"
+UF_APAC_2018$UF[UF_APAC_2018$UF == "Tocantins"] <- "TO"
+
+## rbind
+
+UF_APAC_sc <- do.call("rbind", list(UF_APAC_2008, UF_APAC_2009, UF_APAC_2010, UF_APAC_2011, UF_APAC_2012, UF_APAC_2013, UF_APAC_2014, UF_APAC_2015, UF_APAC_2016, UF_APAC_2017, UF_APAC_2018))
+
+
+## AIH
+
+UF_AIH_2008$ano <- "2008" 
+UF_AIH_2009$ano <- "2009" 
+UF_AIH_2010$ano <- "2010" 
+UF_AIH_2011$ano <- "2011" 
+UF_AIH_2012$ano <- "2012" 
+UF_AIH_2013$ano <- "2013" 
+UF_AIH_2014$ano <- "2014"
+UF_AIH_2015$ano <- "2015" 
+UF_AIH_2016$ano <- "2016"
+UF_AIH_2017$ano <- "2017"
+UF_AIH_2018$ano <- "2018" 
+
+UF_AIH_2008$UF[UF_AIH_2008$UF == "São Paulo"] <- "SP"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Paraná"] <- "PR"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Pernambuco"] <- "PE"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Amazonas"] <- "AM"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Goiás"] <- "GO"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Ceará"] <- "CE"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Pará"] <- "PA"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Acre"] <- "AC"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Bahia"] <- "BA"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Maranhão"] <- "MA"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Rondônia"] <- "RO"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Paraíba"] <- "PB"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Alagoas"] <- "AL"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Piauí"] <- "PI"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Amapá"] <- "AP"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Roraima"] <- "RR"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Sergipe"] <- "SE"
+UF_AIH_2008$UF[UF_AIH_2008$UF == "Tocantins"] <- "TO"
+
+UF_AIH_2009$UF[UF_AIH_2009$UF == "São Paulo"] <- "SP"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Paraná"] <- "PR"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Pernambuco"] <- "PE"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Amazonas"] <- "AM"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Goiás"] <- "GO"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Ceará"] <- "CE"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Pará"] <- "PA"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Acre"] <- "AC"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Bahia"] <- "BA"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Maranhão"] <- "MA"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Rondônia"] <- "RO"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Paraíba"] <- "PB"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Alagoas"] <- "AL"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Piauí"] <- "PI"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Amapá"] <- "AP"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Roraima"] <- "RR"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Sergipe"] <- "SE"
+UF_AIH_2009$UF[UF_AIH_2009$UF == "Tocantins"] <- "TO"
+
+UF_AIH_2010$UF[UF_AIH_2010$UF == "São Paulo"] <- "SP"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Paraná"] <- "PR"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Pernambuco"] <- "PE"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Amazonas"] <- "AM"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Goiás"] <- "GO"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Ceará"] <- "CE"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Pará"] <- "PA"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Acre"] <- "AC"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Bahia"] <- "BA"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Maranhão"] <- "MA"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Rondônia"] <- "RO"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Paraíba"] <- "PB"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Alagoas"] <- "AL"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Piauí"] <- "PI"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Amapá"] <- "AP"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Roraima"] <- "RR"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Sergipe"] <- "SE"
+UF_AIH_2010$UF[UF_AIH_2010$UF == "Tocantins"] <- "TO"
+
+UF_AIH_2011$UF[UF_AIH_2011$UF == "São Paulo"] <- "SP"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Paraná"] <- "PR"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Pernambuco"] <- "PE"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Amazonas"] <- "AM"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Goiás"] <- "GO"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Ceará"] <- "CE"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Pará"] <- "PA"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Acre"] <- "AC"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Bahia"] <- "BA"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Maranhão"] <- "MA"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Rondônia"] <- "RO"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Paraíba"] <- "PB"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Alagoas"] <- "AL"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Piauí"] <- "PI"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Amapá"] <- "AP"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Roraima"] <- "RR"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Sergipe"] <- "SE"
+UF_AIH_2011$UF[UF_AIH_2011$UF == "Tocantins"] <- "TO"
+
+UF_AIH_2012$UF[UF_AIH_2012$UF == "São Paulo"] <- "SP"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Paraná"] <- "PR"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Pernambuco"] <- "PE"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Amazonas"] <- "AM"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Goiás"] <- "GO"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Ceará"] <- "CE"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Pará"] <- "PA"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Acre"] <- "AC"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Bahia"] <- "BA"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Maranhão"] <- "MA"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Rondônia"] <- "RO"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Paraíba"] <- "PB"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Alagoas"] <- "AL"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Piauí"] <- "PI"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Amapá"] <- "AP"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Roraima"] <- "RR"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Sergipe"] <- "SE"
+UF_AIH_2012$UF[UF_AIH_2012$UF == "Tocantins"] <- "TO"
+
+
+UF_AIH_2013$UF[UF_AIH_2013$UF == "São Paulo"] <- "SP"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Paraná"] <- "PR"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Pernambuco"] <- "PE"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Amazonas"] <- "AM"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Goiás"] <- "GO"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Ceará"] <- "CE"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Pará"] <- "PA"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Acre"] <- "AC"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Bahia"] <- "BA"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Maranhão"] <- "MA"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Rondônia"] <- "RO"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Paraíba"] <- "PB"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Alagoas"] <- "AL"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Piauí"] <- "PI"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Amapá"] <- "AP"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Roraima"] <- "RR"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Sergipe"] <- "SE"
+UF_AIH_2013$UF[UF_AIH_2013$UF == "Tocantins"] <- "TO"
+
+UF_AIH_2014$UF[UF_AIH_2014$UF == "São Paulo"] <- "SP"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Paraná"] <- "PR"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Pernambuco"] <- "PE"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Amazonas"] <- "AM"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Goiás"] <- "GO"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Ceará"] <- "CE"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Pará"] <- "PA"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Acre"] <- "AC"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Bahia"] <- "BA"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Maranhão"] <- "MA"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Rondônia"] <- "RO"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Paraíba"] <- "PB"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Alagoas"] <- "AL"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Piauí"] <- "PI"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Amapá"] <- "AP"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Roraima"] <- "RR"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Sergipe"] <- "SE"
+UF_AIH_2014$UF[UF_AIH_2014$UF == "Tocantins"] <- "TO"
+
+
+UF_AIH_2015$UF[UF_AIH_2015$UF == "São Paulo"] <- "SP"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Paraná"] <- "PR"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Pernambuco"] <- "PE"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Amazonas"] <- "AM"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Goiás"] <- "GO"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Ceará"] <- "CE"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Pará"] <- "PA"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Acre"] <- "AC"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Bahia"] <- "BA"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Maranhão"] <- "MA"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Rondônia"] <- "RO"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Paraíba"] <- "PB"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Alagoas"] <- "AL"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Piauí"] <- "PI"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Amapá"] <- "AP"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Roraima"] <- "RR"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Sergipe"] <- "SE"
+UF_AIH_2015$UF[UF_AIH_2015$UF == "Tocantins"] <- "TO"
+
+UF_AIH_2016$UF[UF_AIH_2016$UF == "São Paulo"] <- "SP"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Paraná"] <- "PR"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Pernambuco"] <- "PE"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Amazonas"] <- "AM"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Goiás"] <- "GO"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Ceará"] <- "CE"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Pará"] <- "PA"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Acre"] <- "AC"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Bahia"] <- "BA"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Maranhão"] <- "MA"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Rondônia"] <- "RO"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Paraíba"] <- "PB"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Alagoas"] <- "AL"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Piauí"] <- "PI"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Amapá"] <- "AP"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Roraima"] <- "RR"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Sergipe"] <- "SE"
+UF_AIH_2016$UF[UF_AIH_2016$UF == "Tocantins"] <- "TO"
+
+UF_AIH_2017$UF[UF_AIH_2017$UF == "São Paulo"] <- "SP"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Paraná"] <- "PR"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Pernambuco"] <- "PE"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Amazonas"] <- "AM"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Goiás"] <- "GO"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Ceará"] <- "CE"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Pará"] <- "PA"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Acre"] <- "AC"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Bahia"] <- "BA"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Maranhão"] <- "MA"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Rondônia"] <- "RO"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Paraíba"] <- "PB"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Alagoas"] <- "AL"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Piauí"] <- "PI"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Amapá"] <- "AP"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Roraima"] <- "RR"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Sergipe"] <- "SE"
+UF_AIH_2017$UF[UF_AIH_2017$UF == "Tocantins"] <- "TO"
+
+UF_AIH_2018$UF[UF_AIH_2018$UF == "São Paulo"] <- "SP"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Rio Grande do Sul"] <- "RS"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Rio de Janeiro"] <- "RJ"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Minas Gerais"] <- "MG"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Santa Catarina"] <- "SC"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Paraná"] <- "PR"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Pernambuco"] <- "PE"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Amazonas"] <- "AM"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Espírito Santo"] <- "ES"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Goiás"] <- "GO"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Ceará"] <- "CE"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Pará"] <- "PA"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Acre"] <- "AC"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Bahia"] <- "BA"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Mato Grosso do Sul"] <- "MS"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Maranhão"] <- "MA"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Rondônia"] <- "RO"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Paraíba"] <- "PB"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Alagoas"] <- "AL"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Rio Grande do Norte"] <- "RN"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Piauí"] <- "PI"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Amapá"] <- "AP"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Distrito Federal"] <- "DF"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Mato Grosso"] <- "MT"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Roraima"] <- "RR"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Sergipe"] <- "SE"
+UF_AIH_2018$UF[UF_AIH_2018$UF == "Tocantins"] <- "TO"
+
+## rbind
+
+UF_AIH_sc <- do.call("rbind", list(UF_AIH_2008, UF_AIH_2009, UF_AIH_2010, UF_AIH_2011, UF_AIH_2012, UF_AIH_2013, UF_AIH_2014, UF_AIH_2015, UF_AIH_2016, UF_AIH_2017, UF_AIH_2018))
+
+## BPAI
+
+UF_BPAI_2008$ano <- "2008" 
+UF_BPAI_2009$ano <- "2009" 
+UF_BPAI_2010$ano <- "2010" 
+UF_BPAI_2011$ano <- "2011" 
+UF_BPAI_2012$ano <- "2012" 
+UF_BPAI_2013$ano <- "2013" 
+UF_BPAI_2014$ano <- "2014"
+UF_BPAI_2015$ano <- "2015" 
+UF_BPAI_2016$ano <- "2016"
+UF_BPAI_2017$ano <- "2017"
+UF_BPAI_2018$ano <- "2018" 
+
+
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "São Paulo"] <- "SP"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Paraná"] <- "PR"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Amazonas"] <- "AM"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Goiás"] <- "GO"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Ceará"] <- "CE"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Pará"] <- "PA"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Acre"] <- "AC"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Bahia"] <- "BA"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Maranhão"] <- "MA"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Rondônia"] <- "RO"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Paraíba"] <- "PB"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Alagoas"] <- "AL"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Piauí"] <- "PI"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Amapá"] <- "AP"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Roraima"] <- "RR"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Sergipe"] <- "SE"
+UF_BPAI_2008$UF[UF_BPAI_2008$UF == "Tocantins"] <- "TO"
+
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "São Paulo"] <- "SP"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Paraná"] <- "PR"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Amazonas"] <- "AM"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Goiás"] <- "GO"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Ceará"] <- "CE"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Pará"] <- "PA"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Acre"] <- "AC"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Bahia"] <- "BA"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Maranhão"] <- "MA"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Rondônia"] <- "RO"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Paraíba"] <- "PB"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Alagoas"] <- "AL"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Piauí"] <- "PI"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Amapá"] <- "AP"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Roraima"] <- "RR"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Sergipe"] <- "SE"
+UF_BPAI_2009$UF[UF_BPAI_2009$UF == "Tocantins"] <- "TO"
+
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "São Paulo"] <- "SP"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Paraná"] <- "PR"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Amazonas"] <- "AM"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Goiás"] <- "GO"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Ceará"] <- "CE"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Pará"] <- "PA"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Acre"] <- "AC"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Bahia"] <- "BA"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Maranhão"] <- "MA"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Rondônia"] <- "RO"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Paraíba"] <- "PB"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Alagoas"] <- "AL"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Piauí"] <- "PI"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Amapá"] <- "AP"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Roraima"] <- "RR"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Sergipe"] <- "SE"
+UF_BPAI_2010$UF[UF_BPAI_2010$UF == "Tocantins"] <- "TO"
+
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "São Paulo"] <- "SP"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Paraná"] <- "PR"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Amazonas"] <- "AM"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Goiás"] <- "GO"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Ceará"] <- "CE"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Pará"] <- "PA"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Acre"] <- "AC"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Bahia"] <- "BA"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Maranhão"] <- "MA"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Rondônia"] <- "RO"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Paraíba"] <- "PB"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Alagoas"] <- "AL"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Piauí"] <- "PI"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Amapá"] <- "AP"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Roraima"] <- "RR"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Sergipe"] <- "SE"
+UF_BPAI_2011$UF[UF_BPAI_2011$UF == "Tocantins"] <- "TO"
+
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "São Paulo"] <- "SP"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Paraná"] <- "PR"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Amazonas"] <- "AM"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Goiás"] <- "GO"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Ceará"] <- "CE"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Pará"] <- "PA"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Acre"] <- "AC"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Bahia"] <- "BA"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Maranhão"] <- "MA"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Rondônia"] <- "RO"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Paraíba"] <- "PB"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Alagoas"] <- "AL"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Piauí"] <- "PI"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Amapá"] <- "AP"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Roraima"] <- "RR"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Sergipe"] <- "SE"
+UF_BPAI_2012$UF[UF_BPAI_2012$UF == "Tocantins"] <- "TO"
+
+
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "São Paulo"] <- "SP"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Paraná"] <- "PR"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Amazonas"] <- "AM"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Goiás"] <- "GO"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Ceará"] <- "CE"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Pará"] <- "PA"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Acre"] <- "AC"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Bahia"] <- "BA"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Maranhão"] <- "MA"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Rondônia"] <- "RO"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Paraíba"] <- "PB"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Alagoas"] <- "AL"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Piauí"] <- "PI"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Amapá"] <- "AP"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Roraima"] <- "RR"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Sergipe"] <- "SE"
+UF_BPAI_2013$UF[UF_BPAI_2013$UF == "Tocantins"] <- "TO"
+
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "São Paulo"] <- "SP"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Paraná"] <- "PR"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Amazonas"] <- "AM"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Goiás"] <- "GO"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Ceará"] <- "CE"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Pará"] <- "PA"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Acre"] <- "AC"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Bahia"] <- "BA"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Maranhão"] <- "MA"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Rondônia"] <- "RO"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Paraíba"] <- "PB"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Alagoas"] <- "AL"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Piauí"] <- "PI"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Amapá"] <- "AP"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Roraima"] <- "RR"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Sergipe"] <- "SE"
+UF_BPAI_2014$UF[UF_BPAI_2014$UF == "Tocantins"] <- "TO"
+
+
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "São Paulo"] <- "SP"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Paraná"] <- "PR"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Amazonas"] <- "AM"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Goiás"] <- "GO"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Ceará"] <- "CE"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Pará"] <- "PA"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Acre"] <- "AC"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Bahia"] <- "BA"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Maranhão"] <- "MA"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Rondônia"] <- "RO"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Paraíba"] <- "PB"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Alagoas"] <- "AL"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Piauí"] <- "PI"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Amapá"] <- "AP"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Roraima"] <- "RR"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Sergipe"] <- "SE"
+UF_BPAI_2015$UF[UF_BPAI_2015$UF == "Tocantins"] <- "TO"
+
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "São Paulo"] <- "SP"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Paraná"] <- "PR"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Amazonas"] <- "AM"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Goiás"] <- "GO"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Ceará"] <- "CE"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Pará"] <- "PA"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Acre"] <- "AC"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Bahia"] <- "BA"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Maranhão"] <- "MA"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Rondônia"] <- "RO"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Paraíba"] <- "PB"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Alagoas"] <- "AL"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Piauí"] <- "PI"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Amapá"] <- "AP"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Roraima"] <- "RR"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Sergipe"] <- "SE"
+UF_BPAI_2016$UF[UF_BPAI_2016$UF == "Tocantins"] <- "TO"
+
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "São Paulo"] <- "SP"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Paraná"] <- "PR"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Amazonas"] <- "AM"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Goiás"] <- "GO"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Ceará"] <- "CE"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Pará"] <- "PA"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Acre"] <- "AC"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Bahia"] <- "BA"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Maranhão"] <- "MA"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Rondônia"] <- "RO"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Paraíba"] <- "PB"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Alagoas"] <- "AL"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Piauí"] <- "PI"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Amapá"] <- "AP"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Roraima"] <- "RR"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Sergipe"] <- "SE"
+UF_BPAI_2017$UF[UF_BPAI_2017$UF == "Tocantins"] <- "TO"
+
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "São Paulo"] <- "SP"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Rio Grande do Sul"] <- "RS"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Rio de Janeiro"] <- "RJ"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Minas Gerais"] <- "MG"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Santa Catarina"] <- "SC"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Paraná"] <- "PR"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Pernambuco"] <- "PE"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Amazonas"] <- "AM"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Espírito Santo"] <- "ES"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Goiás"] <- "GO"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Ceará"] <- "CE"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Pará"] <- "PA"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Acre"] <- "AC"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Bahia"] <- "BA"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Mato Grosso do Sul"] <- "MS"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Maranhão"] <- "MA"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Rondônia"] <- "RO"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Paraíba"] <- "PB"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Alagoas"] <- "AL"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Rio Grande do Norte"] <- "RN"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Piauí"] <- "PI"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Amapá"] <- "AP"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Distrito Federal"] <- "DF"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Mato Grosso"] <- "MT"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Roraima"] <- "RR"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Sergipe"] <- "SE"
+UF_BPAI_2018$UF[UF_BPAI_2018$UF == "Tocantins"] <- "TO"
+
+
+## rbind
+
+UF_BPAI_sc <- do.call("rbind", list(UF_BPAI_2008, UF_BPAI_2009, UF_BPAI_2010, UF_BPAI_2011, UF_BPAI_2012, UF_BPAI_2013, UF_BPAI_2014, UF_BPAI_2015, UF_BPAI_2016, UF_BPAI_2017, UF_BPAI_2018))
+
+## GAL
+
+UF_GAL_2008$ano <- "2008" 
+UF_GAL_2009$ano <- "2009" 
+UF_GAL_2010$ano <- "2010" 
+UF_GAL_2011$ano <- "2011" 
+UF_GAL_2012$ano <- "2012" 
+UF_GAL_2013$ano <- "2013" 
+UF_GAL_2014$ano <- "2014"
+UF_GAL_2015$ano <- "2015" 
+UF_GAL_2016$ano <- "2016"
+UF_GAL_2017$ano <- "2017"
+UF_GAL_2018$ano <- "2018" 
+
+UF_GAL_2008$UF[UF_GAL_2008$UF == "São Paulo"] <- "SP"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Paraná"] <- "PR"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Pernambuco"] <- "PE"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Amazonas"] <- "AM"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Goiás"] <- "GO"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Ceará"] <- "CE"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Pará"] <- "PA"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Acre"] <- "AC"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Bahia"] <- "BA"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Maranhão"] <- "MA"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Rondônia"] <- "RO"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Paraíba"] <- "PB"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Alagoas"] <- "AL"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Piauí"] <- "PI"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Amapá"] <- "AP"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Roraima"] <- "RR"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Sergipe"] <- "SE"
+UF_GAL_2008$UF[UF_GAL_2008$UF == "Tocantins"] <- "TO"
+
+UF_GAL_2009$UF[UF_GAL_2009$UF == "São Paulo"] <- "SP"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Paraná"] <- "PR"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Pernambuco"] <- "PE"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Amazonas"] <- "AM"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Goiás"] <- "GO"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Ceará"] <- "CE"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Pará"] <- "PA"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Acre"] <- "AC"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Bahia"] <- "BA"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Maranhão"] <- "MA"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Rondônia"] <- "RO"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Paraíba"] <- "PB"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Alagoas"] <- "AL"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Piauí"] <- "PI"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Amapá"] <- "AP"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Roraima"] <- "RR"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Sergipe"] <- "SE"
+UF_GAL_2009$UF[UF_GAL_2009$UF == "Tocantins"] <- "TO"
+
+UF_GAL_2010$UF[UF_GAL_2010$UF == "São Paulo"] <- "SP"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Paraná"] <- "PR"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Pernambuco"] <- "PE"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Amazonas"] <- "AM"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Goiás"] <- "GO"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Ceará"] <- "CE"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Pará"] <- "PA"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Acre"] <- "AC"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Bahia"] <- "BA"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Maranhão"] <- "MA"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Rondônia"] <- "RO"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Paraíba"] <- "PB"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Alagoas"] <- "AL"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Piauí"] <- "PI"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Amapá"] <- "AP"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Roraima"] <- "RR"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Sergipe"] <- "SE"
+UF_GAL_2010$UF[UF_GAL_2010$UF == "Tocantins"] <- "TO"
+
+UF_GAL_2011$UF[UF_GAL_2011$UF == "São Paulo"] <- "SP"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Paraná"] <- "PR"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Pernambuco"] <- "PE"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Amazonas"] <- "AM"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Goiás"] <- "GO"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Ceará"] <- "CE"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Pará"] <- "PA"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Acre"] <- "AC"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Bahia"] <- "BA"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Maranhão"] <- "MA"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Rondônia"] <- "RO"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Paraíba"] <- "PB"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Alagoas"] <- "AL"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Piauí"] <- "PI"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Amapá"] <- "AP"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Roraima"] <- "RR"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Sergipe"] <- "SE"
+UF_GAL_2011$UF[UF_GAL_2011$UF == "Tocantins"] <- "TO"
+
+UF_GAL_2012$UF[UF_GAL_2012$UF == "São Paulo"] <- "SP"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Paraná"] <- "PR"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Pernambuco"] <- "PE"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Amazonas"] <- "AM"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Goiás"] <- "GO"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Ceará"] <- "CE"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Pará"] <- "PA"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Acre"] <- "AC"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Bahia"] <- "BA"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Maranhão"] <- "MA"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Rondônia"] <- "RO"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Paraíba"] <- "PB"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Alagoas"] <- "AL"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Piauí"] <- "PI"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Amapá"] <- "AP"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Roraima"] <- "RR"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Sergipe"] <- "SE"
+UF_GAL_2012$UF[UF_GAL_2012$UF == "Tocantins"] <- "TO"
+
+
+UF_GAL_2013$UF[UF_GAL_2013$UF == "São Paulo"] <- "SP"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Paraná"] <- "PR"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Pernambuco"] <- "PE"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Amazonas"] <- "AM"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Goiás"] <- "GO"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Ceará"] <- "CE"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Pará"] <- "PA"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Acre"] <- "AC"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Bahia"] <- "BA"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Maranhão"] <- "MA"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Rondônia"] <- "RO"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Paraíba"] <- "PB"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Alagoas"] <- "AL"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Piauí"] <- "PI"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Amapá"] <- "AP"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Roraima"] <- "RR"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Sergipe"] <- "SE"
+UF_GAL_2013$UF[UF_GAL_2013$UF == "Tocantins"] <- "TO"
+
+UF_GAL_2014$UF[UF_GAL_2014$UF == "São Paulo"] <- "SP"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Paraná"] <- "PR"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Pernambuco"] <- "PE"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Amazonas"] <- "AM"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Goiás"] <- "GO"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Ceará"] <- "CE"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Pará"] <- "PA"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Acre"] <- "AC"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Bahia"] <- "BA"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Maranhão"] <- "MA"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Rondônia"] <- "RO"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Paraíba"] <- "PB"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Alagoas"] <- "AL"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Piauí"] <- "PI"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Amapá"] <- "AP"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Roraima"] <- "RR"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Sergipe"] <- "SE"
+UF_GAL_2014$UF[UF_GAL_2014$UF == "Tocantins"] <- "TO"
+
+
+UF_GAL_2015$UF[UF_GAL_2015$UF == "São Paulo"] <- "SP"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Paraná"] <- "PR"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Pernambuco"] <- "PE"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Amazonas"] <- "AM"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Goiás"] <- "GO"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Ceará"] <- "CE"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Pará"] <- "PA"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Acre"] <- "AC"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Bahia"] <- "BA"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Maranhão"] <- "MA"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Rondônia"] <- "RO"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Paraíba"] <- "PB"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Alagoas"] <- "AL"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Piauí"] <- "PI"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Amapá"] <- "AP"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Roraima"] <- "RR"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Sergipe"] <- "SE"
+UF_GAL_2015$UF[UF_GAL_2015$UF == "Tocantins"] <- "TO"
+
+UF_GAL_2016$UF[UF_GAL_2016$UF == "São Paulo"] <- "SP"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Paraná"] <- "PR"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Pernambuco"] <- "PE"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Amazonas"] <- "AM"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Goiás"] <- "GO"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Ceará"] <- "CE"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Pará"] <- "PA"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Acre"] <- "AC"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Bahia"] <- "BA"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Maranhão"] <- "MA"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Rondônia"] <- "RO"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Paraíba"] <- "PB"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Alagoas"] <- "AL"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Piauí"] <- "PI"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Amapá"] <- "AP"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Roraima"] <- "RR"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Sergipe"] <- "SE"
+UF_GAL_2016$UF[UF_GAL_2016$UF == "Tocantins"] <- "TO"
+
+UF_GAL_2017$UF[UF_GAL_2017$UF == "São Paulo"] <- "SP"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Paraná"] <- "PR"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Pernambuco"] <- "PE"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Amazonas"] <- "AM"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Goiás"] <- "GO"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Ceará"] <- "CE"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Pará"] <- "PA"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Acre"] <- "AC"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Bahia"] <- "BA"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Maranhão"] <- "MA"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Rondônia"] <- "RO"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Paraíba"] <- "PB"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Alagoas"] <- "AL"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Piauí"] <- "PI"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Amapá"] <- "AP"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Roraima"] <- "RR"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Sergipe"] <- "SE"
+UF_GAL_2017$UF[UF_GAL_2017$UF == "Tocantins"] <- "TO"
+
+UF_GAL_2018$UF[UF_GAL_2018$UF == "São Paulo"] <- "SP"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Rio Grande do Sul"] <- "RS"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Rio de Janeiro"] <- "RJ"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Minas Gerais"] <- "MG"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Santa Catarina"] <- "SC"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Paraná"] <- "PR"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Pernambuco"] <- "PE"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Amazonas"] <- "AM"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Espírito Santo"] <- "ES"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Goiás"] <- "GO"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Ceará"] <- "CE"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Pará"] <- "PA"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Acre"] <- "AC"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Bahia"] <- "BA"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Mato Grosso do Sul"] <- "MS"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Maranhão"] <- "MA"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Rondônia"] <- "RO"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Paraíba"] <- "PB"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Alagoas"] <- "AL"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Rio Grande do Norte"] <- "RN"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Piauí"] <- "PI"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Amapá"] <- "AP"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Distrito Federal"] <- "DF"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Mato Grosso"] <- "MT"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Roraima"] <- "RR"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Sergipe"] <- "SE"
+UF_GAL_2018$UF[UF_GAL_2018$UF == "Tocantins"] <- "TO"
+
+## rbind
+
+UF_GAL_sc <- do.call("rbind", list(UF_GAL_2008, UF_GAL_2009, UF_GAL_2010, UF_GAL_2011, UF_GAL_2012, UF_GAL_2013, UF_GAL_2014, UF_GAL_2015, UF_GAL_2016, UF_GAL_2017, UF_GAL_2018))
+
+## SINAN
+
+UF_SINAN_2008$ano <- "2008" 
+UF_SINAN_2009$ano <- "2009" 
+UF_SINAN_2010$ano <- "2010" 
+UF_SINAN_2011$ano <- "2011" 
+UF_SINAN_2012$ano <- "2012" 
+UF_SINAN_2013$ano <- "2013" 
+UF_SINAN_2014$ano <- "2014"
+UF_SINAN_2015$ano <- "2015" 
+UF_SINAN_2016$ano <- "2016"
+UF_SINAN_2017$ano <- "2017"
+UF_SINAN_2018$ano <- "2018" 
+
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "São Paulo"] <- "SP"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Paraná"] <- "PR"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Amazonas"] <- "AM"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Goiás"] <- "GO"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Ceará"] <- "CE"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Pará"] <- "PA"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Acre"] <- "AC"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Bahia"] <- "BA"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Maranhão"] <- "MA"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Rondônia"] <- "RO"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Paraíba"] <- "PB"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Alagoas"] <- "AL"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Piauí"] <- "PI"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Amapá"] <- "AP"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Roraima"] <- "RR"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Sergipe"] <- "SE"
+UF_SINAN_2008$UF[UF_SINAN_2008$UF == "Tocantins"] <- "TO"
+
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "São Paulo"] <- "SP"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Paraná"] <- "PR"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Amazonas"] <- "AM"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Goiás"] <- "GO"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Ceará"] <- "CE"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Pará"] <- "PA"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Acre"] <- "AC"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Bahia"] <- "BA"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Maranhão"] <- "MA"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Rondônia"] <- "RO"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Paraíba"] <- "PB"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Alagoas"] <- "AL"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Piauí"] <- "PI"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Amapá"] <- "AP"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Roraima"] <- "RR"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Sergipe"] <- "SE"
+UF_SINAN_2009$UF[UF_SINAN_2009$UF == "Tocantins"] <- "TO"
+
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "São Paulo"] <- "SP"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Paraná"] <- "PR"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Amazonas"] <- "AM"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Goiás"] <- "GO"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Ceará"] <- "CE"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Pará"] <- "PA"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Acre"] <- "AC"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Bahia"] <- "BA"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Maranhão"] <- "MA"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Rondônia"] <- "RO"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Paraíba"] <- "PB"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Alagoas"] <- "AL"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Piauí"] <- "PI"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Amapá"] <- "AP"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Roraima"] <- "RR"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Sergipe"] <- "SE"
+UF_SINAN_2010$UF[UF_SINAN_2010$UF == "Tocantins"] <- "TO"
+
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "São Paulo"] <- "SP"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Paraná"] <- "PR"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Amazonas"] <- "AM"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Goiás"] <- "GO"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Ceará"] <- "CE"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Pará"] <- "PA"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Acre"] <- "AC"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Bahia"] <- "BA"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Maranhão"] <- "MA"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Rondônia"] <- "RO"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Paraíba"] <- "PB"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Alagoas"] <- "AL"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Piauí"] <- "PI"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Amapá"] <- "AP"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Roraima"] <- "RR"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Sergipe"] <- "SE"
+UF_SINAN_2011$UF[UF_SINAN_2011$UF == "Tocantins"] <- "TO"
+
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "São Paulo"] <- "SP"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Paraná"] <- "PR"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Amazonas"] <- "AM"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Goiás"] <- "GO"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Ceará"] <- "CE"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Pará"] <- "PA"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Acre"] <- "AC"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Bahia"] <- "BA"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Maranhão"] <- "MA"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Rondônia"] <- "RO"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Paraíba"] <- "PB"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Alagoas"] <- "AL"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Piauí"] <- "PI"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Amapá"] <- "AP"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Roraima"] <- "RR"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Sergipe"] <- "SE"
+UF_SINAN_2012$UF[UF_SINAN_2012$UF == "Tocantins"] <- "TO"
+
+
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "São Paulo"] <- "SP"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Paraná"] <- "PR"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Amazonas"] <- "AM"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Goiás"] <- "GO"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Ceará"] <- "CE"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Pará"] <- "PA"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Acre"] <- "AC"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Bahia"] <- "BA"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Maranhão"] <- "MA"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Rondônia"] <- "RO"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Paraíba"] <- "PB"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Alagoas"] <- "AL"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Piauí"] <- "PI"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Amapá"] <- "AP"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Roraima"] <- "RR"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Sergipe"] <- "SE"
+UF_SINAN_2013$UF[UF_SINAN_2013$UF == "Tocantins"] <- "TO"
+
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "São Paulo"] <- "SP"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Paraná"] <- "PR"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Amazonas"] <- "AM"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Goiás"] <- "GO"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Ceará"] <- "CE"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Pará"] <- "PA"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Acre"] <- "AC"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Bahia"] <- "BA"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Maranhão"] <- "MA"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Rondônia"] <- "RO"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Paraíba"] <- "PB"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Alagoas"] <- "AL"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Piauí"] <- "PI"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Amapá"] <- "AP"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Roraima"] <- "RR"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Sergipe"] <- "SE"
+UF_SINAN_2014$UF[UF_SINAN_2014$UF == "Tocantins"] <- "TO"
+
+
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "São Paulo"] <- "SP"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Paraná"] <- "PR"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Amazonas"] <- "AM"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Goiás"] <- "GO"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Ceará"] <- "CE"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Pará"] <- "PA"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Acre"] <- "AC"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Bahia"] <- "BA"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Maranhão"] <- "MA"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Rondônia"] <- "RO"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Paraíba"] <- "PB"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Alagoas"] <- "AL"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Piauí"] <- "PI"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Amapá"] <- "AP"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Roraima"] <- "RR"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Sergipe"] <- "SE"
+UF_SINAN_2015$UF[UF_SINAN_2015$UF == "Tocantins"] <- "TO"
+
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "São Paulo"] <- "SP"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Paraná"] <- "PR"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Amazonas"] <- "AM"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Goiás"] <- "GO"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Ceará"] <- "CE"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Pará"] <- "PA"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Acre"] <- "AC"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Bahia"] <- "BA"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Maranhão"] <- "MA"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Rondônia"] <- "RO"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Paraíba"] <- "PB"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Alagoas"] <- "AL"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Piauí"] <- "PI"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Amapá"] <- "AP"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Roraima"] <- "RR"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Sergipe"] <- "SE"
+UF_SINAN_2016$UF[UF_SINAN_2016$UF == "Tocantins"] <- "TO"
+
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "São Paulo"] <- "SP"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Paraná"] <- "PR"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Amazonas"] <- "AM"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Goiás"] <- "GO"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Ceará"] <- "CE"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Pará"] <- "PA"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Acre"] <- "AC"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Bahia"] <- "BA"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Maranhão"] <- "MA"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Rondônia"] <- "RO"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Paraíba"] <- "PB"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Alagoas"] <- "AL"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Piauí"] <- "PI"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Amapá"] <- "AP"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Roraima"] <- "RR"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Sergipe"] <- "SE"
+UF_SINAN_2017$UF[UF_SINAN_2017$UF == "Tocantins"] <- "TO"
+
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "São Paulo"] <- "SP"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Rio Grande do Sul"] <- "RS"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Rio de Janeiro"] <- "RJ"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Minas Gerais"] <- "MG"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Santa Catarina"] <- "SC"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Paraná"] <- "PR"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Pernambuco"] <- "PE"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Amazonas"] <- "AM"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Espírito Santo"] <- "ES"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Goiás"] <- "GO"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Ceará"] <- "CE"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Pará"] <- "PA"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Acre"] <- "AC"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Bahia"] <- "BA"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Maranhão"] <- "MA"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Rondônia"] <- "RO"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Paraíba"] <- "PB"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Alagoas"] <- "AL"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Rio Grande do Norte"] <- "RN"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Piauí"] <- "PI"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Amapá"] <- "AP"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Distrito Federal"] <- "DF"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Mato Grosso"] <- "MT"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Roraima"] <- "RR"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Sergipe"] <- "SE"
+UF_SINAN_2018$UF[UF_SINAN_2018$UF == "Tocantins"] <- "TO"
+
+UF_SINAN_sc <- do.call("rbind", list(UF_SINAN_2008, UF_SINAN_2009, UF_SINAN_2010, UF_SINAN_2011, UF_SINAN_2012, UF_SINAN_2013, UF_SINAN_2014, UF_SINAN_2015, UF_SINAN_2016, UF_SINAN_2017, UF_SINAN_2018))
+
+## SIM
+
+UF_SIM_2008$ano <- "2008" 
+UF_SIM_2009$ano <- "2009" 
+UF_SIM_2010$ano <- "2010" 
+UF_SIM_2011$ano <- "2011" 
+UF_SIM_2012$ano <- "2012" 
+UF_SIM_2013$ano <- "2013" 
+UF_SIM_2014$ano <- "2014"
+UF_SIM_2015$ano <- "2015" 
+UF_SIM_2016$ano <- "2016"
+
+UF_SIM_2008$UF[UF_SIM_2008$UF == "São Paulo"] <- "SP"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Rio Grande do Sul"] <- "RS"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Rio de Janeiro"] <- "RJ"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Minas Gerais"] <- "MG"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Santa Catarina"] <- "SC"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Paraná"] <- "PR"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Pernambuco"] <- "PE"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Amazonas"] <- "AM"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Espírito Santo"] <- "ES"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Goiás"] <- "GO"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Ceará"] <- "CE"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Pará"] <- "PA"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Acre"] <- "AC"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Bahia"] <- "BA"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Maranhão"] <- "MA"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Rondônia"] <- "RO"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Paraíba"] <- "PB"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Alagoas"] <- "AL"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Rio Grande do Norte"] <- "RN"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Piauí"] <- "PI"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Amapá"] <- "AP"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Distrito Federal"] <- "DF"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Mato Grosso"] <- "MT"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Roraima"] <- "RR"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Sergipe"] <- "SE"
+UF_SIM_2008$UF[UF_SIM_2008$UF == "Tocantins"] <- "TO"
+
+UF_SIM_2009$UF[UF_SIM_2009$UF == "São Paulo"] <- "SP"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Rio Grande do Sul"] <- "RS"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Rio de Janeiro"] <- "RJ"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Minas Gerais"] <- "MG"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Santa Catarina"] <- "SC"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Paraná"] <- "PR"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Pernambuco"] <- "PE"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Amazonas"] <- "AM"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Espírito Santo"] <- "ES"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Goiás"] <- "GO"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Ceará"] <- "CE"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Pará"] <- "PA"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Acre"] <- "AC"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Bahia"] <- "BA"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Maranhão"] <- "MA"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Rondônia"] <- "RO"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Paraíba"] <- "PB"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Alagoas"] <- "AL"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Rio Grande do Norte"] <- "RN"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Piauí"] <- "PI"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Amapá"] <- "AP"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Distrito Federal"] <- "DF"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Mato Grosso"] <- "MT"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Roraima"] <- "RR"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Sergipe"] <- "SE"
+UF_SIM_2009$UF[UF_SIM_2009$UF == "Tocantins"] <- "TO"
+
+UF_SIM_2010$UF[UF_SIM_2010$UF == "São Paulo"] <- "SP"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Rio Grande do Sul"] <- "RS"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Rio de Janeiro"] <- "RJ"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Minas Gerais"] <- "MG"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Santa Catarina"] <- "SC"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Paraná"] <- "PR"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Pernambuco"] <- "PE"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Amazonas"] <- "AM"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Espírito Santo"] <- "ES"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Goiás"] <- "GO"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Ceará"] <- "CE"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Pará"] <- "PA"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Acre"] <- "AC"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Bahia"] <- "BA"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Maranhão"] <- "MA"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Rondônia"] <- "RO"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Paraíba"] <- "PB"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Alagoas"] <- "AL"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Rio Grande do Norte"] <- "RN"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Piauí"] <- "PI"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Amapá"] <- "AP"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Distrito Federal"] <- "DF"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Mato Grosso"] <- "MT"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Roraima"] <- "RR"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Sergipe"] <- "SE"
+UF_SIM_2010$UF[UF_SIM_2010$UF == "Tocantins"] <- "TO"
+
+UF_SIM_2011$UF[UF_SIM_2011$UF == "São Paulo"] <- "SP"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Rio Grande do Sul"] <- "RS"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Rio de Janeiro"] <- "RJ"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Minas Gerais"] <- "MG"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Santa Catarina"] <- "SC"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Paraná"] <- "PR"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Pernambuco"] <- "PE"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Amazonas"] <- "AM"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Espírito Santo"] <- "ES"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Goiás"] <- "GO"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Ceará"] <- "CE"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Pará"] <- "PA"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Acre"] <- "AC"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Bahia"] <- "BA"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Maranhão"] <- "MA"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Rondônia"] <- "RO"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Paraíba"] <- "PB"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Alagoas"] <- "AL"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Rio Grande do Norte"] <- "RN"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Piauí"] <- "PI"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Amapá"] <- "AP"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Distrito Federal"] <- "DF"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Mato Grosso"] <- "MT"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Roraima"] <- "RR"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Sergipe"] <- "SE"
+UF_SIM_2011$UF[UF_SIM_2011$UF == "Tocantins"] <- "TO"
+
+UF_SIM_2012$UF[UF_SIM_2012$UF == "São Paulo"] <- "SP"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Rio Grande do Sul"] <- "RS"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Rio de Janeiro"] <- "RJ"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Minas Gerais"] <- "MG"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Santa Catarina"] <- "SC"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Paraná"] <- "PR"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Pernambuco"] <- "PE"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Amazonas"] <- "AM"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Espírito Santo"] <- "ES"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Goiás"] <- "GO"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Ceará"] <- "CE"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Pará"] <- "PA"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Acre"] <- "AC"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Bahia"] <- "BA"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Maranhão"] <- "MA"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Rondônia"] <- "RO"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Paraíba"] <- "PB"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Alagoas"] <- "AL"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Rio Grande do Norte"] <- "RN"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Piauí"] <- "PI"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Amapá"] <- "AP"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Distrito Federal"] <- "DF"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Mato Grosso"] <- "MT"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Roraima"] <- "RR"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Sergipe"] <- "SE"
+UF_SIM_2012$UF[UF_SIM_2012$UF == "Tocantins"] <- "TO"
+
+
+UF_SIM_2013$UF[UF_SIM_2013$UF == "São Paulo"] <- "SP"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Rio Grande do Sul"] <- "RS"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Rio de Janeiro"] <- "RJ"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Minas Gerais"] <- "MG"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Santa Catarina"] <- "SC"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Paraná"] <- "PR"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Pernambuco"] <- "PE"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Amazonas"] <- "AM"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Espírito Santo"] <- "ES"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Goiás"] <- "GO"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Ceará"] <- "CE"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Pará"] <- "PA"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Acre"] <- "AC"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Bahia"] <- "BA"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Maranhão"] <- "MA"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Rondônia"] <- "RO"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Paraíba"] <- "PB"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Alagoas"] <- "AL"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Rio Grande do Norte"] <- "RN"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Piauí"] <- "PI"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Amapá"] <- "AP"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Distrito Federal"] <- "DF"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Mato Grosso"] <- "MT"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Roraima"] <- "RR"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Sergipe"] <- "SE"
+UF_SIM_2013$UF[UF_SIM_2013$UF == "Tocantins"] <- "TO"
+
+UF_SIM_2014$UF[UF_SIM_2014$UF == "São Paulo"] <- "SP"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Rio Grande do Sul"] <- "RS"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Rio de Janeiro"] <- "RJ"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Minas Gerais"] <- "MG"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Santa Catarina"] <- "SC"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Paraná"] <- "PR"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Pernambuco"] <- "PE"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Amazonas"] <- "AM"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Espírito Santo"] <- "ES"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Goiás"] <- "GO"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Ceará"] <- "CE"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Pará"] <- "PA"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Acre"] <- "AC"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Bahia"] <- "BA"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Maranhão"] <- "MA"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Rondônia"] <- "RO"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Paraíba"] <- "PB"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Alagoas"] <- "AL"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Rio Grande do Norte"] <- "RN"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Piauí"] <- "PI"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Amapá"] <- "AP"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Distrito Federal"] <- "DF"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Mato Grosso"] <- "MT"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Roraima"] <- "RR"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Sergipe"] <- "SE"
+UF_SIM_2014$UF[UF_SIM_2014$UF == "Tocantins"] <- "TO"
+
+
+UF_SIM_2015$UF[UF_SIM_2015$UF == "São Paulo"] <- "SP"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Rio Grande do Sul"] <- "RS"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Rio de Janeiro"] <- "RJ"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Minas Gerais"] <- "MG"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Santa Catarina"] <- "SC"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Paraná"] <- "PR"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Pernambuco"] <- "PE"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Amazonas"] <- "AM"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Espírito Santo"] <- "ES"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Goiás"] <- "GO"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Ceará"] <- "CE"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Pará"] <- "PA"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Acre"] <- "AC"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Bahia"] <- "BA"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Maranhão"] <- "MA"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Rondônia"] <- "RO"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Paraíba"] <- "PB"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Alagoas"] <- "AL"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Rio Grande do Norte"] <- "RN"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Piauí"] <- "PI"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Amapá"] <- "AP"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Distrito Federal"] <- "DF"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Mato Grosso"] <- "MT"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Roraima"] <- "RR"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Sergipe"] <- "SE"
+UF_SIM_2015$UF[UF_SIM_2015$UF == "Tocantins"] <- "TO"
+
+UF_SIM_2016$UF[UF_SIM_2016$UF == "São Paulo"] <- "SP"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Rio Grande do Sul"] <- "RS"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Rio de Janeiro"] <- "RJ"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Minas Gerais"] <- "MG"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Santa Catarina"] <- "SC"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Paraná"] <- "PR"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Pernambuco"] <- "PE"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Amazonas"] <- "AM"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Espírito Santo"] <- "ES"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Goiás"] <- "GO"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Ceará"] <- "CE"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Pará"] <- "PA"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Acre"] <- "AC"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Bahia"] <- "BA"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Mato Grosso do Sul"] <- "MS"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Maranhão"] <- "MA"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Rondônia"] <- "RO"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Paraíba"] <- "PB"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Alagoas"] <- "AL"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Rio Grande do Norte"] <- "RN"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Piauí"] <- "PI"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Amapá"] <- "AP"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Distrito Federal"] <- "DF"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Mato Grosso"] <- "MT"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Roraima"] <- "RR"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Sergipe"] <- "SE"
+UF_SIM_2016$UF[UF_SIM_2016$UF == "Tocantins"] <- "TO"
+
+UF_SIM_sc <- do.call("rbind", list(UF_SIM_2008, UF_SIM_2009, UF_SIM_2010, UF_SIM_2011, UF_SIM_2012, UF_SIM_2013, UF_SIM_2014, UF_SIM_2015, UF_SIM_2016))
+
+######################
+# scatter plots - UF #
+######################
+
+### AIH ###
+
+# com SP
+################# scatter plot linhas ########################
+ggplot(data = UF_AIH_sc, aes(x = ano, 
+                              y = Freq, 
+                              group=UF, 
+                              color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+UF_AIH_sc_SP <- subset(UF_AIH_sc,  UF!="SP")
+
+# sem SP
+################# scatter plot linhas ########################
+ggplot(data = UF_AIH_sc_SP, aes(x = ano, 
+                             y = Freq, 
+                             group=UF, 
+                             color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+### BPAI ###
+
+# com SP
+################# scatter plot linhas ########################
+ggplot(data = UF_BPAI_sc, aes(x = ano, 
+                             y = Freq, 
+                             group=UF, 
+                             color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+UF_BPAI_sc_SP <- subset(UF_BPAI_sc,  UF!="SP")
+
+# sem SP
+################# scatter plot linhas ########################
+ggplot(data = UF_BPAI_sc_SP, aes(x = ano, 
+                                y = Freq, 
+                                group=UF, 
+                                color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+### APAC ###
+
+# com SP
+################# scatter plot linhas ########################
+ggplot(data = UF_APAC_sc, aes(x = ano, 
+                              y = Freq, 
+                              group=UF, 
+                              color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+UF_APAC_sc_SP <- subset(UF_APAC_sc,  UF!="SP")
+
+# sem SP
+################# scatter plot linhas ########################
+ggplot(data = UF_APAC_sc_SP, aes(x = ano, 
+                                 y = Freq, 
+                                 group=UF, 
+                                 color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+### GAL ###
+
+# com SP
+################# scatter plot linhas ########################
+ggplot(data = UF_GAL_sc, aes(x = ano, 
+                              y = Freq, 
+                              group=UF, 
+                              color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+UF_GAL_sc_SP <- subset(UF_GAL_sc,  UF!="SP")
+
+# sem SP
+################# scatter plot linhas ########################
+ggplot(data = UF_GAL_sc_SP, aes(x = ano, 
+                                 y = Freq, 
+                                 group=UF, 
+                                 color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+### SINAN ###
+
+# com SP
+################# scatter plot linhas ########################
+ggplot(data = UF_SINAN_sc, aes(x = ano, 
+                             y = Freq, 
+                             group=UF, 
+                             color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+UF_SINAN_sc_SP_RS <- subset(UF_SINAN_sc,  UF!="SP" & UF!="RS")
+
+# sem SP e RS
+################# scatter plot linhas ########################
+ggplot(data = UF_SINAN_sc_SP_RS, aes(x = ano, 
+                                y = Freq, 
+                                group=UF, 
+                                color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+### SIM ###
+
+# com SP
+################# scatter plot linhas ########################
+ggplot(data = UF_SIM_sc, aes(x = ano, 
+                               y = Freq, 
+                               group=UF, 
+                               color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+UF_SIM_sc_SP <- subset(UF_SIM_sc,  UF!="SP" )
+
+# sem SP 
+################# scatter plot linhas ########################
+ggplot(data = UF_SIM_sc_SP, aes(x = ano, 
+                                     y = Freq, 
+                                     group=UF, 
+                                     color=UF)) +
+  geom_line() +
+  geom_point() + 
+  labs( 
+    y="Frequência", 
+    x="Ano"
+  ) + geom_text(aes(label=UF),hjust=0, vjust=0, check_overlap = TRUE, size = 3) 
+#############################################################
+
+
+
+
+
+
+################# scatter plots pontos ########################
+gg <- ggplot(UF_BPAI_sc, aes(x=ano, y=Freq)) + 
+  geom_point(aes(col=UF, size=Freq)) + 
+  geom_smooth(method="loess", se=F) + 
+  ylim(c(0, 600000)) + 
+  labs(subtitle="UF", 
+       y="Frequência", 
+       x="Ano", 
+       title="Scatterplot") 
+plot(gg)
+#############################################################
+
+
+
+
