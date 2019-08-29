@@ -6302,6 +6302,49 @@ UF_SIM_2016$UF[UF_SIM_2016$UF == "Tocantins"] <- "TO"
 
 UF_SIM_sc <- do.call("rbind", list(UF_SIM_2008, UF_SIM_2009, UF_SIM_2010, UF_SIM_2011, UF_SIM_2012, UF_SIM_2013, UF_SIM_2014, UF_SIM_2015, UF_SIM_2016))
 
+#### Adicionando total por ano - Brasil ###
+#AIH
+total_AIH <- UF_AIH_sc %>% group_by(ano) %>% summarise(total = sum(Freq), na.rm = TRUE) 
+total_AIH$na.rm = "Brasil"
+total_AIH$Porcentagem = "100%"
+total_AIH <- select(total_AIH, UF = na.rm, Freq = total, Porcentagem, ano )
+UF_AIH_sc <- do.call("rbind", list(UF_AIH_sc, total_AIH))
+
+#APAC
+total_APAC <- UF_APAC_sc %>% group_by(ano) %>% summarise(total = sum(Freq), na.rm = TRUE) 
+total_APAC$na.rm = "Brasil"
+total_APAC$Porcentagem = "100%"
+total_APAC <- select(total_APAC, UF = na.rm, Freq = total, Porcentagem, ano )
+UF_APAC_sc <- do.call("rbind", list(UF_APAC_sc, total_APAC))
+
+#BPAI
+total_BPAI <- UF_BPAI_sc %>% group_by(ano) %>% summarise(total = sum(Freq), na.rm = TRUE) 
+total_BPAI$na.rm = "Brasil"
+total_BPAI$Porcentagem = "100%"
+total_BPAI <- select(total_BPAI, UF = na.rm, Freq = total, Porcentagem, ano )
+UF_BPAI_sc <- do.call("rbind", list(UF_BPAI_sc, total_BPAI))
+
+#GAL
+total_GAL <- UF_GAL_sc %>% group_by(ano) %>% summarise(total = sum(Freq), na.rm = TRUE) 
+total_GAL$na.rm = "Brasil"
+total_GAL$Porcentagem = "100%"
+total_GAL <- select(total_GAL, UF = na.rm, Freq = total, Porcentagem, ano )
+UF_GAL_sc <- do.call("rbind", list(UF_GAL_sc, total_GAL))
+
+#SIM
+total_SIM <- UF_SIM_sc %>% group_by(ano) %>% summarise(total = sum(Freq), na.rm = TRUE) 
+total_SIM$na.rm = "Brasil"
+total_SIM$Porcentagem = "100%"
+total_SIM <- select(total_SIM, UF = na.rm, Freq = total, Porcentagem, ano )
+UF_SIM_sc <- do.call("rbind", list(UF_SIM_sc, total_SIM))
+
+#SINAN
+total_SINAN <- UF_SINAN_sc %>% group_by(ano) %>% summarise(total = sum(Freq), na.rm = TRUE) 
+total_SINAN$na.rm = "Brasil"
+total_SINAN$Porcentagem = "100%"
+total_SINAN <- select(total_SINAN, UF = na.rm, Freq = total, Porcentagem, ano )
+UF_SINAN_sc <- do.call("rbind", list(UF_SINAN_sc, total_SINAN))
+
 ######################
 # scatter plots - UF #
 ######################
